@@ -1,3 +1,43 @@
 // Place all the styles related to the welcome controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+html{
+  background: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  z-index: 1;
+  font-family: 'Josefin Sans', sans-serif;
+}
+.logo{
+  position: relative;
+  margin: 0 auto;
+  height: 100px;
+  top: 200px;
+  width: 300px;
+  background-color: black;
+  opacity: .5;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
+h1.ontop{
+  font-size: 42px;
+  font-weight: 400;
+}
+h2.ontop{
+  font-size: 24px;
+  font-weight: 200;
+}
+h1.ontop, h2.ontop{
+  margin: 0;
+  padding: 5px;
+  position: relative;
+  z-index: 1;
+  top: 285px;
+  color: #dee;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+}
