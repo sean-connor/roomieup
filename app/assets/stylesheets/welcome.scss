@@ -10,34 +10,59 @@ html{
   z-index: 1;
   font-family: 'Josefin Sans', sans-serif;
 }
-.logo{
+.logobox{
+  color: white;
+  padding: 10;
+  font-size: 24px;
+  text-align: center;
   position: relative;
   margin: 0 auto;
+  padding: 0;
   height: 100px;
-  top: 200px;
+  top: 0px;
   width: 300px;
   background-color: black;
   opacity: .5;
-  display: flex;
-  justify-content: center;
-  align-content: center;
+  display: block;
 }
-h1.ontop{
-  font-size: 42px;
-  font-weight: 400;
-}
-h2.ontop{
-  font-size: 24px;
-  font-weight: 200;
-}
-h1.ontop, h2.ontop{
+h4 {
   margin: 0;
+  top: 10px;
+  position: relative;
+}
+form{
+  position: relative;
+  top: 10px;
   padding: 5px;
+  margin: 0 auto;
+  text-align: center;
+}
+.logo{
+  margin: 0;
+  padding: 0px;
   position: relative;
   z-index: 1;
-  top: 285px;
-  color: #dee;
+  top: 100px;
   display: flex;
   justify-content: center;
   align-content: center;
 }
+// h1.ontop{
+//   font-size: 42px;
+//   font-weight: 400;
+// }
+// h2.ontop{
+//   font-size: 24px;
+//   font-weight: 200;
+// }
+// h1.ontop, h2.ontop{
+//   margin: 0;
+//   padding: 5px;
+//   position: relative;
+//   z-index: 1;
+//   top: 285px;
+//   color: #dee;
+//   display: flex;
+//   justify-content: center;
+//   align-content: center;
+// }
