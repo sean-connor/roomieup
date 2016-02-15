@@ -10,22 +10,90 @@ html{
   z-index: 1;
   font-family: 'Josefin Sans', sans-serif;
 }
-
-.email {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 24px;
-  width: 100%;
-  box-sizing: content-box;
-}
-.button {
-  font-family: 'Josefin Sans', sans-serif;
+h2{
+  text-align: center;
+  color: #ccc;
   font-size: 16px;
+
+}
+h3{
+  color: white;
+  font-size: 24px;
+  padding: 10px;
   margin: 0 auto;
-  box-sizing: content-box;
-  width: 75%;
-  position: relative;
+  background-color: black;
+  opacity: .5;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
   display: block;
-  top: 10px;
+  text-align: center;
+}
+li{
+  font-size: 16px;
+}
+a{
+  color: white;
+  font-size: 20px;
+  margin: 0 auto;
+  background-color: black;
+  opacity: .5;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+  display: block;
+  text-align: center;
+  padding: 10px;
+}
+a:hover{
+  opacity: .75;
+}
+.new_user {
+  color: white;
+  font-size: 24px;
+  margin: 0 auto 25px auto;
+  width: 300px;
+  padding: 5px;
+  background-color: black;
+  opacity: .5;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+  align-content: center;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+}
+.field {
+  position: relative;
+  margin: 5px 5px;
+  display: inline-block;
+  font-size: 18px;
+  font: black;
+  opacity: 1;
+}
+em{
+  font-size: 16px;
+}
+.actions input{
+  position: absolute;
+  color: white;
+  font-size: 14px;
+  margin: 5px;
+  padding: 5px;
+  border: none;
+  background-color: black;
+  opacity: .5;
+
+  text-align: center;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+  bottom: 0;
+  right: 0;
+}
+.actions input:hover{
+  opacity: 1;
+  font-size: 14px;
 }
 body{
   position: absolute;
@@ -50,6 +118,9 @@ body{
   border-radius: 5px;
   box-shadow: 1px 1px 20px black;
 }
+.logobox:hover{
+  opacity: .75;
+}
 h4 {
   margin: 0;
   top: 0px;
@@ -70,4 +141,27 @@ form{
   justify-content: center;
   align-content: center;
   align-items: center;
+  opacity: .75;
+  transition: transform 1s ease;
+}
+body:hover .logo{
+  opacity: 1;
+  transform: translateY(-100px);
+}
+
+.logo_login{
+  position: relative;
+  top: 0;
+  padding: 10px;
+  z-index: 1;
+  opacity: .65;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  transition: transform 1s ease;
+}
+body:hover .logo_login{
+  opacity: 1;
+  transform: translateY(-50px);
 }
