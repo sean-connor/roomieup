@@ -10,59 +10,60 @@ html{
   z-index: 1;
   font-family: 'Josefin Sans', sans-serif;
 }
+
+.email {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 24px;
+  width: 100%;
+  box-sizing: content-box;
+}
+.button {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 16px;
+  margin: 0 auto;
+  box-sizing: content-box;
+  width: 75%;
+  position: relative;
+  display: block;
+  top: 10px;
+}
+body{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
 .logobox{
   color: white;
-  padding: 10;
   font-size: 24px;
-  text-align: center;
-  position: relative;
   margin: 0 auto;
   padding: 0;
-  height: 100px;
-  top: 0px;
+  height: 75px;
   width: 300px;
   background-color: black;
   opacity: .5;
-  display: block;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
 }
 h4 {
   margin: 0;
-  top: 10px;
+  top: 0px;
+  font-weight: 500;
   position: relative;
+  line-height: 0px;
 }
 form{
   position: relative;
   top: 10px;
   padding: 5px;
-  margin: 0 auto;
-  text-align: center;
 }
 .logo{
-  margin: 0;
-  padding: 0px;
-  position: relative;
   z-index: 1;
-  top: 100px;
   display: flex;
   justify-content: center;
   align-content: center;
+  align-items: center;
 }
-// h1.ontop{
-//   font-size: 42px;
-//   font-weight: 400;
-// }
-// h2.ontop{
-//   font-size: 24px;
-//   font-weight: 200;
-// }
-// h1.ontop, h2.ontop{
-//   margin: 0;
-//   padding: 5px;
-//   position: relative;
-//   z-index: 1;
-//   top: 285px;
-//   color: #dee;
-//   display: flex;
-//   justify-content: center;
-//   align-content: center;
-// }
