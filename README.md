@@ -1,6 +1,6 @@
 # roomieup
 
-[Heroku link](roomieup.com "roomieup") 
+[Heroku Link](http://roomieup.com "roomieup") 
 
 ## Minimum Viable Product
 
