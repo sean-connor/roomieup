@@ -1,6 +1,6 @@
 # roomieup
 
-[Heroku link][roomieup.com] **NB:** This should be a link to your production site
+[Heroku link](roomieup.com "roomieup") 
 
 ## Minimum Viable Product
 
