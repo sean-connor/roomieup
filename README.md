@@ -10,8 +10,8 @@ with roommates built using Ruby on Rails and React.js. roomieup allows users to:
 <!-- This is a Markdown checklist. Use it to keep track of your
 progress. Put an x between the brackets for a checkmark: [x] -->
 
-- [ ] Create an account
-- [ ] Log in / Log out
+- [X] Create an account
+- [X] Log in / Log out
 - [ ] View aggregated apartment listings
 - [ ] Save, edit, and delete apartment listings
 - [ ] View, enter, and utilize chatrooms
@@ -35,11 +35,11 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 
 **Objective:** Functioning rails project with Authentication
 
-- [ ] create new project
-- [ ] create `User` model
-- [ ] authentication
-- [ ] user signup/signin pages
-- [ ] blank landing page after signin
+- [X] create new project
+- [X] create `User` model
+- [X] authentication
+- [X] user signup/signin pages
+- [X] blank landing page after signin
 
 ### Phase 2: Craigslist Aggregation, API, and basic APIUtil (2 days)
 
