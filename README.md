@@ -123,10 +123,6 @@ user interface.
 
 ### Bonus Features (TBD)
 - [ ] Listing account for posting apartment ads that originate locally
-- [ ] Pagination / infinite scroll for Notes Index
-- [ ] Set reminders on notes
-- [ ] Changelogs for Notes
-- [ ] Multiple sessions
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md
