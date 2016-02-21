@@ -15,15 +15,15 @@ module.exports = React.createClass({
       };
     },
 
-    handleSubmit: function (event) {
-      event.preventDefault();
+    handleSubmit: function (e) {
+      e.preDefault();
       this.sendFormData();
     },
     sendFormData: function(){
       ApiUtil.receiveNokoReq(this.state);
     },
-    handleChange: function (event){
-      this.setState({[event.target.name]: event.target.value});
+    handleChange: function (e){
+      this.setState({[e.target.name]: e.target.value});
     },
 
     render: function() {
