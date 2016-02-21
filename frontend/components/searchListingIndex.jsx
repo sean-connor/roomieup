@@ -5,8 +5,8 @@ module.exports = React.createClass({
 
 render: function(){
   return(
-    <div className="contentpane">
-      <h2>This will be the saved listings pane</h2>
+    <div>
+      <h2>This will be the searchlistings index</h2>
     </div>
   )
 }

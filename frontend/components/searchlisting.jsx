@@ -1,12 +1,15 @@
 var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
+var SearchListingForm = require('./searchListingForm');
+var SearchListingIndex = require("./searchListingIndex");
 
 module.exports = React.createClass({
 
 render: function(){
   return(
-    <div>
-      <h2>This will be the searchlistings pane</h2>
+    <div className="contentpane">
+      <SearchListingForm/>
+      <SearchListingIndex/>
     </div>
   )
 }

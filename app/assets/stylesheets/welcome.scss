@@ -193,3 +193,14 @@ input.sign-btn{
 input.sign-btn:hover{
   cursor: pointer;
 }
+.homebackground{
+  background: url('http://i.imgur.com/0hvPDiO.gifv');
+  background-size: auto;
+}
+.contentpane{
+  position: fixed;
+  display: flex;
+  align-content: center;
+  width: 1000px;
+  height: 800px;
+}

@@ -57,8 +57,8 @@
 	var App = __webpack_require__(212);
 	var Home = __webpack_require__(214);
 	var SearchListings = __webpack_require__(215);
-	var SavedListings = __webpack_require__(216);
-	var Chat = __webpack_require__(217);
+	var SavedListings = __webpack_require__(218);
+	var Chat = __webpack_require__(219);
 
 	var routes = React.createElement(
 	  Route,
@@ -19684,7 +19684,24 @@
 
 	var ApiActions = __webpack_require__(160);
 
-	ApiUtil = {};
+	ApiUtil = {
+	  receiveNokoReq: function (stateObj) {
+	    var city = 'sfbay';
+	    var requestStringBuild = ["http://", city, ".craigslist.org/search/apa?search_distance=", stateObj.miles, "&postal=", stateObj.zip, "&min_price=", stateObj.minprice, "&max_price=", stateObj.maxprice, "&bedrooms=", stateObj.br, "&bathrooms=", stateObj.ba, "&query=", stateObj.keyword].join("");
+	    var request = { requestString: requestStringBuild };
+	    this.nokogiriCall(request);
+	  },
+	  nokogiriCall: function (request) {
+	    $.ajax({
+	      url: "api/clrequest",
+	      data: request,
+	      success: function (responseXML) {
+	        ApiActions.receiveNokoRes(responseXML);
+	      }
+	    });
+	  }
+
+	};
 
 	module.exports = ApiUtil;
 
@@ -19693,8 +19710,15 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var AppDispatcher = __webpack_require__(161);
-
-	ApiActions = {};
+	var ListingsConstants = __webpack_require__(220);
+	ApiActions = {
+	  receiveNokoRes: function (responseXML) {
+	    Dispatcher.dispatch({
+	      actionType: ListingsConstants.LISTINGS_RECEIVED,
+	      listings: listings
+	    });
+	  }
+	};
 
 	module.exports = ApiActions;
 
@@ -24447,12 +24471,13 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'contentpane' },
 	      React.createElement(
 	        'h2',
 	        null,
-	        'This will be the home pane'
-	      )
+	        'We\'re Excited Too, RoomieUp is Coming Soon!'
+	      ),
+	      React.createElement('div', { className: 'homebackground' })
 	    );
 	  }
 
@@ -24464,6 +24489,8 @@
 
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
+	var SearchListingForm = __webpack_require__(216);
+	var SearchListingIndex = __webpack_require__(217);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -24472,12 +24499,9 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      null,
-	      React.createElement(
-	        'h2',
-	        null,
-	        'This will be the searchlistings pane'
-	      )
+	      { className: 'contentpane' },
+	      React.createElement(SearchListingForm, null),
+	      React.createElement(SearchListingIndex, null)
 	    );
 	  }
 
@@ -24494,18 +24518,135 @@
 	  displayName: 'exports',
 
 
+	  getInitialState: function () {
+	    return {
+	      keyword: "room",
+	      miles: 2,
+	      zip: 94105,
+	      minprice: 1000,
+	      maxprice: 2000,
+	      br: 1,
+	      ba: 1
+	    };
+	  },
+
+	  handleSubmit: function (event) {
+	    event.preventDefault();
+	    this.sendFormData();
+	  },
+	  sendFormData: function () {
+	    ApiUtil.receiveNokoReq(this.state);
+	  },
+	  handleChange: function (event) {
+	    this.setState({ [event.target.name]: event.target.value });
+	  },
+
 	  render: function () {
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(
-	        'h2',
-	        null,
-	        'This will be the saved listings pane'
+	        'form',
+	        { action: '', onSubmit: this.handleSubmit },
+	        React.createElement(
+	          'div',
+	          { className: 'form-group' },
+	          React.createElement(
+	            'label',
+	            { htmlFor: 'keywordsearch' },
+	            'Keyword Search:'
+	          ),
+	          React.createElement('input', { className: 'form-control', name: 'keyword', ref: 'keyword', required: true, type: 'text', value: this.state.keyword,
+	            onChange: this.handleChange })
+	        ),
+	        React.createElement(
+	          'h3',
+	          null,
+	          'Miles From Zipcode'
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'form-group' },
+	          React.createElement(
+	            'label',
+	            { htmlFor: 'email' },
+	            'Miles:'
+	          ),
+	          React.createElement('input', { className: 'form-control', name: 'miles', ref: 'miles', required: true, type: 'number', value: this.state.miles,
+	            onChange: this.handleChange })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'form-group' },
+	          React.createElement(
+	            'label',
+	            { htmlFor: 'company' },
+	            'Zipcode:'
+	          ),
+	          React.createElement('input', { className: 'form-control', name: 'zip', ref: 'zip', required: true, type: 'number', value: this.state.zip,
+	            onChange: this.handleChange })
+	        ),
+	        React.createElement(
+	          'h3',
+	          null,
+	          'Price:'
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'form-group' },
+	          React.createElement(
+	            'label',
+	            { htmlFor: 'website' },
+	            'Min:'
+	          ),
+	          React.createElement('input', { className: 'form-control', name: 'minprice', ref: 'minprice', type: 'number', value: this.state.minprice,
+	            onChange: this.handleChange })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'form-group' },
+	          React.createElement(
+	            'label',
+	            { htmlFor: 'website' },
+	            'Max:'
+	          ),
+	          React.createElement('input', { className: 'form-control', name: 'maxprice', ref: 'maxprice', type: 'number', value: this.state.maxprice,
+	            onChange: this.handleChange })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'form-group' },
+	          React.createElement(
+	            'label',
+	            { htmlFor: 'phone' },
+	            'Bedrooms:'
+	          ),
+	          React.createElement('input', { className: 'form-control', name: 'br', ref: 'br', required: true, type: 'number', value: this.state.br,
+	            onChange: this.handleChange })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'form-group' },
+	          React.createElement(
+	            'label',
+	            { htmlFor: 'website' },
+	            'Bathrooms:'
+	          ),
+	          React.createElement('input', { className: 'form-control', name: 'ba', ref: 'ba', type: 'number', value: this.state.ba,
+	            onChange: this.handleChange })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'form-group' },
+	          React.createElement(
+	            'button',
+	            { className: 'btn-search', type: 'submit' },
+	            'Search'
+	          )
+	        )
 	      )
 	    );
 	  }
-
 	});
 
 /***/ },
@@ -24526,12 +24667,70 @@
 	      React.createElement(
 	        'h2',
 	        null,
+	        'This will be the searchlistings index'
+	      )
+	    );
+	  }
+
+	});
+
+/***/ },
+/* 218 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ApiUtil = __webpack_require__(159);
+
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      { className: 'contentpane' },
+	      React.createElement(
+	        'h2',
+	        null,
+	        'This will be the saved listings pane'
+	      )
+	    );
+	  }
+
+	});
+
+/***/ },
+/* 219 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ApiUtil = __webpack_require__(159);
+
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      { className: 'contentpane' },
+	      React.createElement(
+	        'h2',
+	        null,
 	        'This will be the chat pane'
 	      )
 	    );
 	  }
 
 	});
+
+/***/ },
+/* 220 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  LISTINGS_RECEIVED: "LISTINGS_RECEIVED"
+	};
 
 /***/ }
 /******/ ]);

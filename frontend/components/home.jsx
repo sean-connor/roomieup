@@ -5,8 +5,9 @@ module.exports = React.createClass({
 
 render: function(){
   return(
-    <div>
-      <h2>This will be the home pane</h2>
+    <div className="contentpane">
+      <h2>We're Excited Too, RoomieUp is Coming Soon!</h2>
+      <div className="homebackground"></div>
     </div>
   )
 }

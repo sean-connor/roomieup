@@ -5,7 +5,7 @@ module.exports = React.createClass({
 
 render: function(){
   return(
-    <div>
+    <div className="contentpane">
       <h2>This will be the chat pane</h2>
     </div>
   )
