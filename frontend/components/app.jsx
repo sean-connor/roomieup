@@ -4,7 +4,7 @@ var Nav = require('./nav');
 App = React.createClass({
   render: function () {
     return(
-      <div>
+      <div className="appdiv">
         <div>
           <Nav/>
         </div>

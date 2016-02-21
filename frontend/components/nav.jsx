@@ -6,12 +6,12 @@ module.exports = React.createClass({
 
 render: function(){
   return(
-    <div>
-      <ul>
-        <li><Link to ={`/home`}>Honme</Link></li>
-        <li><Link to ={`/searchlistings`}>Search Listings</Link></li>
-        <li><Link to ={`/savedlistings`}>Saved Listings</Link></li>
-        <li><Link to ={`/chat`}>Chat</Link></li>
+    <div className="navbar">
+      <ul className="navul">
+        <li className="navli"><Link to ={`/home`}><div className="home"></div></Link></li>
+        <li className="navli"><Link to ={`/searchlistings`}><div className="searchListings"></div></Link></li>
+        <li className="navli"><Link to ={`/savedlistings`}><div className="saved"></div></Link></li>
+        <li className="navli"><Link to ={`/chat`}><div className="chat"></div></Link></li>
       </ul>
     </div>
   )

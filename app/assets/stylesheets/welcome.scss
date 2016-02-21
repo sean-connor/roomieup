@@ -7,22 +7,125 @@ html{
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  z-index: 1;
   font-family: 'Josefin Sans', sans-serif;
 }
-body{
+
+#root{
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.logsignform{
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
+p.username{
+  display: none;
+}
+.signformbtn{
+    border-style: none;
+    position: relative;
+    top: 25px;
+    color: white;
+    font-size: 20px;
+    font-weight: 300;
+    margin: 0;
+    background-color: #111;
+    width:300px;
+    text-decoration: none;
+    border-radius: 5px;
+    box-shadow: 1px 1px 20px black;
+    display: block;
+    text-align: center;
+}
+.signformbtn:hover{
+  border-style: 1px solid black;
+  background-color: black;
+}
+a.sign-btn{
+  position: relative;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 10px auto;
+  padding: 0;
+  height: 50px;
+  width: 100px;
+  background-color: black;
+  opacity: .5;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+}
+input.sign-btn{
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 10px;
+  padding: 10px;
+  height: 50px;
+  width: 100px;
+  background-color: black;
+  opacity: .5;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+}
+.navbar{
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+.navul{
+  position: relative;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 0;
+}
+.navli{
+  position: relative;
+  margin: 0 150px 0 0 ;
+  width: 0;
+  display: flex;
+  align-content: center;
+}
+.searchListings{
+  background-image: url(searching.svg);
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+}
+.saved{
+  background-image: url(saved.svg);
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+}
+.home{
+  background-image: url(home.svg);
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+}
+.chat{
+  background-image: url(chat.svg);
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+}
 .username{
   font-size: 24px;
   color: white;
 }
-.logobox{
-  color: white;
-  font-size: 24px;
+.signform{
+  position: relative;
   margin: 10px auto;
   padding: 0;
   height: 75px;
@@ -31,14 +134,18 @@ body{
   opacity: .5;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
   align-content: center;
-  align-items: center;
   border-radius: 5px;
   box-shadow: 1px 1px 20px black;
 }
-.logobox:hover{
-  opacity: .75;
+.loginform{
+  position: relative;
+  color: white;
+  font-size: 24px;
+  font-weight: 300;
+  top: 15px;
+  margin: 5px 10px;
 }
 .logo{
   z-index: 1;
@@ -49,7 +156,7 @@ body{
   opacity: .75;
   transition: transform 1s ease;
 }
-body:hover .logo{
+.logsignform:hover .logo{
   opacity: 1;
-  transform: translateY(-100px);
+  transform: translateY(-5px);
 }

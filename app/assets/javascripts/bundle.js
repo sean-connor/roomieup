@@ -48,17 +48,17 @@
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 	//API
-	var ApiUtils = __webpack_require__(216);
+	var ApiUtils = __webpack_require__(159);
 	// Routing
 	var Router = __webpack_require__(165).Router;
 	var Route = __webpack_require__(165).Route;
 	var IndexRoute = __webpack_require__(165).IndexRoute;
 	//Component Requirement
 	var App = __webpack_require__(212);
-	var Home = __webpack_require__(213);
-	var SearchListings = __webpack_require__(217);
-	var SavedListings = __webpack_require__(218);
-	var Chat = __webpack_require__(214);
+	var Home = __webpack_require__(214);
+	var SearchListings = __webpack_require__(215);
+	var SavedListings = __webpack_require__(216);
+	var Chat = __webpack_require__(217);
 
 	var routes = React.createElement(
 	  Route,
@@ -19679,8 +19679,26 @@
 
 
 /***/ },
-/* 159 */,
-/* 160 */,
+/* 159 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var ApiActions = __webpack_require__(160);
+
+	ApiUtil = {};
+
+	module.exports = ApiUtil;
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var AppDispatcher = __webpack_require__(161);
+
+	ApiActions = {};
+
+	module.exports = ApiActions;
+
+/***/ },
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -24333,7 +24351,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var Nav = __webpack_require__(215);
+	var Nav = __webpack_require__(213);
 
 	App = React.createClass({
 	  displayName: 'App',
@@ -24341,7 +24359,7 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      null,
+	      { className: 'appdiv' },
 	      React.createElement(
 	        'div',
 	        null,
@@ -24359,7 +24377,68 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var ApiUtil = __webpack_require__(216);
+	var ApiUtil = __webpack_require__(159);
+	var Link = __webpack_require__(165).Link;
+
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      { className: 'navbar' },
+	      React.createElement(
+	        'ul',
+	        { className: 'navul' },
+	        React.createElement(
+	          'li',
+	          { className: 'navli' },
+	          React.createElement(
+	            Link,
+	            { to: `/home` },
+	            React.createElement('div', { className: 'home' })
+	          )
+	        ),
+	        React.createElement(
+	          'li',
+	          { className: 'navli' },
+	          React.createElement(
+	            Link,
+	            { to: `/searchlistings` },
+	            React.createElement('div', { className: 'searchListings' })
+	          )
+	        ),
+	        React.createElement(
+	          'li',
+	          { className: 'navli' },
+	          React.createElement(
+	            Link,
+	            { to: `/savedlistings` },
+	            React.createElement('div', { className: 'saved' })
+	          )
+	        ),
+	        React.createElement(
+	          'li',
+	          { className: 'navli' },
+	          React.createElement(
+	            Link,
+	            { to: `/chat` },
+	            React.createElement('div', { className: 'chat' })
+	          )
+	        )
+	      )
+	    );
+	  }
+
+	});
+
+/***/ },
+/* 214 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ApiUtil = __webpack_require__(159);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -24380,107 +24459,11 @@
 	});
 
 /***/ },
-/* 214 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ApiUtil = __webpack_require__(216);
-
-	module.exports = React.createClass({
-	  displayName: 'exports',
-
-
-	  render: function () {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'h2',
-	        null,
-	        'This will be the chat pane'
-	      )
-	    );
-	  }
-
-	});
-
-/***/ },
 /* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var ApiUtil = __webpack_require__(216);
-	var Link = __webpack_require__(165).Link;
-
-	module.exports = React.createClass({
-	  displayName: 'exports',
-
-
-	  render: function () {
-	    return React.createElement(
-	      'div',
-	      null,
-	      React.createElement(
-	        'ul',
-	        null,
-	        React.createElement(
-	          'li',
-	          null,
-	          React.createElement(
-	            Link,
-	            { to: `/home` },
-	            'Honme'
-	          )
-	        ),
-	        React.createElement(
-	          'li',
-	          null,
-	          React.createElement(
-	            Link,
-	            { to: `/searchlistings` },
-	            'Search Listings'
-	          )
-	        ),
-	        React.createElement(
-	          'li',
-	          null,
-	          React.createElement(
-	            Link,
-	            { to: `/savedlistings` },
-	            'Saved Listings'
-	          )
-	        ),
-	        React.createElement(
-	          'li',
-	          null,
-	          React.createElement(
-	            Link,
-	            { to: `/chat` },
-	            'Chat'
-	          )
-	        )
-	      )
-	    );
-	  }
-
-	});
-
-/***/ },
-/* 216 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var ApiActions = __webpack_require__(219);
-
-	ApiUtil = {};
-
-	module.exports = ApiUtil;
-
-/***/ },
-/* 217 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ApiUtil = __webpack_require__(216);
+	var ApiUtil = __webpack_require__(159);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -24501,11 +24484,11 @@
 	});
 
 /***/ },
-/* 218 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
-	var ApiUtil = __webpack_require__(216);
+	var ApiUtil = __webpack_require__(159);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -24526,14 +24509,29 @@
 	});
 
 /***/ },
-/* 219 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var AppDispatcher = __webpack_require__(161);
+	var React = __webpack_require__(1);
+	var ApiUtil = __webpack_require__(159);
 
-	ApiActions = {};
+	module.exports = React.createClass({
+	  displayName: 'exports',
 
-	module.exports = ApiActions;
+
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      null,
+	      React.createElement(
+	        'h2',
+	        null,
+	        'This will be the chat pane'
+	      )
+	    );
+	  }
+
+	});
 
 /***/ }
 /******/ ]);

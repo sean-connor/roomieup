@@ -1,16 +1,19 @@
-<h2>Sign Up</h2>
+<div class="logsignform">
+  <div class="logo">
+    <img src="http://i.imgur.com/spbIxDB.png">
+  </div>
+  <form action="<%= users_url %>" method="post" class="signform">
+    <%= auth_token_input %>
+    <label class="loginform">
+      Username
+      <input type="text" name="user[username]" value="">
+    </label>
 
-<form action="<%= users_url %>" method="post">
-  <%= auth_token_input %>
-  <label>
-    Username
-    <input type="text" name="user[username]" value="">
-  </label>
+    <label class="loginform">
+      Password
+      <input type="password" name="user[password]" value="">
+    </label>
 
-  <label>
-    Password
-    <input type="password" name="user[password]" value="">
-  </label>
-
-  <input type="submit" value="Sign Up">
-</form>
+    <input type="submit" value="Sign Up" class="signformbtn">
+  </form>
+</div>
