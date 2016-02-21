@@ -51,15 +51,15 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 - [ ] jBuilder views for listing search
 - [ ] setup `APIUtil` to interact with the API
 - [ ] test out API interaction in the console.
-- [ ] setup Webpack & Flux scaffold
+- [X] setup Webpack & Flux scaffold
 
 ### Phase 3: Flux Architecture and Router (1 days)
 
 **Objective:** Listings can be searched and saved with the
 user interface.
 
-- [ ] setup the flux loop with skeleton files
-- [ ] setup React Router
+- [X] setup the flux loop with skeleton files
+- [X] setup React Router
 - implement each listing component, building out the flux loop as needed.
   - [ ] `SearchListingsIndex`
   - [ ] `SearchListingIndexItem`
@@ -70,9 +70,9 @@ user interface.
 
 **Objective:** Existing pages (including singup/signin) will look good.
 
-- [ ] create a basic style guide
-- [ ] position elements on the page
-- [ ] add basic colors & styles
+- [X] create a basic style guide
+- [X] position elements on the page
+- [X] add basic colors & styles
 
 ### Phase 5: Saved Listings (1 day)
 

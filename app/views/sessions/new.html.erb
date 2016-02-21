@@ -17,4 +17,11 @@
 
     <input type="submit" value="Sign In" class="signformbtn">
   </form>
+  <form action="<%= session_url %>" method="post" class="signformguest">
+      <%= auth_token_input %>
+        <input type="hidden" name="user[username]" value="guest">
+        <input type="hidden" name="user[password]" value="password">
+      <input type="submit" value="Sign In as Guest" class="signformbtnguest">
+    </form>
+  <%= link_to "Sign Up", new_user_url, class: "signbtn" %>
 </div>
