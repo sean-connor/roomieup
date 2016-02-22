@@ -14,9 +14,8 @@ module.exports = React.createClass({
         ba: 1
       };
     },
-
     handleSubmit: function (e) {
-      e.preDefault();
+      e.preventDefault();
       this.sendFormData();
     },
     sendFormData: function(){
