@@ -16,6 +16,22 @@ html{
   border-radius: 5px;
   box-shadow: 1px 1px 20px black;
 }
+.savedBackground{
+  width: 50%;
+  height: 50%;
+  top: 100px;
+  right: 450px;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+  border-radius: 50%;
+ -webkit-transition: -webkit-transform .1s ease-in-out;
+ transition: transform .1s ease-in-out;
+}
+.savedBackground:hover {
+  transform-origin: left;
+  transform: rotate(900deg);
+}
 .chatbackground{
   width: 50%;
   height: 50%;

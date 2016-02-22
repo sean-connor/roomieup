@@ -6,7 +6,8 @@ module.exports = React.createClass({
 render: function(){
   return(
     <div className="contentpane">
-      <h2>This will be the saved listings pane</h2>
+      <h2>Your Saved Listings are Coming Soon, Thanks For Visiting...</h2>
+      <img className="savedBackground" src='http://i.imgur.com/xiO3dQF.jpg' />
     </div>
   )
 }

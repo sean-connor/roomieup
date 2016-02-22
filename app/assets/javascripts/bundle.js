@@ -24694,8 +24694,9 @@
 	      React.createElement(
 	        'h2',
 	        null,
-	        'This will be the saved listings pane'
-	      )
+	        'Your Saved Listings are Coming Soon, Thanks For Visiting...'
+	      ),
+	      React.createElement('img', { className: 'savedBackground', src: 'http://i.imgur.com/xiO3dQF.jpg' })
 	    );
 	  }
 
