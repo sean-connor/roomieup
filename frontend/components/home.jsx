@@ -7,7 +7,7 @@ render: function(){
   return(
     <div className="contentpane">
       <h2>We're Excited Too, RoomieUp is Coming Soon!</h2>
-      <div className="homebackground"></div>
+      <img className='homebackground' src='http://i.imgur.com/0hvPDiO.gif' />
     </div>
   )
 }

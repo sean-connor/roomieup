@@ -24485,7 +24485,7 @@
 	        null,
 	        'We\'re Excited Too, RoomieUp is Coming Soon!'
 	      ),
-	      React.createElement('div', { className: 'homebackground' })
+	      React.createElement('img', { className: 'homebackground', src: 'http://i.imgur.com/0hvPDiO.gif' })
 	    );
 	  }
 
