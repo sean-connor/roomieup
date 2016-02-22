@@ -14,15 +14,14 @@ module.exports = React.createClass({
         ba: 1
       };
     },
-    handleSubmit: function (e) {
-      e.preventDefault();
-      this.sendFormData();
+    handleSubmit: function () {
+
     },
-    sendFormData: function(){
-      ApiUtil.receiveNokoReq(this.state);
-    },
-    handleChange: function (e){
-      this.setState({[e.target.name]: e.target.value});
+    // sendFormData: function(){
+    //   ApiUtil.receiveNokoReq(this.state);
+    // },
+    handleChange: function (){
+
     },
 
     render: function() {
