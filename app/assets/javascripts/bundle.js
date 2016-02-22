@@ -19712,7 +19712,7 @@
 	var AppDispatcher = __webpack_require__(161);
 	var ListingsConstants = __webpack_require__(165);
 	ApiActions = {
-	  receiveNokoRes: function (responseXML) {
+	  receiveNokoRes: function (listings) {
 	    AppDispatcher.dispatch({
 	      actionType: ListingsConstants.LISTINGS_RECEIVED,
 	      listings: listings
