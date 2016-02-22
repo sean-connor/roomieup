@@ -1,6 +1,4 @@
-// Place all the styles related to the welcome controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+
 html{
   background: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
@@ -98,25 +96,25 @@ p.username{
   color: white;
 }
 .chat{
-  background-image: url(chat.svg);
+  background-image: asset-data-url("chat.svg");
   height: 80px;
   width: 80px;
   z-index: 1;
 }
 .home{
-  background-image: url(home.svg);
+  background-image: asset-data-url("home.svg");
   height: 80px;
   width: 80px;
   z-index: 1;
 }
 .saved{
-  background-image: url(saved.svg);
+  background-image: asset-data-url("saved.svg");
   height: 80px;
   width: 80px;
   z-index: 1;
 }
 .searchListings{
-  background-image: url(searching.svg);
+  background-image: asset-data-url("searching.svg");
   height: 80px;
   width: 80px;
   z-index: 1;
