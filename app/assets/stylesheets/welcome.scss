@@ -98,25 +98,25 @@ p.username{
   color: white;
 }
 .chat{
-  background-image: url(images/chat.svg);
+  background-image: url(chat.svg);
   height: 80px;
   width: 80px;
   z-index: 1;
 }
 .home{
-  background-image: url(images/home.svg);
+  background-image: url(home.svg);
   height: 80px;
   width: 80px;
   z-index: 1;
 }
 .saved{
-  background-image: url(images/saved.svg);
+  background-image: url(saved.svg);
   height: 80px;
   width: 80px;
   z-index: 1;
 }
 .searchListings{
-  background-image: url(images/searching.svg);
+  background-image: url(searching.svg);
   height: 80px;
   width: 80px;
   z-index: 1;
@@ -193,10 +193,7 @@ input.sign-btn{
 input.sign-btn:hover{
   cursor: pointer;
 }
-.homebackground{
-  background: url('http://i.imgur.com/0hvPDiO.gifv');
-  background-size: auto;
-}
+
 .contentpane{
   position: fixed;
   display: flex;
