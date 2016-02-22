@@ -1,44 +1,38 @@
-# Phase 3: Notebooks and Tags (2 days)
+# Phase 3: SavedListings (2 days)
 
 ## Rails
 ### Models
-* Notebook
-* Tag
-* Tagging
 
 ### Controllers
-* Api::NotebooksController (create, destroy, index, show, update)
+* Api::SavedListingsController (create, destroy, index, show, update)
 
 ### Views
-* notebooks/index.json.jbuilder
-* notebooks/show.json.jbuilder
-* tags/show.json.jbuilder
+* savedlistings/index.json.jbuilder
+* savedlistings/show.json.jbuilder
 
 ## Flux
 ### Views (React Components)
-* NotebooksIndex
-  - NotebookIndexItem
-* NotebookForm
-* SearchIndex
+* SavedListingsIndex
+  - SavedListingIndexItem
 
 ### Stores
-* Notebook
+* SavedListing
 
 ### Actions
-* ApiActions.receiveAllNotebooks -> triggered by ApiUtil
-* ApiActions.receiveSingleNotebook
-* ApiActions.deleteNotebook
-* NotebookActions.fetchAllNotebooks -> triggers ApiUtil
-* NotebookActions.fetchSingleNotebook
-* NotebookActions.createNotebook
-* NotebookActions.editNotebook
-* NotebookActions.destroyNotebook
+* ApiActions.receiveAllSavedListings -> triggered by ApiUtil
+* ApiActions.receiveSingleSavedListing
+* ApiActions.deleteSavedListing
+* SavedListingActions.fetchAllSavedListings -> triggers ApiUtil
+* SavedListingActions.fetchSingleSavedListing
+* SavedListingActions.createSavedListing
+* SavedListingActions.editSavedListing
+* SavedListingActions.destroySavedListing
 
 ### ApiUtil
-* ApiUtil.fetchAllNotebooks
-* ApiUtil.fetchSingleNotebook
-* ApiUtil.createNotebook
-* ApiUtil.editNotebook
-* ApiUtil.destroyNotebook
+* ApiUtil.fetchAllSavedListings
+* ApiUtil.fetchSingleSavedListing
+* ApiUtil.createSavedListing
+* ApiUtil.editSavedListing
+* ApiUtil.destroySavedListing
 
 ## Gems/Libraries
