@@ -1,0 +1,269 @@
+/* line 4, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+html {
+  background: url("https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+/* line 12, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+#root {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* line 18, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.signformbtnguest {
+  border-style: none;
+  position: relative;
+  top: 33px;
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0;
+  background-color: black;
+  opacity: .5;
+  width: 300px;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+  display: block;
+  text-align: center;
+}
+
+/* line 35, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.signformbtnguest:hover {
+  opacity: .75;
+  cursor: pointer;
+}
+
+/* line 39, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.logsignform {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* line 45, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+p.username {
+  display: none;
+}
+
+/* line 48, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.signformbtn {
+  border-style: none;
+  position: relative;
+  top: 25px;
+  color: white;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0;
+  background-color: black;
+  width: 300px;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+  display: block;
+  text-align: center;
+}
+
+/* line 64, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.signform {
+  position: relative;
+  margin: 10px auto;
+  padding: 0;
+  height: 75px;
+  width: 300px;
+  background-color: black;
+  opacity: .5;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: center;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+}
+
+/* line 79, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.loginform {
+  position: relative;
+  color: white;
+  font-size: 24px;
+  font-weight: 300;
+  top: 15px;
+  margin: 5px 10px;
+}
+
+/* line 87, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.logo {
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  opacity: .75;
+  transition: transform 1s ease;
+}
+
+/* line 96, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.username {
+  font-size: 24px;
+  color: white;
+}
+
+/* line 100, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.chat {
+  background-image: url(images/chat.svg);
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+}
+
+/* line 106, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.home {
+  background-image: url(images/home.svg);
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+}
+
+/* line 112, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.saved {
+  background-image: url(images/saved.svg);
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+}
+
+/* line 118, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.searchListings {
+  background-image: url(images/searching.svg);
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+}
+
+/* line 124, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.navli {
+  position: relative;
+  margin: 0 150px 0 0;
+  width: 0;
+  display: flex;
+  align-content: center;
+}
+
+/* line 131, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.navul {
+  position: relative;
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  padding: 0;
+}
+
+/* line 139, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.navbar {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  margin: 0 auto;
+}
+
+/* line 145, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.signbtn {
+  border-style: none;
+  position: relative;
+  top: 40px;
+  color: white;
+  font-size: 23px;
+  font-weight: 300;
+  padding: 1px;
+  margin: 0;
+  background-color: black;
+  opacity: .5;
+  width: 300px;
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+  display: block;
+  text-align: center;
+}
+
+/* line 163, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.signbtn:hover {
+  opacity: .75;
+  cursor: pointer;
+}
+
+/* line 167, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.signformbtn:hover {
+  border-style: 1px solid black;
+  background-color: white;
+  color: black;
+  cursor: pointer;
+}
+
+/* line 174, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.logsignform:hover .logo {
+  opacity: 1;
+  transform: translateY(-25px);
+}
+
+/* line 178, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+input.sign-btn {
+  position: absolute;
+  color: white;
+  font-size: 16px;
+  font-weight: 400;
+  margin: 10px;
+  padding: 10px;
+  height: 50px;
+  width: 100px;
+  background-color: black;
+  opacity: .5;
+  align-items: center;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+}
+
+/* line 193, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+input.sign-btn:hover {
+  cursor: pointer;
+}
+
+/* line 196, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.homebackground {
+  background: url("http://i.imgur.com/0hvPDiO.gifv");
+  background-size: auto;
+}
+
+/* line 200, /Users/seanconnor/Documents/Projects/roomieup/app/assets/stylesheets/welcome.scss */
+.contentpane {
+  position: fixed;
+  display: flex;
+  align-content: center;
+  width: 1000px;
+  height: 800px;
+}
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+
+
+ */
+
