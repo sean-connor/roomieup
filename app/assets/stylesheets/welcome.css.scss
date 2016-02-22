@@ -13,6 +13,27 @@ html{
   top: 100px;
   right: 450px;
   position: relative;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+}
+.chatbackground{
+  width: 50%;
+  height: 50%;
+  top: 100px;
+  right: 200px;
+  position: relative;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
+}
+.imgbg{
+  position: relative;
+  width: 400px;
+  height: 400px;
+  background-color: black;
+  padding: 30px;
+  opacity: .5;
+  border-radius: 5px;
+  box-shadow: 1px 1px 20px black;
 }
 #root{
   position: absolute;

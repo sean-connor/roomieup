@@ -24719,8 +24719,9 @@
 	      React.createElement(
 	        'h2',
 	        null,
-	        'This will be the chat pane'
-	      )
+	        'Yes, we are very excited.'
+	      ),
+	      React.createElement('img', { className: 'chatbackground', src: 'http://i.imgur.com/ZFk2p3a.gif' })
 	    );
 	  }
 
