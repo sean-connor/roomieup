@@ -1,6 +1,9 @@
 source 'https://rubygems.org'
 
 ruby "2.1.2"
+gem 'pry-rails'
+gem 'watir-webdriver'
+gem 'annotate'
 gem 'rails_serve_static_assets'
 gem 'rails_stdout_logging'
 gem 'nokogiri', '1.6.7.2'

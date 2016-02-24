@@ -1,10 +1,10 @@
 var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
-var ListingStore = require('../stores/listings');
+var SavedListingStore = require('../stores/savedlistings');
 var ListingIndexItem = require('./listingIndexItem');
 
 function _getAllListings(){
-  return ListingStore.all();
+  return SavedListingStore.all();
 }
 
 module.exports = React.createClass({
@@ -20,7 +20,7 @@ renderListings: function(){
     return (
       <ul className="listingcollection">
           {this.state.listings.map(function(listing){
-            return <ListingIndexItem key={listing.id} action={"Save"} listing={listing} />;
+            return <ListingIndexItem key={listing.id} action={"Delete"} listing={listing} />;
           })}
       </ul>
     );
@@ -28,12 +28,13 @@ renderListings: function(){
 },
 
 _listingsChanged: function(){
+  console.log('updating listings - listingsChanged');
   this.setState({listings: _getAllListings()});
 },
 
 componentDidMount: function(){
-  this.listingListener = ListingStore.addListener(this._listingsChanged);
-  ApiUtil.fetchListings();
+  this.listingListener = SavedListingStore.addListener(this._listingsChanged);
+  ApiUtil.fetchSavedListings();
 },
 
 componentWillUnmount: function(){
@@ -42,7 +43,7 @@ componentWillUnmount: function(){
 
 render: function(){
   return(
-    <div className="searchIndex">
+    <div className="savedIndex">
       {this.renderListings()}
     </div>
   )

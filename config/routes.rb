@@ -4,7 +4,9 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
   root 'welcome#index'
   namespace :api, defaults: {format: :json} do
-    resources :clrequest, only: [:index]
+    resources :listings, only: [:index, :show]
+    resources :savedlistings, only: [:index, :create]
   end
+  delete 'api/savedlistings/delete', :to => 'api/savedlistings#destroy'
 
 end

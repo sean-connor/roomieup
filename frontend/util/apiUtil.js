@@ -1,23 +1,45 @@
-var ApiActions = require('../actions/apiActions');
+var ApiActions = require('../actions/apiActions')
 
-ApiUtil = {
-  receiveNokoReq: function(stateObj){
-    var city = 'sfbay'
-    var requestStringBuild = ["http://", city, ".craigslist.org/search/apa?search_distance=", stateObj.miles,"&postal=",stateObj.zip,"&min_price=", stateObj.minprice, "&max_price=", stateObj.maxprice,"&bedrooms=", stateObj.br, "&bathrooms=", stateObj.ba, "&query=", stateObj.keyword].join("");
-    var request = {requestString: requestStringBuild}
-    this.nokogiriCall(request);
+module.exports = {
+  //Fetches Listings prompted by the search listings form
+  fetchListings: function(listingFormState){
+      $.ajax({
+      url: "api/listings",
+      data: listingFormState,
+      success: function(matchedListings){
+          ApiActions.receiveListings(matchedListings);
+      }
+    })
   },
-  nokogiriCall: function(request){
+  fetchSavedListings: function(){
     $.ajax({
-      url: "api/clrequest",
-      data: request,
-      success: function(responseXML) {
-        ApiActions.receiveNokoRes(responseXML);
+      url: "api/savedlistings",
+      success: function(savedListings){
+          ApiActions.receiveSavedListings(savedListings);
+      }
+    })
+  },
+  saveListing: function(listing){
+      $.post({
+      url: "api/savedlistings",
+      data: {listing_id: listing.id},
+      success: function(){
+          ApiActions.receiveSavedListing(listing);
+      }
+    })
+  },
+  destroyUserListing: function(listing){
+      listingId = listing.id;
+      $.ajax({
+      url: "api/savedlistings/delete",
+      type: 'DELETE',
+      data: {listing_id: listingId},
+      success: function(){
+        ApiActions.notifyDeletion(listingId);
+      },
+      error: function(){
+        console.log('Unsuccessful Delete');
       }
     })
   }
-
 }
-
-
-module.exports = ApiUtil;

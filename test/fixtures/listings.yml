@@ -1,11 +1,15 @@
 # == Schema Information
 #
-# Table name: emails
+# Table name: listings
 #
-#  id         :integer          not null, primary key
-#  address    :string           not null
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id          :integer          not null, primary key
+#  title       :string           not null
+#  bedroom     :integer          not null
+#  price       :integer          not null
+#  url         :string           not null
+#  description :text             not null
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

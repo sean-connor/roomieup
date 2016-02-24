@@ -1,24 +1,18 @@
 var Store = require('flux/utils').Store;
-var AppDispatcher = require('../dispatcher/dispatcher.js');
-var ListingsConstants = require('../constants/pokemonConstants.js');
+var AppDispatcher = require('../dispatcher');
+var ListingConstants = require('../constants/listingsConstants');
+
 var ListingStore = new Store(AppDispatcher);
 
-var _listings = {};
+var _listings = [];
 
 var resetListings = function (listings) {
-  _listings = {};
-  listings.forEach(function (listing) {
-    _listings[listing.id] = listing;
-  });
+  _listings = listings;
 };
 
 
 ListingStore.all = function () {
-  var listings = [];
-  for (var id in _listings) {
-    listings.push(_listings[id]);
-  }
-  return pokemons;
+  return _listings.slice(0);
 }
 
 ListingStore.__onDispatch = function (payload) {
@@ -31,4 +25,4 @@ ListingStore.__onDispatch = function (payload) {
   }
 }
 
-module.exports = PokemonStore;
+module.exports = ListingStore;

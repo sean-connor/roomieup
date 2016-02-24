@@ -4,8 +4,41 @@ html{
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
-  background-size: cover;
   font-family: 'Josefin Sans', sans-serif;
+}
+li > button{
+  display: none;
+}
+.list-btn{
+  background: black;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  opacity: .5;
+  padding: 5px;
+  width: 50px;
+  margin: 3px 3px;
+}
+.list-btn:hover{
+  cursor: pointer;
+  opacity: .75;
+}
+.indexForm{
+  position: relative;
+  background-color: rgba(255,255,255,.2);
+  padding: 10px;
+  border-radius: 30px;
+}
+.searchIndex{
+  overflow: hidden;
+  background-color: rgba(255,255,255,.2);
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 5px;
+  margin: 0 10px;
+  border-radius: 30px;
 }
 .homebackground{
   width: 50%;
@@ -54,8 +87,7 @@ html{
 #root{
   position: absolute;
   top: 10%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  left: 20%;
 }
 .signformbtnguest{
   border-style: none;
@@ -163,6 +195,22 @@ p.username{
   width: 80px;
   z-index: 1;
 }
+.chat:hover{
+  background-color: rgba(255,255,255,.2);
+  border-radius: 20px;
+}
+.home:hover{
+  background-color: rgba(255,255,255,.2);
+  border-radius: 20px;
+}
+.saved:hover{
+  background-color: rgba(255,255,255,.2);
+  border-radius: 20px;
+}
+.searchListings:hover{
+  background-color: rgba(255,255,255,.2);
+  border-radius: 20px;
+}
 .navli{
   position: relative;
   margin: 0 150px 0 0 ;
@@ -237,9 +285,10 @@ input.sign-btn:hover{
 }
 
 .contentpane{
-  position: fixed;
+  position: relative;
   display: flex;
   align-content: center;
-  width: 1000px;
-  height: 800px;
+  width: auto;
+  height: auto;
+  overflow: auto;
 }

@@ -12,8 +12,8 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 
 - [X] Create an account
 - [X] Log in / Log out
-- [ ] View aggregated apartment listings
-- [ ] Save, edit, and delete apartment listings
+- [X] View aggregated apartment listings
+- [X] Save, edit, and delete apartment listings
 - [ ] View, enter, and utilize chatrooms
 
 ## Design Docs
@@ -31,7 +31,7 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 
 ## Implementation Timeline
 
-### Phase 1: Backend setup and User Authentication (0.5 days)
+### Phase 1: Backend setup and User Authentication (1 days)
 
 **Objective:** Functioning rails project with Authentication
 
@@ -45,13 +45,14 @@ progress. Put an x between the brackets for a checkmark: [x] -->
 
 **Objective:** CL can be queried and parsed to JSON through the API.
 
-- [ ] generate CL Query String
-- [ ] scrape CL with Mechanize and Nokogiri
-- [ ] parse CL Response
-- [ ] jBuilder views for listing search
-- [ ] setup `APIUtil` to interact with the API
-- [ ] test out API interaction in the console.
+- [X] generate CL Query String
+- [X] scrape CL with Watir, PhantomJS and Nokogiri
+- [X] parse CL Response
+- [X] jBuilder views for listing search
+- [X] setup `APIUtil` to interact with the API
+- [X] test out API interaction in the console.
 - [X] setup Webpack & Flux scaffold
+- [X] style and position new elements
 
 ### Phase 3: Flux Architecture and Router (1 days)
 
@@ -61,30 +62,24 @@ user interface.
 - [X] setup the flux loop with skeleton files
 - [X] setup React Router
 - implement each listing component, building out the flux loop as needed.
-  - [ ] `SearchListingsIndex`
-  - [ ] `SearchListingIndexItem`
-  - [ ] `SearchListingForm`
-- [ ] save selected listings url to the DB
+  - [X] `SearchListingsIndex`
+  - [X] `SearchListingIndexItem`
+  - [X] `SearchListingForm`
+- [X] save selected listings url to the DB
+- [X] style and position new elements
 
-### Phase 4: Start Styling (1 days)
 
-**Objective:** Existing pages (including singup/signin) will look good.
-
-- [X] create a basic style guide
-- [X] position elements on the page
-- [X] add basic colors & styles
-
-### Phase 5: Saved Listings (1 day)
+### Phase 6: Saved Listings (1 day)
 
 **Objective:** Saved Listings, a user can view a display of saved listings through UI.
 
-- [ ] create `Listing` model
+- [X] create `Listing` model
 - build out API, Flux loop, and components for:
-  - [ ] Listing CRUD
-  - [ ] adding listing from a `SearchListingsItem`
-- Use CSS to style new views
+  - [X] Listing Create, Destroy
+  - [X] adding listing from a `SearchListingsItem`
+- [X] position and style new elements
 
-### Phase 6: Home Screen (0.5 days)
+### Phase 7: Home Screen (0.5 days)
 
 **objective:** Enable home screen display.
 
@@ -92,6 +87,7 @@ user interface.
 - build out API, Flux loop, and components for:
 - [ ] fetching notifications for users
 - [ ] linking to notification actions
+- [ ] position and style new elements
 
 ### Phase 7: Chats (1.5 days)
 
@@ -103,7 +99,7 @@ user interface.
   - [ ] adding users to chats
   - [ ] adding new messages to chats
   - [ ] creating chats when listing is matched
-- [ ] Style new elements
+- [ ] position and style new elements
 
 ### Phase 8: Styling Cleanup and Seeding (1 day)
 
@@ -123,6 +119,7 @@ user interface.
 
 ### Bonus Features (TBD)
 - [ ] Listing account for posting apartment ads that originate locally
+- [ ] Notifications for users on new chats and listing updates
 
 [phase-one]: ./docs/phases/phase1.md
 [phase-two]: ./docs/phases/phase2.md

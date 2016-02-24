@@ -1,16 +1,17 @@
 # == Schema Information
 #
-# Table name: emails
+# Table name: listingimages
 #
 #  id         :integer          not null, primary key
-#  address    :string           not null
+#  url        :string           not null
+#  listing_id :integer          not null
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #
 
 require 'test_helper'
 
-class EmailTest < ActiveSupport::TestCase
+class ListingimageTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
