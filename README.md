@@ -69,7 +69,7 @@ user interface.
 - [X] style and position new elements
 
 
-### Phase 6: Saved Listings (1 day)
+### Phase 4: Saved Listings (1 day)
 
 **Objective:** Saved Listings, a user can view a display of saved listings through UI.
 
@@ -79,29 +79,31 @@ user interface.
   - [X] adding listing from a `SearchListingsItem`
 - [X] position and style new elements
 
-### Phase 7: Home Screen (0.5 days)
-
-**objective:** Enable home screen display.
-
-- [ ] add additional user properties to user model
-- build out API, Flux loop, and components for:
-- [ ] fetching notifications for users
-- [ ] linking to notification actions
-- [ ] position and style new elements
-
-### Phase 7: Chats (1.5 days)
+### Phase 5: Chats (1.5 days)
 
 **Objective:** Chats will be generated for matched users.
 
 - [ ] create `Chat`and `Message` models and join table
 - build out API, Flux loop, and components for:
-  - [ ] fetching chats for users
-  - [ ] adding users to chats
-  - [ ] adding new messages to chats
-  - [ ] creating chats when listing is matched
+- [ ] fetching chats for users
+- [ ] adding users to chats
+- [ ] adding new messages to chats
+- [ ] creating chats when listing is matched
 - [ ] position and style new elements
 
-### Phase 8: Styling Cleanup and Seeding (1 day)
+### Phase 6: Home Screen (0.5 days)
+
+**objective:** Enable home screen display.
+
+- [X] add additional user properties to user model
+- build out API, Flux loop, and components for:
+- [X] displaying user profile photo and description
+- [ ] fetching notifications for users
+- [ ] linking to notification actions
+- [X] position and style new elements
+
+
+### Phase 7: Styling Cleanup and Seeding (1 day)
 
 **objective:** Make the site feel more clear, concise and cogent.
 
@@ -109,7 +111,7 @@ user interface.
 - [ ] Refactor HTML classes & CSS rules
 - [ ] Add modals, transitions, and other styling flourishes.
 
-### Phase 9: Walkthrough (1 day)
+### Phase 8: Walkthrough (1 day)
 
 **objective:** Make a tool tip walkthrough for site features.
 

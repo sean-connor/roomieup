@@ -8,9 +8,13 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  session_token   :string
+#  is_new          :boolean          default(TRUE)
+#  description     :text
+#  profile_picture :string
 #
 
 class User < ActiveRecord::Base
+  validates :username, uniqueness: true
   validates :username, :password_digest, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 

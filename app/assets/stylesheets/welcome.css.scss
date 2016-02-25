@@ -9,6 +9,17 @@ html{
 li > button{
   display: none;
 }
+.sliderimage{
+  width: auto;
+  height: 300px;
+}
+.profilephoto{
+  width: 200px;
+  height: auto;
+  border: 10px solid rgba(0,0,0,.2);;
+  border-radius: 10px
+
+}
 .list-btn{
   background: black;
   border-radius: 5px;
@@ -30,8 +41,9 @@ li > button{
   padding: 10px;
   border-radius: 30px;
 }
-.searchIndex{
-  overflow: hidden;
+.searchIndex, .savedIndex{
+  overflow: auto;
+  height: 700px;
   background-color: rgba(255,255,255,.2);
   position: relative;
   display: flex;

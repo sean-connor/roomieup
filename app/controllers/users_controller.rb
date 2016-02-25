@@ -8,6 +8,9 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  session_token   :string
+#  is_new          :boolean          default(TRUE)
+#  description     :text
+#  profile_picture :string
 #
 
 class UsersController < ApplicationController

@@ -11,6 +11,7 @@
 
 class Savedlisting < ActiveRecord::Base
   validates :listing_id, :user_id, presence: true
+  validates :listing_id, uniqueness: {scope: :user_id, message: "You can only save a listing once."}
 
   belongs_to :listing
   belongs_to :user

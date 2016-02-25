@@ -29,6 +29,7 @@ task :clpull => :environment do
       @listingimage = Listingimage.new(url: img_url, listing_id: @listing.id)
       @listingimage.save!
       images.push(listing.css('div[id=thumbs]').children[j].attributes['href'].value)
+      j+=1
     end
     i+=1
   end

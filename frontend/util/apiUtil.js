@@ -1,6 +1,7 @@
 var ApiActions = require('../actions/apiActions')
 
 module.exports = {
+  //LISTINGS GROUP
   //Fetches Listings prompted by the search listings form
   fetchListings: function(listingFormState){
       $.ajax({
@@ -40,6 +41,23 @@ module.exports = {
       error: function(){
         console.log('Unsuccessful Delete');
       }
+    })
+  },
+  //USERS GROUP
+  fetchProfile: function(user){
+    $.ajax({
+      url: "api/users",
+      data: {user: user},
+      success: function(profile){
+          ApiActions.receiveProfile(profile);
+      }
+    })
+  },
+  commitProfileChanges: function(profileState){
+    $.ajax({
+      type: "PATCH",
+      url: "api/users/" +profileState.id,
+      data: profileState,
     })
   }
 }

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   namespace :api, defaults: {format: :json} do
     resources :listings, only: [:index, :show]
     resources :savedlistings, only: [:index, :create]
+    resources :users, only: [:update, :index]
   end
   delete 'api/savedlistings/delete', :to => 'api/savedlistings#destroy'
 

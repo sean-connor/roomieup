@@ -10,11 +10,11 @@ function _getAllListings(){
 module.exports = React.createClass({
 
 getInitialState: function(){
-  return {listings: "Loading"};
+  return {listings: ApiUtil.fetchListings()};
 },
 
 renderListings: function(){
-  if (this.state.listings === 'Loading'){
+  if (this.state.listings === undefined){
     return (<h3 className="loading">Some LoadingImage</h3>);
   } else {
     return (

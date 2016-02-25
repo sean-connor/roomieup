@@ -26,19 +26,19 @@ module.exports = React.createClass({
 
             <h3>Price:</h3>
             <div className="form-group">
-              <label htmlFor="website">Min:</label>
+              <label>Min:</label>
               <input className="form-control" name="minprice" ref="minprice" type="number" value={this.state.minprice}
                 onChange={this.handleChange}/>
             </div>
             <div className="form-group">
-              <label htmlFor="website">Max:</label>
+              <label>Max:</label>
               <input className="form-control" name="maxprice" ref="maxprice" type="number" value={this.state.maxprice}
                 onChange={this.handleChange}/>
             </div>
             <h3>Bedrooms:</h3>
 
             <div className="form-group">
-              <label htmlFor="phone">Bedrooms:</label>
+              <label>Bedrooms:</label>
               <input className="form-control" name="bedroom" ref="bedroom" required type="number" value={this.state.bedroom}
                 onChange={this.handleChange}/>
             </div>
