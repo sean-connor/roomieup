@@ -20,8 +20,13 @@ var routes = (
   <Route path="/" component={App}>
     <Route path="auth" component={Auth}/>
     <Route path="home" component={Home}/>
-    <Route path="searchlistings" component={SearchListings}/>
-    <Route path="savedlistings" component={SavedListings}/>
+    <Route path="searchlistings" component={SearchListings}>
+      <IndexRoute component={Search}/>
+      <Route path="/:listingId" component={ListingShow}/>
+    </Route>
+    <Route path="savedlistings" component={SavedListings}>
+      <Route path="/:listingId" component={ListingShow}/>
+    </Route>
     <Route path="chat" component={Chat}/>
   </Route>
 );

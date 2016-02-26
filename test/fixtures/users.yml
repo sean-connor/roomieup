@@ -9,8 +9,8 @@
 #  updated_at      :datetime         not null
 #  session_token   :string
 #  is_new          :boolean          default(TRUE)
-#  description     :text
-#  profile_picture :string
+#  description     :text             default("Enter a profile description!")
+#  profile_picture :string           default("http://res.cloudinary.com/roomieup-com/image/upload/v1456353088/moymcoe5khih7l1wsztr.jpg")
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

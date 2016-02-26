@@ -2,22 +2,28 @@ var React = require('react');
 var ApiUtil = require('../../util/apiUtil.js');
 
 module.exports = React.createClass({
-
-    getInitialState: function() {
-      return {
-        minprice: NaN,
-        maxprice: NaN,
-        bedroom: NaN
-      };
+    maxPrice: function(event){
+      FilterActions.updateMaxPrice(event.target.value);
     },
-    handleSubmit: function (event) {
-      event.preventDefault();
-      ApiUtil.fetchListings(this.state);
+    minPrice: function (event) {
+      FilterActions.updateMinPrice(event.target.value);
     },
-
-    handleChange: function (event){
-      event.preventDefault();
-      this.setState({[event.target.name]: event.target.value})
+    bedrooms: function (event) {
+      FilterActions.updateBedrooms(event.target.value);
+    },
+    currentMax: function(){
+      return this.props.filterParams.maxSeating;
+    },
+    currentMin: function(){
+      return this.props.filterParams.minSeating;
+    },
+    currentBedrooms: function(){
+      return this.props.filterParams.minSeating;
+    },
+    updateSeating: function (min, max) {
+      FilterActions.updateParams({
+        seating: {min: min, max: max}
+      });
     },
 
     render: function() {
