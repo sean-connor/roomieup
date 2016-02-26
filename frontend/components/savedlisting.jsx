@@ -1,11 +1,11 @@
 var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
-var SavedListingIndex = require('./savedListingIndex');
+var SavedListingIndex = require('./Listings/savedListingIndex');
 module.exports = React.createClass({
 
 render: function(){
   return(
-    <div className="contentpane">
+    <div className="main">
       <SavedListingIndex/>
     </div>
   )

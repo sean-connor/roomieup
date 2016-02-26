@@ -1,6 +1,6 @@
 var React = require('react');
-var ApiUtil = require('../util/apiUtil.js');
-var SavedListingStore = require('../stores/savedlistings');
+var ApiUtil = require('../../util/apiUtil.js');
+var SavedListingStore = require('../../stores/savedlistings');
 var ListingIndexItem = require('./listingIndexItem');
 
 function _getAllListings(){
@@ -28,7 +28,6 @@ renderListings: function(){
 },
 
 _listingsChanged: function(){
-  console.log('updating listings - listingsChanged');
   this.setState({listings: _getAllListings()});
 },
 

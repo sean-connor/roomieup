@@ -13,11 +13,12 @@ var Home = require('./components/home');
 var SearchListings = require('./components/searchlisting');
 var SavedListings = require('./components/savedlisting');
 var Chat = require('./components/chat');
-
+var Auth = require('./components/auth');
 
 
 var routes = (
   <Route path="/" component={App}>
+    <Route path="auth" component={Auth}/>
     <Route path="home" component={Home}/>
     <Route path="searchlistings" component={SearchListings}/>
     <Route path="savedlistings" component={SavedListings}/>

@@ -4,23 +4,18 @@
   <title>Roomieup</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application'%>
-  <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+  <script src="//widget.cloudinary.com/global/all.js" type="text/javascript"></script>
   <%= csrf_meta_tags %>
 </head>
 <body>
-<% if signed_in? %>
-  <p class="username"><%= current_user.username %></p>
-  <%= button_to "Sign Out", session_url, :method => :delete, class: "sign-btn" %>
-<% else %>
-
-
-<% end %>
-
-<br>
-
-<%= render "layouts/errors" %>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDeDJcZk4yledOadcrh7Nf2frmf4_7z0s8"
+  type="text/javascript">
+  </script>
 
 <%= yield %>
 
+
+<p className="designLabel">body</p>
 </body>
+<p className="designLabel">HTML</p>
 </html>

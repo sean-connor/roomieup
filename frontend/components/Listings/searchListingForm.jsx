@@ -1,5 +1,5 @@
 var React = require('react');
-var ApiUtil = require('../util/apiUtil.js');
+var ApiUtil = require('../../util/apiUtil.js');
 
 module.exports = React.createClass({
 
@@ -16,12 +16,13 @@ module.exports = React.createClass({
     },
 
     handleChange: function (event){
+      event.preventDefault();
       this.setState({[event.target.name]: event.target.value})
     },
 
     render: function() {
       return (
-        <div>
+        <div className='form'>
           <form className="indexForm" action="" onSubmit={this.handleSubmit}>
 
             <h3>Price:</h3>

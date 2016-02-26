@@ -1,6 +1,6 @@
 var React = require('react');
-var ApiUtil = require('../util/apiUtil.js');
-var ListingStore = require('../stores/listings');
+var ApiUtil = require('../../util/apiUtil.js');
+var ListingStore = require('../../stores/listings');
 var ListingIndexItem = require('./listingIndexItem');
 
 function _getAllListings(){
@@ -10,7 +10,7 @@ function _getAllListings(){
 module.exports = React.createClass({
 
 getInitialState: function(){
-  return {listings: ApiUtil.fetchListings()};
+  return {listings: []};
 },
 
 renderListings: function(){
@@ -33,6 +33,7 @@ _listingsChanged: function(){
 
 componentDidMount: function(){
   this.listingListener = ListingStore.addListener(this._listingsChanged);
+
   ApiUtil.fetchListings();
 },
 
@@ -42,7 +43,7 @@ componentWillUnmount: function(){
 
 render: function(){
   return(
-    <div className="searchIndex">
+    <div className="index">
       {this.renderListings()}
     </div>
   )

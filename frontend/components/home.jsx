@@ -1,12 +1,12 @@
 var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
-var UserProfile = require('./userProfile.jsx');
+var UserProfile = require('./Profile/userProfile.jsx');
 
 module.exports = React.createClass({
 
 render: function(){
   return(
-    <div className="contentpane">
+    <div className="main">
       <UserProfile user={"current"}/>
     </div>
   )

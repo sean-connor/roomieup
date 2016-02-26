@@ -1,187 +1,145 @@
 
+//DESIGN GROUP
+
+// body{
+//   border: 5px dashed rgba(0, 0, 0, .7);
+// }
+// #root{
+//   border: 5px dashed rgba(50, 0, 0, .4);
+// }
+// .appdiv{
+//   border: 5px dashed rgba(100, 0, 0, .7);
+// }
+// .navul{
+//   border: 5px dashed rgba(200, 0, 0, .7);
+// }
+// .navul a {
+//   border: 1px dashed rgba(255, 0, 0, .7);
+// }
+// .main{
+//   border: 5px dotted rgba(0, 0, 0, .7);
+// }
+// .profile{
+//   border: 1px dashed rgba(150, 0, 0, .4);
+// }
+// .profilephoto{
+//   border: 1px dashed rgba(200, 0, 0, .4);
+// }
+// .usernamedisp{
+//   border: 1px dashed rgba(250, 0, 0, .4);
+// }
+// .profdesc{
+//   border: 1px dashed rgba(0, 0, 0, .4);
+// }
+// .indexForm{
+//   border: 3px dashed rgba(150, 0, 0, .7);
+// }
+// .searchIndex, .savedIndex{
+//   border: 3px dashed rgba(150, 0, 0, .7);
+// }
+// .footer{
+//   border: 5px dashed rgba(0, 0, 0, .4);
+// }
+//End DESGIN GROUP
+
+//WORKING GROUP
+#root{
+  z-index: 0
+}
+//END WORKING GROUP
+
+
+
+
+//STYLING START
 html{
-  background: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg') no-repeat center center fixed;
+//  background: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
+  height: 100%;
   font-family: 'Josefin Sans', sans-serif;
 }
-li > button{
-  display: none;
+body {
+    margin: 0 !important;
+    padding: 0 !important;
 }
-.sliderimage{
-  width: auto;
-  height: 300px;
-}
-.profilephoto{
-  width: 200px;
-  height: auto;
-  border: 10px solid rgba(0,0,0,.2);;
-  border-radius: 10px
-
-}
-.list-btn{
-  background: black;
-  border-radius: 5px;
-  font-size: 20px;
-  font-weight: 400;
-  color: white;
-  opacity: .5;
-  padding: 5px;
-  width: 50px;
-  margin: 3px 3px;
-}
-.list-btn:hover{
-  cursor: pointer;
-  opacity: .75;
-}
-.indexForm{
-  position: relative;
-  background-color: rgba(255,255,255,.2);
-  padding: 10px;
-  border-radius: 30px;
-}
-.searchIndex, .savedIndex{
-  overflow: auto;
-  height: 700px;
-  background-color: rgba(255,255,255,.2);
-  position: relative;
-  display: flex;
-  flex-wrap: wrap;
-  padding: 5px;
-  margin: 0 10px;
-  border-radius: 30px;
-}
-.homebackground{
-  width: 50%;
-  height: 50%;
-  top: 100px;
-  right: 450px;
-  position: relative;
-  border-radius: 5px;
-  box-shadow: 1px 1px 20px black;
-}
-.savedBackground{
-  width: 50%;
-  height: 50%;
-  top: 100px;
-  right: 450px;
-  position: relative;
-  border-radius: 5px;
-  box-shadow: 1px 1px 20px black;
-  border-radius: 50%;
- -webkit-transition: -webkit-transform .1s ease-in-out;
- transition: transform .1s ease-in-out;
-}
-.savedBackground:hover {
-  transform-origin: left;
-  transform: rotate(900deg);
-}
-.chatbackground{
-  width: 50%;
-  height: 50%;
-  top: 100px;
-  right: 200px;
-  position: relative;
-  border-radius: 5px;
-  box-shadow: 1px 1px 20px black;
-}
-.imgbg{
-  position: relative;
-  width: 400px;
-  height: 400px;
-  background-color: black;
-  padding: 30px;
-  opacity: .5;
-  border-radius: 5px;
-  box-shadow: 1px 1px 20px black;
-}
+//ROOT and APPDIV
 #root{
-  position: absolute;
-  top: 10%;
-  left: 20%;
-}
-.signformbtnguest{
-  border-style: none;
-  position: relative;
-  top: 33px;
-  color: white;
-  font-size: 20px;
-  font-weight: 300;
-  margin: 0;
-  background-color: black;
-  opacity: .5;
-  width:300px;
-  text-decoration: none;
-  border-radius: 5px;
-  box-shadow: 1px 1px 20px black;
-  display: block;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  height:100%;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+
+  font-weight: bold;
   text-align: center;
 }
-.signformbtnguest:hover{
-  opacity: .75;
+#root > * {
+  padding: 10px;
+  flex: 1 100%;
+}
+@media all and (min-width: 800px) {
+  .main    { flex: 2 0px; }
+  .main    { order: 1; }
+  .footer  { order: 3; }
+}
+.appdiv{
+  height: 100%;
+}
+//END ROOT and APPDIV
+
+//NAV BAR
+.navul {
+  list-style: none;
+  margin: 10px;
+
+  background: rgba(240,240,247,.5);
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: flex-end;
+}
+.navul a {
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  color: white;
+
+}
+.navul a:hover {
+  background: darken(rgba(240,240,240,.5), 5%);
   cursor: pointer;
+  border-radius: 3px;
 }
-.logsignform{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+@media all and (max-width: 800px) {
+  .navul {
+    justify-content: space-around;
+  }
 }
-p.username{
-  display: none;
-}
-.signformbtn{
-    border-style: none;
-    position: relative;
-    top: 25px;
-    color: white;
-    font-size: 20px;
-    font-weight: 300;
-    margin: 0;
-    background-color: black;
-    width:300px;
-    text-decoration: none;
-    border-radius: 5px;
-    box-shadow: 1px 1px 20px black;
-    display: block;
+@media all and (max-width: 600px) {
+  .navul {
+    -webkit-flex-flow: column wrap;
+    flex-flow: column wrap;
+    padding: 0;
+  }
+  .navul a {
     text-align: center;
-}
-.signform{
-  position: relative;
-  margin: 10px auto;
-  padding: 0;
-  height: 75px;
-  width: 300px;
-  background-color: black;
-  opacity: .5;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  align-content: center;
-  border-radius: 5px;
-  box-shadow: 1px 1px 20px black;
-}
-.loginform{
-  position: relative;
-  color: white;
-  font-size: 24px;
-  font-weight: 300;
-  top: 15px;
-  margin: 5px 10px;
-}
-.logo{
-  z-index: 1;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  align-items: center;
-  opacity: .75;
-  transition: transform 1s ease;
-}
-.username{
-  font-size: 24px;
-  color: white;
+    padding: 10px;
+    border-top: 1px solid rgba(255,255,255,0.3);
+    border-bottom: 1px solid rgba(0,0,0,0.1);
+  }
+
+  .navul li:last-of-type a {
+    border-bottom: none;
+  }
 }
 .chat{
   background-image: asset-data-url("chat.svg");
@@ -207,100 +165,219 @@ p.username{
   width: 80px;
   z-index: 1;
 }
-.chat:hover{
-  background-color: rgba(255,255,255,.2);
-  border-radius: 20px;
+.logout{
+  background-image: asset-data-url("logout.svg");
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+  justify-content: flex-end;
 }
-.home:hover{
-  background-color: rgba(255,255,255,.2);
-  border-radius: 20px;
-}
-.saved:hover{
-  background-color: rgba(255,255,255,.2);
-  border-radius: 20px;
-}
-.searchListings:hover{
-  background-color: rgba(255,255,255,.2);
-  border-radius: 20px;
-}
-.navli{
+.logoutdrop{
   position: relative;
-  margin: 0 150px 0 0 ;
-  width: 0;
+}
+.login{
+  background-image: asset-data-url("login.svg");
+  height: 80px;
+  width: 80px;
+  z-index: 1;
+  justify-content: flex-end;
+}
+.logoutli{
+  justify-content: flex-end;
+}
+//END NAV BAR
+//START CONTENT PANE
+.main{
+  text-align: left;
+  min-height: 100%;
+  height: auto;
+  height: 100%;
+  margin: 0 auto -4em;
+  background: rgba(255,255,255,.75);
+}
+//END CONTENT PANE
+// PROFILE STYLING
+.profile{
+  height: auto;
+}
+.profilephoto{
+  width: 200px;
+  height: auto;
+  border: 10px solid rgba(0,0,0,.2);
+  border-radius: 10px;
+  left: 195px;
+}
+.usernamedisp{
+  color: black;
+  font-size: 24px;
+}
+.profdesc{
+  resize: none;
+  min-height: 300px;
+  height: auto;
+
+  width: 200px;
+}
+//END PROFILE STYLING
+//START LISTING STYLING
+.wrapper {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
   display: flex;
-  align-content: center;
-}
-.navul{
   position: relative;
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  padding: 0;
-}
-.navbar{
-  position: relative;
-  display: flex;
-  justify-content: center;
-  margin: 0 auto;
-}
-.signbtn{
-  border-style: none;
-  position: relative;
-  top: 40px;
-  color: white;
-  font-size: 23px;
-  font-weight: 300;
-  padding: 1px;
-  margin: 0;
-  background-color: black;
-  opacity: .5;
-  width:300px;
-  text-decoration: none;
-  border-radius: 5px;
-  box-shadow: 1px 1px 20px black;
-  display: block;
+  width: 50%;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+
+  font-weight: bold;
   text-align: center;
 }
-.signbtn:hover{
-  opacity: .75;
-  cursor: pointer;
-}
-.signformbtn:hover{
-  border-style: 1px solid black;
-  background-color: white;
-  color: black;
-  cursor: pointer;
 
-}
-.logsignform:hover .logo{
-  opacity: 1;
-  transform: translateY(-25px);
-}
-input.sign-btn{
-  position: absolute;
-  color: white;
-  font-size: 16px;
-  font-weight: 400;
-  margin: 10px;
+.wrapper > * {
   padding: 10px;
-  height: 50px;
-  width: 100px;
-  background-color: black;
-  opacity: .5;
-  align-items: center;
-  border-radius: 5px;
-  box-shadow: 1px 1px 20px black;
+  flex: 1 100%;
+
 }
-input.sign-btn:hover{
-  cursor: pointer;
+.form {
+}
+.index {
+  position: relative;
+  text-align: left;
+  width: 60%;
+  overflow-y: scroll;
+  height: 650px;
 }
 
-.contentpane{
+@media all and (min-width: 800px) {
+  .index { flex: 2 0px; }
+  .index { order: 1; }
+}
+.map{
+  position: absolute;
+  display: block;
+  height: 650px;
+  left: 50%;
+  width: 47.8%;
+  border: 1px solid black;
+  margin: 10px;
+}
+li > button{
+  display: none;
+}
+.sliderimage{
+  width: 400px;
+  height: 400px;
+}
+.listContainer{
+  position: relative;
+}
+.list-btn{
+  position: absolute;
+  background: black;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 400;
+  color: white;
+  opacity: .5;
+  padding: 5px;
+  width: 50px;
+  margin: 3px 3px;
+  top: 0;
+  right: 0;
+}
+.list-btn:hover{
+  cursor: pointer;
+  opacity: .75;
+}
+.indexForm{
+  position: relative;
+  padding: 10px;
+  border-radius: 30px;
+}
+.searchIndex, .savedIndex{
+  overflow: auto;
+  height: 900px;
   position: relative;
   display: flex;
-  align-content: center;
-  width: auto;
-  height: auto;
-  overflow: auto;
+  flex-flow: column;
+  flex-wrap: wrap;
+  padding: 5px;
+  margin: 0 10px;
+  border-radius: 30px;
 }
+
+.listingcollection {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+
+  -webkit-flex-flow: row wrap;
+  justify-content: space-around;
+}
+
+.listing-index-item {
+  display: relative;
+  padding: 1px;
+  margin: 1px;
+  width: 300px;
+  height: 600px;
+}
+//END LISTING STYLING
+
+//SIGN IN STYLE\
+
+  .log{
+    html{
+      background: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg') no-repeat center center fixed;
+    }
+    height: 100%;
+    display: flex;
+    flex-direction:row;
+    text-align: center;
+    justify-content: center;
+    align-content: center;
+  }
+
+  .signup{
+    display: flex;
+    text-align: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .form-label{
+    font-weight: 400px;
+    font-size: 20px;
+  }
+  .form-input{
+    padding: 5px;
+  }
+  .form-submit{
+    color: white;
+    text-size: 300px;
+    width: 200px;
+    height: 50px;
+    margin: 10px;
+    border-radius: 10px;
+    background: black;
+    opacity: .5;
+  }
+  .form-submit:hover{
+    opacity: .75;
+  }
+//SIGN IN STYLE END
+//FOOTER STYLE
+.footer{
+  position: fixed;
+}
+.push{
+  height: 4em;
+}
+//END FOOTER STYLE

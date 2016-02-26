@@ -44,6 +44,55 @@ module.exports = {
     })
   },
   //USERS GROUP
+  createUser: function (user, callback) {
+    $.ajax({
+      url: "api/users",
+      method: "POST",
+      data: {user: user},
+      success: function (user) {
+        UserActions.receiveSingleUser(user);
+        callback && callback(user.id);
+      },
+      error: function (errors) {
+        ErrorActions.receiveErrors(errors);
+      }
+    });
+  },
+  createSession: function (user, callback) {
+    $.ajax({
+      url: "api/session",
+      method: "POST",
+      data: {user: user},
+      success: function (user) {
+        UserActions.receiveSingleUser(user);
+        callback && callback(user.id);
+      },
+      error: function (errors) {
+        ErrorActions.receiveErrors(errors);
+      }
+    });
+  },
+  deleteSession: function (callback) {
+    $.ajax({
+      url: "api/session",
+      method: "DELETE",
+      success: function (loggedOutUser) {
+        UserActions.removeSingleUser();
+        callback && callback(loggedOutUser);
+        }
+      });
+    },
+  readSession: function (user, callback) {
+    $.ajax({
+      url: "api/session",
+      method: "GET",
+      success: function (user) {
+        UserActions.receiveSingleUser(user);
+        callback && callback(user.id);
+        }
+      });
+    },
+
   fetchProfile: function(user){
     $.ajax({
       url: "api/users",

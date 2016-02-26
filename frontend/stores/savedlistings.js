@@ -7,7 +7,6 @@ var SavedListingStore = new Store(AppDispatcher);
 var _listings = [];
 
 var resetListings = function (listings) {
-  console.log("Setting Saved Listings");
   _listings = listings;
 }
 

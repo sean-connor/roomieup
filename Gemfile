@@ -5,7 +5,7 @@ gem 'pry-rails'
 gem 'watir-webdriver'
 gem 'annotate'
 gem 'rails_serve_static_assets'
-gem 'rails_stdout_logging'
+gem 'rails_stdout_logging', group: :production
 gem 'nokogiri', '1.6.7.2'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5.1'

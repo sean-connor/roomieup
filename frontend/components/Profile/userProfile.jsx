@@ -1,17 +1,18 @@
 var React = require('react');
-var ApiUtil = require('../util/apiUtil.js');
-var ProfileStore = require('../stores/profile');
+var ApiUtil = require('../../util/apiUtil.js');
+var UserStore = require('../../stores/user');
 
 function _getProfile(){
-  return ProfileStore.currentProfile();
+  return UserStore.getUser();
 }
 
 
 var UserProfile = React.createClass({
   //Fetches User based on usertype prop, either current user or user in a chatroom.
   getInitialState: function(){
-    profile = ApiUtil.fetchProfile(this.props.user)
-    return {id: NaN, profile_picture: "", username: "", description: ""};
+    this.updates = false;
+    profile = _getProfile();
+    return ({id: profile.id, profile_picture: profile.profile_picture, username: profile.username, description: profile.description});
   },
 
   _profileChanged: function(){
@@ -19,17 +20,12 @@ var UserProfile = React.createClass({
     this.setState({id: profile.id, profile_picture: profile.profile_picture, username: profile.username, description: profile.description});
   },
   //Adds a listeneer and fetches User on mount based on usertype prop, either current user or user in a chatroom.
-  componentDidMount: function(){
-    this.updates = false;
-    this.profileListener = ProfileStore.addListener(this._profileChanged);
-    ApiUtil.fetchProfile(this.props.user);
-  },
+
   // Commit any profile changes.
   componentWillUnmount: function(){
     if (this.updates = true) {
       ApiUtil.commitProfileChanges(this.state);
     }
-    this.profileListener.remove();
   },
 
   cloudinaryUpload: function(){
@@ -44,6 +40,7 @@ var UserProfile = React.createClass({
   },
 
   handleDescriptionChange: function(event){
+    event.preventDefault();
     this.updates = true;
     this.setState({description: event.target.value});
   },
@@ -55,11 +52,14 @@ var UserProfile = React.createClass({
       return (
         <div>
           <img className="profilephoto" src={this.state.profile_picture}/>
+          <br/>
           <button onClick={this.cloudinaryUpload}>Change Profile Photo</button>
-          <h2>{this.state.username}</h2>
-          <p>{this.state.description}</p>
+          <br/>
+          <h2 className="usernamedisp">{this.state.username}</h2>
+          <br/>
           <label>Profile Description:</label>
-            <textarea className="form-control" name="description" ref="description" required type="number" value={this.state.description}
+          <br/>
+          <textarea className="profdesc" name="description" ref="description" required type="number" value={this.state.description}
                onChange={this.handleDescriptionChange}/>
         </div>
       )
