@@ -2,7 +2,7 @@ var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher');
 var router = require('react-router');
 var AuthConstants = require('../constants/AuthConstants');
-
+var ProfileConstants = require('../constants/profileConstants')
 var _user = {};
 
 var UserStore = new Store(AppDispatcher);
@@ -28,6 +28,12 @@ var handleLogin = function(data) {
   _user['signed_in'] = true;
 };
 
+var update = function(profile){
+  if(_user["id"] === profile["id"]){
+    _user["description"] = profile["description"];
+    _user["profile_picture"] = profile["profile_picture"];
+  }
+};
 
 var handleLogout = function(data) {
   localStorage.clear();
@@ -62,8 +68,10 @@ UserStore.__onDispatch = function(payload) {
       error(payload.data);
       this.__emitChange();
       break;
-
-  }
+    case (ProfileConstants.PROFILE_RECEIVED):
+      update(payload.profile);
+      break;
+    }
 };
 
 module.exports = UserStore;

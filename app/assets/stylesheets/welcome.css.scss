@@ -198,7 +198,9 @@ body {
 //END CONTENT PANE
 // PROFILE STYLING
 .profile{
+  position: relative;
   height: auto;
+  left: 10%;
 }
 .profilephoto{
   width: 200px;
@@ -245,7 +247,7 @@ body {
 .index {
   position: relative;
   text-align: left;
-  width: 60%;
+  width: 47%;
   overflow-y: scroll;
   height: 650px;
 }
@@ -325,10 +327,13 @@ li > button{
 
 .listing-index-item {
   display: relative;
-  padding: 1px;
+  border-radius: 15px;
+  border: 10px;
+  background: rgba(0,0,0, .1);
+  padding: 10px;
   margin: 1px;
   width: 300px;
-  height: 600px;
+  height: 515px;
 }
 //END LISTING STYLING
 

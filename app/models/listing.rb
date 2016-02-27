@@ -21,15 +21,19 @@ class Listing < ActiveRecord::Base
   has_many :savedlistings
   has_many :users, through: :savedlistings
 
+  def generate_chat
+    if self.users.length != 0 && self.users.length % self.bedroom == 0
+      self.users[-self.bedroom..-1]
+    else
+      return []
+    end
+  end
 
   def self.in_bounds(bounds)
-    p "SELF IN BOUNDS"
-    p bounds['northEast']
-    north = bounds['northEast']['north']
-    east = bounds['northEast']['east']
-    south = bounds['southWest']['south']
-    west = bounds['southWest']['west']
-    benches = Listing.where("lat BETWEEN #{south} AND #{north}").where("lng BETWEEN #{west} AND #{east}")
-  end
+     self.where("lat < ?", bounds[:northEast][:lat])
+         .where("lat > ?", bounds[:southWest][:lat])
+         .where("lng > ?", bounds[:southWest][:lng])
+         .where("lng < ?", bounds[:northEast][:lng])
+   end
 
 end

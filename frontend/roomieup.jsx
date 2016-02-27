@@ -12,22 +12,17 @@ var App = require('./components/app');
 var Home = require('./components/home');
 var SearchListings = require('./components/searchlisting');
 var SavedListings = require('./components/savedlisting');
-var Chat = require('./components/chat');
+var Chat = require('./components/chatEntry');
 var Auth = require('./components/auth');
-
+var ListingShow = require('./components/ListingsTest/listingShow');
 
 var routes = (
   <Route path="/" component={App}>
-    <Route path="auth" component={Auth}/>
     <Route path="home" component={Home}/>
-    <Route path="searchlistings" component={SearchListings}>
-      <IndexRoute component={Search}/>
-      <Route path="/:listingId" component={ListingShow}/>
-    </Route>
-    <Route path="savedlistings" component={SavedListings}>
-      <Route path="/:listingId" component={ListingShow}/>
-    </Route>
+    <Route path="searchlistings" component={SearchListings}/>
+    <Route path="savedlistings" component={SavedListings}/>
     <Route path="chat" component={Chat}/>
+    <Route path="auth" component={Auth}/>
   </Route>
 );
 

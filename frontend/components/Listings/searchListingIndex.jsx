@@ -34,7 +34,7 @@ _listingsChanged: function(){
 componentDidMount: function(){
   this.listingListener = ListingStore.addListener(this._listingsChanged);
 
-  ApiUtil.fetchListings();
+  //ApiUtil.fetchListings();
 },
 
 componentWillUnmount: function(){

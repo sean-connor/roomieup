@@ -23,11 +23,13 @@ var UserProfile = React.createClass({
 
   // Commit any profile changes.
   componentWillUnmount: function(){
-    if (this.updates = true) {
-      ApiUtil.commitProfileChanges(this.state);
-    }
+    console.log("Profile Page Unmounting.");
+    console.log(this.state);
+    ApiUtil.commitProfileChanges(this.state);
   },
-
+  componentDidMount: function(){
+    console.log("Profile Page Mounting.");
+  },
   cloudinaryUpload: function(){
     that = this;
      cloudinary.openUploadWidget({ cloud_name: 'roomieup-com', upload_preset: 'fkttonkf'},

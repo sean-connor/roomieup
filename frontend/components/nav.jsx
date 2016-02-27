@@ -14,6 +14,7 @@ renderLoggedOut: function(){
   )
 },
 
+
 renderLoggedIn: function(){
   return(
     <ul className="navul">

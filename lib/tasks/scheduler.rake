@@ -17,8 +17,6 @@ task :clpull => :environment do
       listing = Nokogiri::HTML.parse(browser.html)
       latresult = listing.css("div[id=map]")[0].attributes["data-latitude"].value
       lngresult = listing.css("div[id=map]")[0].attributes["data-longitude"].value
-      p latresult
-      p lngresult
       housingresult = listing.css("span[class=housing]").children[0].content
       housingresult = numregex.match(housingresult)[0]
       priceresult = listing.css("span[class=price]").children[0].content
@@ -33,7 +31,7 @@ task :clpull => :environment do
       j=0
       (numimages - 1).times do
         img_url = listing.css('div[id=thumbs]').children[j].attributes['href'].value
-        @listingimage = Listingimage.new(url: img_url, id: @listing.id)
+        @listingimage = Listingimage.new(url: img_url, listing_id: @listing.id)
         @listingimage.save
         images.push(listing.css('div[id=thumbs]').children[j].attributes['href'].value)
         j+=1

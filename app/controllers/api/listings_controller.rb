@@ -2,6 +2,7 @@ class Api::ListingsController < ApplicationController
   def index
     p params
     listings = Listing.in_bounds(params[:bounds])
+    p listings
     if(params[:bedroom])
       listings = listings.where("listings.bedroom = ?", params[:bedroom])
     end

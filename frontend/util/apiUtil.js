@@ -1,16 +1,15 @@
-var ApiActions = require('../actions/apiActions')
+var ApiActions = require('../actions/apiActions');
+var FilterParamsStore = require('../stores/filter_params');
 
 module.exports = {
   //LISTINGS GROUP
   //Fetches Listings prompted by the search listings form
-  fetchListings: function(listingFormState){
-      $.ajax({
-      url: "api/listings",
-      data: listingFormState,
-      success: function(matchedListings){
+  fetchListings: function(){
+    var filter = FilterParamsStore.params();
+      $.get("api/listings", filter, function(matchedListings){
           ApiActions.receiveListings(matchedListings);
       }
-    })
+    )
   },
   fetchSavedListings: function(){
     $.ajax({
@@ -24,7 +23,7 @@ module.exports = {
       $.post({
       url: "api/savedlistings",
       data: {listing_id: listing.id},
-      success: function(){
+      success: function(response){
           ApiActions.receiveSavedListing(listing);
       }
     })
@@ -107,6 +106,9 @@ module.exports = {
       type: "PATCH",
       url: "api/users/" +profileState.id,
       data: profileState,
+      success: function(){
+          ApiActions.receiveProfile(profileState);
+      }
     })
   }
 }

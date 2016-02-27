@@ -9,14 +9,15 @@ var History = require('react-router').History;
 App = React.createClass({
   mixins: [Router.Navigation, History],
   getInitialState() {
+    console.log("FETCH LOGGED IN");
     return {
       loggedIn: Auth.loggedIn()
-    }
+      }
   },
 
   _userChanged: function(){
+    console.log("USER SIGN IN / SIGN OUT");
     if (Auth.loggedIn() !== this.loggedIn){
-      this.forceUpdate();
       this.setState({loggedIn: Auth.loggedIn()})
       if(Auth.loggedIn()){
         this.history.pushState(null, '/home');

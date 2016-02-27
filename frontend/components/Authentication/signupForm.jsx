@@ -13,6 +13,7 @@ var Signup = React.createClass({
   },
 
   handleSubmit: function(event) {
+    console.log(event.target.name);
     event.preventDefault();
     if(event.target.name === "signup"){
       UserActions.create({
@@ -54,8 +55,8 @@ var Signup = React.createClass({
           name="password"
           placeholder="Password"/>
         <br></br>
-        <button className="form-submit" name="signup" type="submit">Sign Up</button>
-        <button className="form-submit" name="signin" type="submit">Sign In</button>
+        <button className="form-submit" name="signup" type="submit" onClick={this.handleSubmit}>Sign Up</button>
+        <button className="form-submit" name="signin" type="submit" onClick={this.handleSubmit}>Sign In</button>
       </form>
       <button className="form-submit" name="guest" onClick={this.handleSubmit}>Guest</button>
       </div>

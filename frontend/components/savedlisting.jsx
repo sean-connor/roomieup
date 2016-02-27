@@ -6,6 +6,7 @@ module.exports = React.createClass({
 render: function(){
   return(
     <div className="main">
+      <h1>"SAVED LISTINGS"</h1>
       <SavedListingIndex/>
     </div>
   )
