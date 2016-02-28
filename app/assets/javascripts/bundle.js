@@ -19796,6 +19796,27 @@
 	        ApiActions.receiveProfile(profileState);
 	      }
 	    });
+	  },
+	  //CHAT GROUP
+	  fetchChats: function () {
+	    $.get("api/chats", function (chats) {
+	      ApiActions.receiveChats(chats);
+	    });
+	  },
+	  fetchMessages: function (chat_id) {
+	    $.get("api/messages", { chat_id: chat_id }, function (messages) {
+	      ApiActions.receiveMessages(messages);
+	    });
+	  },
+	  saveMessage: function (message) {
+	    var that = this;
+	    $.post({
+	      url: "api/messages",
+	      data: message,
+	      success: function () {
+	        that.fetchMessages(message.chat_id);
+	      }
+	    });
 	  }
 	};
 
@@ -19806,6 +19827,7 @@
 	var AppDispatcher = __webpack_require__(161);
 	var ListingConstants = __webpack_require__(165);
 	var ProfileConstants = __webpack_require__(166);
+	var ChatConstants = __webpack_require__(275);
 
 	var ApiActions = {
 	  //LISTINGS GROUP
@@ -19833,6 +19855,24 @@
 	    AppDispatcher.dispatch({
 	      actionType: ProfileConstants.PROFILE_RECEIVED,
 	      profile: profile
+	    });
+	  },
+	  receiveChats: function (chats) {
+	    AppDispatcher.dispatch({
+	      actionType: ChatConstants.CHATS_RECEIVED,
+	      chats: chats
+	    });
+	  },
+	  receiveMessages: function (messages) {
+	    AppDispatcher.dispatch({
+	      actionType: ChatConstants.MESSAGES_RECEIVED,
+	      messages: messages
+	    });
+	  },
+	  receiveMessage: function (message) {
+	    AppDispatcher.dispatch({
+	      actionType: ChatConstants.MESSAGE_RECEIVED,
+	      message: message
 	    });
 	  }
 
@@ -31011,6 +31051,11 @@
 	          Link,
 	          { to: "/home" },
 	          React.createElement('div', { className: 'home' })
+	        ),
+	        React.createElement(
+	          'p',
+	          { className: 'navDesc' },
+	          'Home'
 	        )
 	      ),
 	      React.createElement(
@@ -31020,6 +31065,11 @@
 	          Link,
 	          { to: "/searchlistings" },
 	          React.createElement('div', { className: 'searchListings' })
+	        ),
+	        React.createElement(
+	          'p',
+	          { className: 'navDesc' },
+	          'Search'
 	        )
 	      ),
 	      React.createElement(
@@ -31029,6 +31079,11 @@
 	          Link,
 	          { to: "/savedlistings" },
 	          React.createElement('div', { className: 'saved' })
+	        ),
+	        React.createElement(
+	          'p',
+	          { className: 'navDesc' },
+	          'Saved'
 	        )
 	      ),
 	      React.createElement(
@@ -31038,6 +31093,11 @@
 	          Link,
 	          { to: "/chat" },
 	          React.createElement('div', { className: 'chat' })
+	        ),
+	        React.createElement(
+	          'p',
+	          { className: 'navDesc' },
+	          'Messages'
 	        )
 	      ),
 	      React.createElement(
@@ -31046,19 +31106,12 @@
 	        React.createElement(
 	          'a',
 	          null,
-	          React.createElement(
-	            'div',
-	            { className: 'logout' },
-	            React.createElement(
-	              'ul',
-	              null,
-	              React.createElement(
-	                'li',
-	                { className: 'logoutdrop' },
-	                React.createElement(Auth, null)
-	              )
-	            )
-	          )
+	          React.createElement(Auth, null)
+	        ),
+	        React.createElement(
+	          'p',
+	          { className: 'navDesc' },
+	          'Logout'
 	        )
 	      )
 	    );
@@ -31099,11 +31152,7 @@
 
 	  renderCheck: function () {
 	    if (UserStore.signedIn()) {
-	      return React.createElement(
-	        'div',
-	        { className: 'log' },
-	        React.createElement(Logout, null)
-	      );
+	      return React.createElement(Logout, null);
 	    } else {
 	      return React.createElement(
 	        'div',
@@ -31115,13 +31164,8 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'main' },
-	      this.renderCheck(),
-	      React.createElement(
-	        'p',
-	        { className: 'designLabel' },
-	        'Main'
-	      )
+	      { className: 'authDiv' },
+	      this.renderCheck()
 	    );
 	  }
 
@@ -31591,11 +31635,10 @@
 	      return React.createElement(
 	        'div',
 	        null,
-	        this.state.user.username,
 	        React.createElement(
-	          'button',
-	          { onClick: this.logout },
-	          'logout'
+	          'p',
+	          { className: 'logoutButton', onClick: this.logout },
+	          'Logout'
 	        )
 	      );
 	    } else {
@@ -31612,11 +31655,7 @@
 	  },
 
 	  render: function () {
-	    return React.createElement(
-	      'div',
-	      null,
-	      this.userLoggedIn()
-	    );
+	    return React.createElement('div', { onClick: this.logout, className: 'logout' });
 	  }
 
 	});
@@ -33542,11 +33581,6 @@
 	    return React.createElement(
 	      'div',
 	      { className: 'main' },
-	      React.createElement(
-	        'h1',
-	        null,
-	        '"SAVED LISTINGS"'
-	      ),
 	      React.createElement(SavedListingIndex, null)
 	    );
 	  }
@@ -33673,7 +33707,7 @@
 	var ListingStore = __webpack_require__(251);
 	var ReactRouter = __webpack_require__(184);
 	var Listing = __webpack_require__(272);
-	var Map = __webpack_require__(273);
+	var Map = __webpack_require__(266);
 	var ApiUtil = __webpack_require__(159);
 
 	var ListingShow = React.createClass({
@@ -33787,139 +33821,13 @@
 	module.exports = Listing;
 
 /***/ },
-/* 273 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var React = __webpack_require__(1);
-	var ReactDOM = __webpack_require__(158);
-	var FilterActions = __webpack_require__(263);
-
-	function _getCoordsObj(latLng) {
-	  return {
-	    lat: latLng.lat(),
-	    lng: latLng.lng()
-	  };
-	}
-
-	var CENTER = { lat: 37.7758, lng: -122.435 };
-
-	var Map = React.createClass({
-	  displayName: 'Map',
-
-	  componentDidMount: function () {
-	    console.log('map mounted');
-	    var map = ReactDOM.findDOMNode(this.refs.map);
-	    var mapOptions = {
-	      center: this.centerListingCoords(),
-	      zoom: 13
-	    };
-	    this.map = new google.maps.Map(map, mapOptions);
-	    this.registerListeners();
-	    this.markers = [];
-	    this.props.listings.forEach(this.createMarkerFromListing);
-	  },
-	  centerListingCoords: function () {
-	    if (this.props.listings[0] && this.props.listings[0].lng) {
-	      var listing = this.props.listings[0];
-	      return { lat: listing.lat, lng: listing.lng };
-	    } else {
-	      return CENTER;
-	    }
-	  },
-	  componentDidUpdate: function (oldProps) {
-	    this._onChange();
-	  },
-	  _onChange: function () {
-	    var listings = this.props.listings;
-	    var toAdd = [],
-	        toRemove = this.markers.slice(0);
-	    listings.forEach(function (listing, idx) {
-	      var idx = -1;
-	      //check if listing is already on map as a marker
-	      for (var i = 0; i < toRemove.length; i++) {
-	        if (toRemove[i].listingId == listing.id) {
-	          idx = i;
-	          break;
-	        }
-	      }
-	      if (idx === -1) {
-	        //if it's not already on the map, we need to add a marker
-	        toAdd.push(listing);
-	      } else {
-	        //if it IS already on the map AND in the store, we don't need
-	        //to remove it
-	        toRemove.splice(idx, 1);
-	      }
-	    });
-	    toAdd.forEach(this.createMarkerFromListing);
-	    toRemove.forEach(this.removeMarker);
-
-	    if (this.props.singleListing) {
-	      this.map.setOptions({ draggable: false });
-	      this.map.setCenter(this.centerListingCoords());
-	    }
-	  },
-	  componentWillUnmount: function () {
-	    console.log("map UNmounted");
-	  },
-	  registerListeners: function () {
-	    var that = this;
-	    google.maps.event.addListener(this.map, 'idle', function () {
-	      var bounds = that.map.getBounds();
-	      var northEast = _getCoordsObj(bounds.getNorthEast());
-	      var southWest = _getCoordsObj(bounds.getSouthWest());
-	      //actually issue the request
-	      var bounds = {
-	        northEast: northEast,
-	        southWest: southWest
-	      };
-	      FilterActions.updateBounds(bounds);
-	    });
-	    google.maps.event.addListener(this.map, 'click', function (event) {
-	      var coords = { lat: event.latLng.lat(), lng: event.latLng.lng() };
-	      that.props.onMapClick(coords);
-	    });
-	  },
-	  createMarkerFromListing: function (listing) {
-	    var that = this;
-	    var pos = new google.maps.LatLng(listing.lat, listing.lng);
-	    var marker = new google.maps.Marker({
-	      position: pos,
-	      map: this.map,
-	      listingId: listing.id
-	    });
-	    marker.addListener('click', function () {
-	      that.props.onMarkerClick(listing);
-	    });
-	    this.markers.push(marker);
-	  },
-	  removeMarker: function (marker) {
-	    for (var i = 0; i < this.markers.length; i++) {
-	      if (this.markers[i].listingId === marker.listingId) {
-	        this.markers[i].setMap(null);
-	        this.markers.splice(i, 1);
-	        break;
-	      }
-	    }
-	  },
-	  render: function () {
-	    return React.createElement(
-	      'div',
-	      { className: 'map', ref: 'map' },
-	      'Map'
-	    );
-	  }
-	});
-
-	module.exports = Map;
-
-/***/ },
+/* 273 */,
 /* 274 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
-
+	var ChatIndex = __webpack_require__(276);
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
@@ -33927,21 +33835,321 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'main' },
-	      React.createElement(
-	        'h2',
-	        null,
-	        'Chat Pane'
-	      ),
-	      React.createElement(
-	        'p',
-	        { className: 'designLabel' },
-	        'Main'
-	      )
+	      { className: 'chatpane' },
+	      React.createElement(ChatIndex, null)
 	    );
 	  }
 
 	});
+
+/***/ },
+/* 275 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  CHATS_RECEIVED: "CHATS_RECEIVED",
+	  CHAT_DELETED: "CHAT_DELETED",
+	  MESSAGES_RECEIVED: "MESSAGES_RECEIVED"
+	};
+
+/***/ },
+/* 276 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ChatStore = __webpack_require__(277);
+	var ApiUtil = __webpack_require__(159);
+	var Chat = __webpack_require__(281);
+
+	function _getAllChats() {
+	  return ChatStore.all();
+	}
+
+	var ChatIndex = React.createClass({
+	  displayName: 'ChatIndex',
+
+	  contextTypes: {
+	    router: React.PropTypes.func
+	  },
+	  _chatsChanged: function () {
+	    this.setState({ chats: _getAllChats() });
+	  },
+	  getInitialState: function () {
+	    return {
+	      chats: _getAllChats()
+	    };
+	  },
+	  componentDidMount: function () {
+	    console.log("Chat Index Mounted");
+	    this.chatListener = ChatStore.addListener(this._chatsChanged);
+	    ApiUtil.fetchChats();
+	  },
+	  componentWillUnmount: function () {
+	    console.log("Chat Index Unmounted");
+	    this.chatListener.remove();
+	  },
+	  renderChats: function () {
+	    return this.state.chats.map(function (chat, idx) {
+	      return React.createElement(
+	        'li',
+	        { className: 'chatTitle', key: idx },
+	        React.createElement(Chat, { title: chat.title, id: chat.id })
+	      );
+	    });
+	  },
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      { className: 'chatIndex' },
+	      React.createElement(
+	        'h1',
+	        null,
+	        'Chats:'
+	      ),
+	      React.createElement(
+	        'ul',
+	        { className: 'chatList' },
+	        this.renderChats()
+	      )
+	    );
+	  }
+	});
+
+	module.exports = ChatIndex;
+
+/***/ },
+/* 277 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Store = __webpack_require__(168).Store;
+	var AppDispatcher = __webpack_require__(161);
+	var ChatConstants = __webpack_require__(275);
+
+	var ChatStore = new Store(AppDispatcher);
+
+	var _chats = [];
+
+	var resetChats = function (chats) {
+	  _chats = chats;
+	};
+
+	ChatStore.all = function () {
+	  return _chats.slice(0);
+	};
+
+	ChatStore.__onDispatch = function (payload) {
+	  switch (payload.actionType) {
+	    case ChatConstants.CHATS_RECEIVED:
+	      resetChats(payload.chats);
+	      ChatStore.__emitChange();
+	      break;
+
+	  }
+	};
+
+	module.exports = ChatStore;
+
+/***/ },
+/* 278 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var MessageStore = __webpack_require__(280);
+	var ApiUtil = __webpack_require__(159);
+
+	function _getAllMessages() {
+	  return MessageStore.all();
+	}
+
+	var MessageIndex = React.createClass({
+	  displayName: 'MessageIndex',
+
+	  contextTypes: {
+	    router: React.PropTypes.func
+	  },
+	  _messagesChanged: function () {
+	    this.setState({ messages: _getAllMessages() });
+	  },
+	  getInitialState: function () {
+	    return {
+	      messages: _getAllMessages()
+	    };
+	  },
+	  componentDidMount: function () {
+	    console.log("Message Index Mounted");
+	    this.messageListener = MessageStore.addListener(this._messagesChanged);
+	    ApiUtil.fetchMessages(this.props.chatId);
+	  },
+	  componentWillUnmount: function () {
+	    console.log("Message Index Unmounted");
+	    this.messageListener.remove();
+	  },
+	  renderMessages: function () {
+	    return this.state.messages.map(function (message, idx) {
+	      return React.createElement(
+	        'li',
+	        { className: 'message', key: idx },
+	        React.createElement(
+	          'p',
+	          { className: 'messageText' },
+	          message.body
+	        )
+	      );
+	    });
+	  },
+	  render: function () {
+	    return React.createElement(
+	      'ul',
+	      { className: 'messageList' },
+	      this.renderMessages()
+	    );
+	  }
+	});
+
+	module.exports = MessageIndex;
+
+/***/ },
+/* 279 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var Router = __webpack_require__(184);
+	var ApiUtil = __webpack_require__(159);
+	var MessageForm = React.createClass({
+	  displayName: 'MessageForm',
+
+	  getInitialState: function () {
+	    return {
+	      body: ""
+	    };
+	  },
+
+	  handleSubmit: function (event) {
+	    event.preventDefault();
+	    ApiUtil.saveMessage({
+	      body: this.state.body,
+	      chat_id: this.props.chatId
+	    });
+	  },
+
+	  handleChange: function (event) {
+	    event.preventDefault();
+	    this.setState({ [event.target.name]: event.target.value });
+	  },
+
+	  render: function () {
+	    return React.createElement(
+	      'form',
+	      { className: 'messageForm', onSubmit: this.handleSubmit },
+	      React.createElement('input', { className: 'messageInput', onChange: this.handleChange,
+	        type: 'text',
+	        name: 'body',
+	        placeholder: 'Message' }),
+	      React.createElement(
+	        'button',
+	        { className: 'messageSubmit', type: 'submit' },
+	        'Send'
+	      )
+	    );
+	  }
+	});
+
+	module.exports = MessageForm;
+
+/***/ },
+/* 280 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var Store = __webpack_require__(168).Store;
+	var AppDispatcher = __webpack_require__(161);
+	var ChatConstants = __webpack_require__(275);
+
+	var MessageStore = new Store(AppDispatcher);
+
+	var _messages = [];
+
+	var resetMessages = function (messages) {
+	  _messages = messages;
+	};
+
+	MessageStore.all = function () {
+	  return _messages.slice(0);
+	};
+
+	MessageStore.__onDispatch = function (payload) {
+	  switch (payload.actionType) {
+	    case ChatConstants.MESSAGES_RECEIVED:
+	      resetMessages(payload.messages);
+	      MessageStore.__emitChange();
+	      break;
+
+	  }
+	};
+
+	module.exports = MessageStore;
+
+/***/ },
+/* 281 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var ChatStore = __webpack_require__(277);
+	var ApiUtil = __webpack_require__(159);
+	var MessageIndex = __webpack_require__(278);
+	var MessageForm = __webpack_require__(279);
+
+	var Chat = React.createClass({
+	  displayName: 'Chat',
+
+	  contextTypes: {
+	    router: React.PropTypes.func
+	  },
+	  getInitialState: function () {
+	    return { messages: "" };
+	  },
+	  componentDidMount: function () {
+	    console.log("Chat Mounted");
+	    this.selected = "";
+	  },
+	  componentWillUnmount: function () {
+	    console.log("Chat Unmounted");
+	  },
+	  renderMessages: function (event) {
+	    event.preventDefault();
+	    this.setState({
+	      messages: ""
+	    });
+	    console.log("CLICK");
+	    if (event.target.innerHTML !== this.selected) {
+	      this.selected = event.target.innerHTML;
+	      this.setState({ messages: React.createElement(
+	          'div',
+	          { className: 'messageGroup' },
+	          React.createElement(MessageIndex, { chatId: this.props.id }),
+	          React.createElement(MessageForm, { chatId: this.props.id })
+	        )
+	      });
+	    } else {
+	      this.selected = "";
+	    }
+	  },
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      { className: 'chatItem' },
+	      React.createElement(
+	        'h2',
+	        { className: 'chatName', onClick: this.renderMessages },
+	        ' ',
+	        this.props.title,
+	        '  '
+	      ),
+	      this.state.messages
+	    );
+	  }
+	});
+
+	module.exports = Chat;
 
 /***/ }
 /******/ ]);

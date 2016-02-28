@@ -10,10 +10,8 @@ var Auth = React.createClass({
   renderCheck :function(){
     if(UserStore.signedIn()){
       return(
-        <div className="log">
-          <Logout />
-        </div>
-      )
+       <Logout />
+       )
     } else {
         return(
           <div className="log">
@@ -24,9 +22,8 @@ var Auth = React.createClass({
   },
   render: function() {
     return (
-      <div className="main">
+      <div className="authDiv">
         {this.renderCheck()}
-        <p className="designLabel">Main</p>
       </div>
     );
   }

@@ -96,28 +96,71 @@ body {
 .navul {
   list-style: none;
   margin: 10px;
-
+  height: 100px;
   background: rgba(240,240,247,.5);
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-
+  background-image:  url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+  -webkit-animation: stars 100s linear infinite;
+  -moz-animation: stars 100s linear infinite;
+  -ms-animation: stars 100s linear infinite;
+  animation: stars 100s linear infinite;
+  -webkit-transition: background-color 10s ease-in;
+  -moz-transition: background-color 10s ease-in;
+  -o-transition: background-color 10s ease-in;
+  transition: background-color 10s ease-in;
   -webkit-flex-flow: row wrap;
   justify-content: flex-end;
 }
+@keyframes stars {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-moz-keyframes stars {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
+}
+@-webkit-keyframes stars {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+@-ms-keyframes stars {
+  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
+  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
+  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
+}
+.navul:hover {
+  background-image:  url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
+  background-color: black;
+}
+
 .navul a {
   text-decoration: none;
   display: block;
-  padding: 1em;
+  padding-left: 1em;
+  padding-right: 1em;
   color: white;
 
 }
-.navul a:hover {
+.navul li:hover {
   background: darken(rgba(240,240,240,.5), 5%);
   cursor: pointer;
   border-radius: 3px;
+}
+.navDesc{
+  display: none;
+  padding: 0;
+  margin: 0;
+}
+.navli:hover .navDesc{
+  display: block;
+
 }
 @media all and (max-width: 800px) {
   .navul {
@@ -172,8 +215,28 @@ body {
   z-index: 1;
   justify-content: flex-end;
 }
-.logoutdrop{
+.navli .authDiv{
   position: relative;
+  bottom: 15%;
+}
+.logoutButton{
+  position: relative;
+  font-size: 20px;
+  font-weight: 500;
+  color: black;
+  border: none;
+  background: none;
+  display: block;
+  z-index: 2;
+}
+.logoutButton:hover{
+  cursor: crosshair;
+}
+.logoutli:hover .logoutButton{
+  display: block;
+  color: purple;
+  background: darken(rgba(240,240,240,.5), 5%);
+
 }
 .login{
   background-image: asset-data-url("login.svg");
@@ -184,8 +247,10 @@ body {
 }
 .logoutli{
   justify-content: flex-end;
+  height: 100px;
 }
 //END NAV BAR
+
 //START CONTENT PANE
 .main{
   text-align: left;
@@ -200,6 +265,7 @@ body {
 .profile{
   position: relative;
   height: auto;
+  width: 60%;
   left: 10%;
 }
 .profilephoto{
@@ -242,8 +308,7 @@ body {
   flex: 1 100%;
 
 }
-.form {
-}
+
 .index {
   position: relative;
   text-align: left;
@@ -336,8 +401,7 @@ li > button{
   height: 515px;
 }
 //END LISTING STYLING
-
-//SIGN IN STYLE\
+//SIGN IN STYLE
 
   .log{
     html{
@@ -378,6 +442,73 @@ li > button{
     opacity: .75;
   }
 //SIGN IN STYLE END
+
+//CHAT STYLING
+.chatpane{
+  width: 50%;
+  margin: 0 10%;
+}
+.chatIndex{
+
+}
+.chatList{
+  list-style: none;
+}
+.chatTitle{
+  min-height: 3em;
+  line-height: 3em;
+}
+.chatItem{
+  margin: 0;
+  text-size: 20px;
+  border-radius: 10px;
+}
+.chatName{
+  color: white;
+  background: black;
+  opacity: .25;
+}
+.chatName:hover{
+  opacity: .5;
+}
+.messageGroup{
+
+  position: relative;
+  width: 50%;
+
+  width: 100%;
+  background: rba(0,0,0,.3);
+  color: black;
+}
+.messageList{
+  list-style: none;
+  align-content: flex-start;
+  background: ghostwhite;
+}
+.messageList{
+  cursor: pointer;
+}
+.message{
+  margin: 0;
+  width: auto;
+}
+.messageText{
+  margin: 0;
+  width: auto;
+}
+.messageForm{
+
+}
+.messageInput{
+
+}
+.messageSubmit{
+
+}
+
+//END CHAT STYLING
+
+
 //FOOTER STYLE
 .footer{
   position: fixed;

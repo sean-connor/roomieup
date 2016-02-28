@@ -1,13 +1,12 @@
 var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
-
+var ChatIndex = require('./Chats/chatIndex');
 module.exports = React.createClass({
 
 render: function(){
   return(
-    <div className="main">
-      <h2>Chat Pane</h2>
-      <p className="designLabel">Main</p>
+    <div className="chatpane">
+      <ChatIndex/>
     </div>
   )
 }

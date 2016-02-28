@@ -2,7 +2,7 @@ var React = require('react');
 var ListingStore = require('../../stores/listings');
 var ReactRouter = require('react-router');
 var Listing = require('./listing');
-var Map = require('./Map');
+var Map = require('./map');
 var ApiUtil = require('../../util/apiUtil');
 
 var ListingShow = React.createClass({

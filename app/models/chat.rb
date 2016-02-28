@@ -12,4 +12,6 @@
 class Chat < ActiveRecord::Base
   validates :listing_id, :title, presence: true
   belongs_to :listing
+  has_many :messages
+  has_many :user_chats
 end

@@ -1,6 +1,7 @@
 var AppDispatcher = require('../dispatcher');
 var ListingConstants = require('../constants/listingsConstants');
 var ProfileConstants = require('../constants/profileConstants');
+var ChatConstants = require('../constants/chatConstants');
 
 var ApiActions = {
   //LISTINGS GROUP
@@ -28,6 +29,24 @@ var ApiActions = {
     AppDispatcher.dispatch({
       actionType: ProfileConstants.PROFILE_RECEIVED,
       profile: profile
+    });
+  },
+  receiveChats: function(chats){
+    AppDispatcher.dispatch({
+      actionType: ChatConstants.CHATS_RECEIVED,
+      chats: chats
+    });
+  },
+  receiveMessages: function(messages){
+    AppDispatcher.dispatch({
+      actionType: ChatConstants.MESSAGES_RECEIVED,
+      messages: messages
+    });
+  },
+  receiveMessage: function(message){
+    AppDispatcher.dispatch({
+      actionType: ChatConstants.MESSAGE_RECEIVED,
+      message: message
     });
   }
 

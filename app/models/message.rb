@@ -1,4 +1,4 @@
-# == Schema Information
+{}# == Schema Information
 #
 # Table name: messages
 #
@@ -11,4 +11,7 @@
 #
 
 class Message < ActiveRecord::Base
+  validates :body, :user_id, :chat_id, presence: true
+  belongs_to :chat
+  belongs_to :user
 end

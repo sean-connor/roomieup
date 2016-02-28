@@ -22,7 +22,7 @@ class Listing < ActiveRecord::Base
   has_many :users, through: :savedlistings
 
   def generate_chat
-    if self.users.length != 0 && self.users.length % self.bedroom == 0
+    if self.users.length > 1 && self.users.length % self.bedroom == 0
       self.users[-self.bedroom..-1]
     else
       return []

@@ -110,5 +110,28 @@ module.exports = {
           ApiActions.receiveProfile(profileState);
       }
     })
+  },
+  //CHAT GROUP
+  fetchChats: function(){
+      $.get("api/chats", function(chats){
+          ApiActions.receiveChats(chats);
+      }
+    )
+  },
+  fetchMessages: function(chat_id){
+      $.get("api/messages", {chat_id: chat_id}, function(messages){
+          ApiActions.receiveMessages(messages);
+      }
+    )
+  },
+  saveMessage: function(message){
+      var that = this;
+      $.post({
+      url: "api/messages",
+      data: message,
+      success: function(){
+          that.fetchMessages(message.chat_id);
+      }
+    })
   }
 }

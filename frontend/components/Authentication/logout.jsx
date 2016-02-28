@@ -19,9 +19,9 @@ var Logout = React.createClass({
 
   userLoggedIn: function() {
       if (this.state.user.signed_in) {
-        return <div>{this.state.user.username}
-          <button onClick={this.logout}>logout</button>
-        </div>;
+        return <div>
+                <p className="logoutButton" onClick={this.logout}>Logout</p>
+              </div>;
       } else {
         return <p>You are Logged Out</p>;
       }
@@ -33,9 +33,8 @@ var Logout = React.createClass({
 
   render: function() {
     return (
-      <div>
-          {this.userLoggedIn()}
-      </div>
+      <div  onClick={this.logout} className="logout"></div>
+      
     );
   }
 

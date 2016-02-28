@@ -18,20 +18,39 @@ renderLoggedOut: function(){
 renderLoggedIn: function(){
   return(
     <ul className="navul">
-      <li className="navli"><Link to ={"/home"}><div className="home"></div></Link></li>
-      <li className="navli"><Link to ={"/searchlistings"}><div className="searchListings"></div></Link></li>
-      <li className="navli"><Link to ={"/savedlistings"}><div className="saved"></div></Link></li>
-      <li className="navli"><Link to ={"/chat"}><div className="chat"></div></Link></li>
+      <li className="navli">
+        <Link to ={"/home"}>
+          <div className="home">
+          </div>
+        </Link>
+        <p className="navDesc">Home</p>
+      </li>
+      <li className="navli">
+        <Link to ={"/searchlistings"}>
+          <div className="searchListings">
+          </div>
+        </Link>
+        <p className="navDesc">Search</p>
+      </li>
+      <li className="navli">
+        <Link to ={"/savedlistings"}>
+          <div className="saved">
+          </div>
+        </Link>
+        <p className="navDesc">Saved</p>
+      </li>
+      <li className="navli">
+        <Link to ={"/chat"}>
+          <div className="chat">
+          </div>
+        </Link>
+        <p className="navDesc">Messages</p>
+      </li>
       <li className="navli logoutli">
         <a>
-          <div className="logout">
-            <ul>
-              <li className="logoutdrop">
-                <Auth/>
-              </li>
-            </ul>
-          </div>
+          <Auth/>
         </a>
+        <p className="navDesc">Logout</p>
       </li>
     </ul>
   )

@@ -18,8 +18,11 @@ class User < ActiveRecord::Base
   validates :username, :password_digest, :session_token, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
 
+  has_many :notifications
   has_many :savedlistings
   has_many :listings, through: :savedlistings
+  has_many :user_chats
+  has_many :chats, through: :user_chats
 
   attr_reader :password
 
