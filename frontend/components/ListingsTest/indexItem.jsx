@@ -16,10 +16,10 @@ var IndexItem = React.createClass({
         <li onClick={this.props.onClick} className="listing-index-item">
           <div className="listContainer">
             <ListingIndexItemImage key={listing.id} images={listing.imagelistings}/>
-            <p>Title: {listing.title}</p>
-            <p>Price: {listing.price}</p>
-            <p>Bedrooms: {listing.bedroom}</p>
-            <p className="list-btn" onClick={this.saveListing}>Save</p>)
+            <p className="title">{listing.title}</p>
+            <p className="price">${listing.price}</p>
+            <p className="bedroom">Bedrooms: {listing.bedroom}</p>
+            <p className="list-btn" onClick={this.saveListing}>Save</p>
           </div>
         </li>
     );

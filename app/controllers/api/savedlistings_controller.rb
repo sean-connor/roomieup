@@ -1,7 +1,6 @@
 class Api::SavedlistingsController < ApplicationController
 
   def create
-    notify = false
     @savedlisting = Savedlisting.new(listing_id: params[:listing_id], user_id: current_user.id)
     @savedlisting.save
     @listing = Listing.find(params[:listing_id])
@@ -13,15 +12,12 @@ class Api::SavedlistingsController < ApplicationController
             userchat = UserChat.new(user_id: user.id, chat_id: chat.id)
             if userchat.save
               notification = Notification.new(user_id: user.id, notification: "You were added to a chat for #{@listing.title}", notification_type: "listing", notification_id: @listing.id)
-              if notification.save
-                notify = true
-              end
             end
           end
       end
     end
     respond_to do |format|
-      format.json {head :ok, :notification => notify}
+      format.json {head :ok}
     end
   end
 

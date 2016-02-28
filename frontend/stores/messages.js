@@ -10,6 +10,9 @@ var resetMessages = function (messages) {
   _messages = messages;
 };
 
+var clearMessages = function(){
+  _messages = [];
+};
 
 MessageStore.all = function () {
   return _messages.slice(0);
@@ -21,7 +24,11 @@ MessageStore.__onDispatch = function (payload) {
       resetMessages(payload.messages);
       MessageStore.__emitChange();
       break;
-  
+    case ChatConstants.RESET_MESSAGES:
+      clearMessages();
+      MessageStore.__emitChange();
+      break;
+
   }
 }
 

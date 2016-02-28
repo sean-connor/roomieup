@@ -59,10 +59,12 @@ html{
   -o-background-size: cover;
   height: 100%;
   font-family: 'Josefin Sans', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 body {
-    margin: 0 !important;
-    padding: 0 !important;
+    margin: 0;
+    padding: 0;
 }
 //ROOT and APPDIV
 #root{
@@ -77,9 +79,10 @@ body {
 
   font-weight: bold;
   text-align: center;
+  padding: 0;
+  margin: 0;
 }
 #root > * {
-  padding: 10px;
   flex: 1 100%;
 }
 @media all and (min-width: 800px) {
@@ -89,14 +92,17 @@ body {
 }
 .appdiv{
   height: 100%;
+  margin: 0;
+  padding: 0;
 }
 //END ROOT and APPDIV
 
 //NAV BAR
 .navul {
   list-style: none;
-  margin: 10px;
-  height: 100px;
+  margin: 0;
+  margin-bottom: 25px;
+  height: 65px;
   background: rgba(240,240,247,.5);
   display: -webkit-box;
   display: -moz-box;
@@ -186,32 +192,32 @@ body {
 }
 .chat{
   background-image: asset-data-url("chat.svg");
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
   z-index: 1;
 }
 .home{
   background-image: asset-data-url("home.svg");
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
   z-index: 1;
 }
 .saved{
   background-image: asset-data-url("saved.svg");
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
   z-index: 1;
 }
 .searchListings{
   background-image: asset-data-url("searching.svg");
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
   z-index: 1;
 }
 .logout{
   background-image: asset-data-url("logout.svg");
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
   z-index: 1;
   justify-content: flex-end;
 }
@@ -229,25 +235,18 @@ body {
   display: block;
   z-index: 2;
 }
-.logoutButton:hover{
-  cursor: crosshair;
-}
-.logoutli:hover .logoutButton{
-  display: block;
-  color: purple;
-  background: darken(rgba(240,240,240,.5), 5%);
 
-}
+
 .login{
   background-image: asset-data-url("login.svg");
-  height: 80px;
-  width: 80px;
+  height: 50px;
+  width: 50px;
   z-index: 1;
   justify-content: flex-end;
 }
 .logoutli{
   justify-content: flex-end;
-  height: 100px;
+  height: 65px;
 }
 //END NAV BAR
 
@@ -257,7 +256,8 @@ body {
   min-height: 100%;
   height: auto;
   height: 100%;
-  margin: 0 auto -4em;
+  margin-left: 15px;
+  margin-right: 15px;
   background: rgba(255,255,255,.75);
 }
 //END CONTENT PANE
@@ -312,7 +312,7 @@ body {
 .index {
   position: relative;
   text-align: left;
-  width: 47%;
+  width: 50%;
   overflow-y: scroll;
   height: 650px;
 }
@@ -342,12 +342,11 @@ li > button{
 }
 .list-btn{
   position: absolute;
-  background: black;
   border-radius: 5px;
   font-size: 20px;
   font-weight: 400;
   color: white;
-  opacity: .5;
+  background: rgba(0,0,0, .6);
   padding: 5px;
   width: 50px;
   margin: 3px 3px;
@@ -356,7 +355,7 @@ li > button{
 }
 .list-btn:hover{
   cursor: pointer;
-  opacity: .75;
+  background: rgba(0,0,0, .75);
 }
 .indexForm{
   position: relative;
@@ -378,6 +377,7 @@ li > button{
 .listingcollection {
   padding: 0;
   margin: 0;
+  margin-top: 10px;
   list-style: none;
 
   display: -webkit-box;
@@ -392,13 +392,40 @@ li > button{
 
 .listing-index-item {
   display: relative;
-  border-radius: 15px;
-  border: 10px;
-  background: rgba(0,0,0, .1);
-  padding: 10px;
-  margin: 1px;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.1);
+  padding-bottom: 5px;
+  margin: 10px;
   width: 300px;
-  height: 515px;
+  height: 450px;
+}
+.slider-frame{
+  border-radius: 3px;
+}
+.title{
+  padding-left: 5px;
+}
+.price{
+  position: relative;
+  bottom: 100px;
+  background: rgba(0,0,0, .6);
+  width: 70px;
+  color: ghostwhite;
+  height: 1.5em;
+  text-align: center;
+  line-height: 1.5em;
+}
+.bedroom{
+  position: relative;
+  left: 202px;
+  bottom: 140px;
+  text-size: 16px;
+  background: hsla(0,0%,0%,0.6);
+  width: 90px;
+  color: ghostwhite;
+  height: 1.5em;
+  line-height: 1.5em;
+  padding-left: .5em;
 }
 //END LISTING STYLING
 //SIGN IN STYLE
@@ -453,6 +480,7 @@ li > button{
 }
 .chatList{
   list-style: none;
+  padding-left: 0;
 }
 .chatTitle{
   min-height: 3em;
@@ -467,9 +495,25 @@ li > button{
   color: white;
   background: black;
   opacity: .25;
+  padding-left: 5px;
+  padding-right: 5px;
 }
 .chatName:hover{
   opacity: .5;
+}
+.chatappear-enter{
+  opacity: 0.01;
+}
+.chatappear-enter.chatappear-enter-active{
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.chatappear-leave{
+  opacity: 1;
+}
+.chatappear-leave.chatappear-leave-active{
+  opacity: 0.01;
+  transition: opacity 300ms ease-in;
 }
 .messageGroup{
 
@@ -481,16 +525,29 @@ li > button{
   color: black;
 }
 .messageList{
+  position: relative;
   list-style: none;
-  align-content: flex-start;
   background: ghostwhite;
-}
-.messageList{
   cursor: pointer;
+  display: flex;
+  flex-flow: column;
+  height: 350px;
+  overflow-y: scroll;
+  padding: 0;
 }
 .message{
-  margin: 0;
+  padding-bottom: 1em;
+  padding-top: 1em;
+  line-height: 1em;
+  position: relative;
+  display: block;
+  background: white;
+  text-align: left;
+  height: 1em;
+  position: relative;
   width: auto;
+  padding-left: .5em;
+  border-bottom: .01em ridge;
 }
 .messageText{
   margin: 0;

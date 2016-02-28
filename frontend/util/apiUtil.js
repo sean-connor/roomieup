@@ -133,5 +133,20 @@ module.exports = {
           that.fetchMessages(message.chat_id);
       }
     })
+  },
+  fetchProfiles: function(user){
+    $.ajax({
+      url: "api/users",
+      data: {user: user},
+      success: function(profile){
+          ApiActions.receiveProfile(profile);
+      }
+    })
+  },
+  fetchNotifications: function(){
+      $.get("api/notifications", function(notifications){
+          ApiActions.receiveNotifications(notifications);
+      }
+    )
   }
 }

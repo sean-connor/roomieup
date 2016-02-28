@@ -28,9 +28,9 @@ module.exports = React.createClass({
       <li onClick={this.showDetail} className="listing-index-item">
         <div className="listContainer">
           <ListingIndexItemImage key={this.props.listing.id} images={this.props.listing.imagelistings}/>
-          <p>Title: {this.props.listing.title}</p>
-          <p>Price: {this.props.listing.price}</p>
-          <p>Bedrooms: {this.props.listing.bedroom}</p>
+          <p className="title">{this.props.listing.title}</p>
+          <p className="price">${this.props.listing.price}</p>
+          <p className="bedroom">Bedrooms: {this.props.listing.bedroom}</p>
           {this.renderEditButton()}
         </div>
       </li>

@@ -1,6 +1,7 @@
 var React = require('react');
 var MessageStore = require('../../stores/messages');
 var ApiUtil = require('../../util/apiUtil');
+var ApiActions = require('../../actions/apiActions');
 
 function _getAllMessages() {
   return MessageStore.all();
@@ -25,6 +26,7 @@ var MessageIndex = React.createClass({
   },
   componentWillUnmount: function(){
     console.log("Message Index Unmounted");
+    ApiActions.resetMessages();
     this.messageListener.remove();
   },
   renderMessages: function() {

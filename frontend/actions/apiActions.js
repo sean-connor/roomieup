@@ -2,6 +2,7 @@ var AppDispatcher = require('../dispatcher');
 var ListingConstants = require('../constants/listingsConstants');
 var ProfileConstants = require('../constants/profileConstants');
 var ChatConstants = require('../constants/chatConstants');
+var NotificationConstants = require('../constants/notificationConstants');
 
 var ApiActions = {
   //LISTINGS GROUP
@@ -47,6 +48,17 @@ var ApiActions = {
     AppDispatcher.dispatch({
       actionType: ChatConstants.MESSAGE_RECEIVED,
       message: message
+    });
+  },
+  resetMessages: function(){
+    AppDispatcher.dispatch({
+      actionType: ChatConstants.RESET_MESSAGES,
+    })
+  },
+  receiveNotifications: function(notifications){
+    AppDispatcher.dispatch({
+      actionType: NotificationConstants.NOTIFICATIONS_RECEIVED,
+      notifications: notifications
     });
   }
 
