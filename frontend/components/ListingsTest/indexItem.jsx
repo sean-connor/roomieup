@@ -36,7 +36,7 @@ var IndexItem = React.createClass({
         <li className="listing-index-item">
           <div className="listContainer">
             <ListingIndexItemImage key={listing.id} images={listing.imagelistings}/>
-            <a className="title" onClick={this.open}>{listing.title}!</a>
+            <a className="title" onClick={this.open}>{listing.title}!&nbsp;(Click for Detail)</a>
             <Modal className="modal" show={this.state.showModal} onHide={this.close}>
              <Modal.Header>
                <Modal.Title>{listing.title}</Modal.Title>

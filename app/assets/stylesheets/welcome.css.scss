@@ -54,14 +54,6 @@ body {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-animation: stars 100s linear infinite;
-  -moz-animation: stars 100s linear infinite;
-  -ms-animation: stars 100s linear infinite;
-  animation: stars 100s linear infinite;
-  -webkit-transition: background-color 10s ease-in;
-  -moz-transition: background-color 10s ease-in;
-  -o-transition: background-color 10s ease-in;
-  transition: background-color 10s ease-in;
   -webkit-flex-flow: row wrap;
   justify-content: flex-end;
 }
@@ -79,40 +71,10 @@ body {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  -webkit-animation: stars 100s linear infinite;
-  -moz-animation: stars 100s linear infinite;
-  -ms-animation: stars 100s linear infinite;
-  animation: stars 100s linear infinite;
-  -webkit-transition: background-color 10s ease-in;
-  -moz-transition: background-color 10s ease-in;
-  -o-transition: background-color 10s ease-in;
-  transition: background-color 10s ease-in;
   -webkit-flex-flow: row wrap;
   justify-content: flex-end;
 }
-@keyframes stars {
-  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
-  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
-  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
-}
-@-moz-keyframes stars {
-  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
-  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
-  100% {background-position: 400px 1000px, 200px 400px, 100px 300px;}
-}
-@-webkit-keyframes stars {
-  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
-  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
-  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
-}
-@-ms-keyframes stars {
-  0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
-  50% {background-position: 500px 500px, 100px 200px, -100px 150px;}
-  100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
-}
-.navul:hover {
-  background-color: black;
-}
+
 
 .navul a {
   text-decoration: none;
@@ -334,7 +296,7 @@ body {
 }
 
 .profile{
-  position: relative;
+  position: absolute;
   text-align: left;
   width: 50%;
   overflow-y: scroll;
@@ -381,7 +343,7 @@ body {
 }
 .notificationList{
   position: absolute;
-  top: 37%;
+  top: 35%;
   width: 100%;
   left: 42%;
   list-style: none;
@@ -391,6 +353,42 @@ body {
   max-height: 350px;
   overflow-y: scroll;
   text-align: left;
+}
+.pref-group{
+  position: absolute;
+  top: 2%;
+  left: 43%;
+  height: 25%;
+  width: 100%;
+  background: ghostwhite;
+  border: 1px ridge;
+}
+.pref-header{
+  position: absolute;
+  font-size: 24px;
+}
+.preferences{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row;
+  justify-content: space-around;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 100%;
+}
+.pref-div{
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-flow: column wrap;
+  flex-flow: column;
 }
 .photo-btn{
   background-image: asset-data-url("edit.svg");
@@ -419,7 +417,7 @@ body {
   width: 50%;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
-
+  height: calc(100% - 110px);
   font-weight: bold;
   text-align: center;
 }
@@ -445,7 +443,7 @@ body {
 .map{
   position: absolute;
   display: block;
-  height: 91%;
+  height: calc(100% - 110px);
   left: 50.8%;
   width: 49.2%;
 }
@@ -453,8 +451,9 @@ li > button{
   display: none;
 }
 .sliderimage{
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
+
 }
 .sliderlabel{
   position: relative;
@@ -475,6 +474,13 @@ li > button{
   line-height: 45px;
 
 }
+.filter-city{
+  width: 200px;
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  display: flex;
+}
 .form-price{
   position: absolute;
   left: 20%;
@@ -489,6 +495,7 @@ li > button{
 }
 .listContainer{
   position: relative;
+  height: 370px;
 }
 .list-btn{
   position: absolute;
@@ -517,7 +524,7 @@ li > button{
 .listingForm{
   height: 150px;
   position: relative;
-  width: 50.7%;
+  width: 50.6%;
   display: flex;
   flex-flow: column;
   border: 1px ridge;
@@ -570,19 +577,20 @@ li > button{
   padding-left: 5px;
 }
 .price{
-  position: relative;
-  bottom: 100px;
+  position: absolute;
+  bottom: 80px;
   background: rgba(0,0,0, .6);
   width: 70px;
   color: ghostwhite;
   height: 1.5em;
   text-align: center;
+  text-size: 16px;
   line-height: 1.5em;
 }
 .bedroom{
-  position: relative;
+  position: absolute;
   left: 202px;
-  bottom: 140px;
+  bottom: 80px;
   text-size: 16px;
   background: hsla(0,0%,0%,0.6);
   width: 90px;
@@ -690,17 +698,30 @@ li > button{
   }
 
 .chatpane{
-  width: 50%;
-  margin: 0 10%;
+  width: 100%;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  position: relative;
+  -webkit-flex-flow: row wrap;
+  flex-flow: row wrap;
+  height: calc(100% - 110px);
+  font-weight: bold;
+  text-align: center;
+  overflow-y: scroll;
 }
 .chatIndex{
-
+  height: calc(100% - 110px);
+  width: 60%;
 }
 .chatList{
   list-style: none;
   padding-left: 0;
 }
 .chatTitle{
+
   min-height: 3em;
   line-height: 3em;
 }
@@ -714,7 +735,8 @@ li > button{
   background: black;
   opacity: .25;
   padding-left: 5px;
-  padding-right: 5px;
+  padding-right: 15px;
+  text-align: right;
 }
 .chatName:hover{
   opacity: .5;
@@ -797,6 +819,15 @@ li > button{
   color: ghostwhite;
   background-color: #222;
   line-height: 45px;
+}
+.footer-splash{
+  position: fixed;
+  bottom: 0;
+  background: #222;
+  width: 100%;
+  height: 45px;
+  line-height: 45px;
+  color: ghostwhite;
 }
 .gitlink{
   color: white;

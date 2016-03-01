@@ -11,7 +11,7 @@ class Api::SavedlistingsController < ApplicationController
         followedusers.each do |user|
             userchat = UserChat.new(user_id: user.id, chat_id: chat.id)
             if userchat.save
-              notification = Notification.new(user_id: user.id, notification: "You were added to a chat for #{@listing.title}", notification_type: "listing", notification_id: @listing.id)
+              Notification.create!(user_id: user.id, notification: "You were added to a chat for #{@listing.title}", notification_type: "listing", notification_id: @listing.id)
             end
           end
       end

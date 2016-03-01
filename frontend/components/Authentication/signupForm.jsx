@@ -27,7 +27,7 @@ var Signup = React.createClass({
       });
     } else if(event.target.name === "guest"){
       SessionActions.login({
-          username: "guest",
+          username: "john_glenn",
           password: "password"
       })
     }

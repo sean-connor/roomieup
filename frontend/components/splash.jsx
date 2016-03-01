@@ -43,6 +43,13 @@ var Splash = React.createClass({
         <div className="splash-login">
         <Auth/>
         </div>
+        <div className="footer-splash">
+          <span>Created by&nbsp;</span>
+          <a className="gitlink" href="http://www.github.com/sean-connor/roomieup" target="_blank">
+              <span>Sean Connor</span>
+             <div className="giticon" ></div>
+          </a>
+        </div>
       </div>
     );
   }

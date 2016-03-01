@@ -31586,7 +31586,7 @@
 	      });
 	    } else if (event.target.name === "guest") {
 	      SessionActions.login({
-	        username: "guest",
+	        username: "john_glenn",
 	        password: "password"
 	      });
 	    }
@@ -31818,6 +31818,7 @@
 	var ApiUtil = __webpack_require__(159);
 	var UserProfile = __webpack_require__(249);
 	var NotificationIndex = __webpack_require__(250);
+	var UserPreference = __webpack_require__(527);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -31828,6 +31829,7 @@
 	      'div',
 	      { className: 'wrapper' },
 	      React.createElement(UserProfile, { user: "current" }),
+	      React.createElement(UserPreference, null),
 	      React.createElement(NotificationIndex, null)
 	    );
 	  }
@@ -31877,7 +31879,7 @@
 	    var that = this;
 	    cloudinary.openUploadWidget({ cloud_name: 'roomieup-com', upload_preset: 'fkttonkf', theme: 'white' }, function (error, result) {
 	      if (error === null) {
-	        this.updates = true;
+	        that.updates = true;
 	        that.setState({ profile_picture: result[0].url });
 	      }
 	    });
@@ -32137,6 +32139,25 @@
 	        'div',
 	        { className: 'splash-login' },
 	        React.createElement(Auth, null)
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'footer-splash' },
+	        React.createElement(
+	          'span',
+	          null,
+	          'Created by '
+	        ),
+	        React.createElement(
+	          'a',
+	          { className: 'gitlink', href: 'http://www.github.com/sean-connor/roomieup', target: '_blank' },
+	          React.createElement(
+	            'span',
+	            null,
+	            'Sean Connor'
+	          ),
+	          React.createElement('div', { className: 'giticon' })
+	        )
 	      )
 	    );
 	  }
@@ -33648,7 +33669,7 @@
 	        React.createElement(
 	          'label',
 	          null,
-	          'Price(',
+	          'Price ($',
 	          this.currentMaxPrice(),
 	          ')'
 	        ),
@@ -33670,6 +33691,33 @@
 	          'div',
 	          { className: 'form-br' },
 	          React.createElement('input', { className: 'searchBox', type: 'number', step: '1', value: this.currentBedrooms(), onChange: this.bedroomsChanged })
+	        )
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'filter-city' },
+	        React.createElement(
+	          'label',
+	          null,
+	          'City: '
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'form-city' },
+	          React.createElement(
+	            'select',
+	            { className: 'city', name: 'city' },
+	            React.createElement(
+	              'option',
+	              { value: 'sfbay' },
+	              'San Francisco'
+	            ),
+	            React.createElement(
+	              'option',
+	              { value: 'nyc' },
+	              'New York City'
+	            )
+	          )
 	        )
 	      )
 	    );
@@ -33807,7 +33855,7 @@
 	          'a',
 	          { className: 'title', onClick: this.open },
 	          listing.title,
-	          '!'
+	          '! (Click for Detail)'
 	        ),
 	        React.createElement(
 	          Modal,
@@ -51563,6 +51611,75 @@
 	});
 
 	module.exports = ListingShow;
+
+/***/ },
+/* 526 */,
+/* 527 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var ApiUtil = __webpack_require__(159);
+	var UserStore = __webpack_require__(237);
+
+	function _getProfile() {
+	  return UserStore.getUser();
+	}
+
+	var UserPreference = React.createClass({
+	  displayName: 'UserPreference',
+
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'pref-group' },
+	      React.createElement(
+	        'h1',
+	        { className: 'pref-header' },
+	        'Preferences'
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'preferences' },
+	        React.createElement(
+	          'div',
+	          { className: 'pref-div' },
+	          React.createElement(
+	            'label',
+	            null,
+	            'Morning - Evening'
+	          ),
+	          React.createElement('input', { className: 'searchBox', type: 'range', min: '0', max: '10', step: '1' })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'pref-div' },
+	          React.createElement(
+	            'label',
+	            null,
+	            'Messy - Tidy'
+	          ),
+	          React.createElement('input', { className: 'searchBox', type: 'range', min: '0', max: '10', step: '1' })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'pref-div' },
+	          React.createElement(
+	            'label',
+	            null,
+	            'Home - Out'
+	          ),
+	          React.createElement('input', { className: 'searchBox', type: 'range', min: '0', max: '10', step: '1' })
+	        )
+	      )
+	    );
+	  }
+
+	});
+
+	module.exports = UserPreference;
 
 /***/ }
 /******/ ]);

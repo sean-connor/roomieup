@@ -4,10 +4,9 @@ task :clpull => :environment do
   numsregex = /\d+/
     numregex = /\d/
     newlineregex = /\r?\n|\r/
-    browser = Watir::Browser.new :js
+    browser = Watir::Browser.new :phantomjs
     browser.goto 'http://sfbay.craigslist.org/search/apa?hasPic=1&search_distance=10&postal=94105&min_price=1&bedrooms=2'
     listings = Nokogiri::HTML.parse(browser.html)
-    p listings.css("div[class=content]").length
     numlistings = listings.css("div[class=content]").children.length
     i = 3
     (numlistings - 4).times do

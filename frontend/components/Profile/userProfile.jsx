@@ -35,7 +35,7 @@ var UserProfile = React.createClass({
      cloudinary.openUploadWidget({ cloud_name: 'roomieup-com', upload_preset: 'fkttonkf', theme: 'white'},
        function(error, result) {
         if(error === null){
-          this.updates = true;
+          that.updates = true;
           that.setState({profile_picture: result[0].url})
         }
       });

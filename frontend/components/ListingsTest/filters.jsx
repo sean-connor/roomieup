@@ -42,7 +42,7 @@ var Filters = React.createClass({
     return (
       <div className="listingForm">
         <div className="filter">
-          <label>Price({this.currentMaxPrice()})</label>
+          <label>Price&nbsp;(${this.currentMaxPrice()})</label>
           <div className="form-price">
             <input className="searchBox" type="range" min="0" max="10000" step="100" value={this.currentMaxPrice()}  onChange={this.maxPriceChanged}/>
 
@@ -52,6 +52,15 @@ var Filters = React.createClass({
           <label>Bedrooms</label>
           <div className="form-br">
             <input className="searchBox" type="number" step="1" value={this.currentBedrooms()} onChange={this.bedroomsChanged}/>
+          </div>
+        </div>
+        <div className="filter-city">
+          <label>City:&nbsp;</label>
+          <div className="form-city">
+            <select className="city" name="city">
+              <option value="sfbay">San Francisco</option>
+              <option value="nyc">New York City</option>
+            </select>
           </div>
         </div>
       </div>
