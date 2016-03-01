@@ -31757,7 +31757,25 @@
 
 
 	  render: function render() {
-	    return React.createElement("div", { className: "footer" });
+	    return React.createElement(
+	      "div",
+	      { className: "footer" },
+	      React.createElement(
+	        "span",
+	        null,
+	        "Created by "
+	      ),
+	      React.createElement(
+	        "a",
+	        { className: "gitlink", href: "http://www.github.com/sean-connor/roomieup", target: "_blank" },
+	        React.createElement(
+	          "span",
+	          null,
+	          "Sean Connor"
+	        ),
+	        React.createElement("div", { className: "giticon" })
+	      )
+	    );
 	  }
 
 	});
