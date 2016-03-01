@@ -9,7 +9,7 @@ var Splash = React.createClass({
         <div className="splash-video">
           <div className="splash-header-group">
             <h1 className="splash-header">find space,</h1>
-            <h1 className="splash-header">connect.</h1>
+            <h1 className="splash-header">connect,</h1>
             <h1 className="splash-header">launch.</h1>
           </div>
         </div>

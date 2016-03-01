@@ -18,7 +18,10 @@
     "react-addons-linked-state-mixin": "^0.14.2",
     "react-dom": "^0.14.2",
     "react-router": "^1.0.0",
+    "nuka-carousel": "^1.0.2",
+    "react-bootstrap": "^0.28.3",
     "webpack": "^1.12.13"
+
   },
   "devDependencies": {},
   "scripts": {

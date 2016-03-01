@@ -65,6 +65,31 @@ body {
   -webkit-flex-flow: row wrap;
   justify-content: flex-end;
 }
+.navul-login {
+  position: relative;
+  z-index: 3;
+  list-style: none;
+  margin: 0;
+  right: 0;
+  height: 65px;
+  width: 65px;
+  background: transparentize(ghostwhite, .6);
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-animation: stars 100s linear infinite;
+  -moz-animation: stars 100s linear infinite;
+  -ms-animation: stars 100s linear infinite;
+  animation: stars 100s linear infinite;
+  -webkit-transition: background-color 10s ease-in;
+  -moz-transition: background-color 10s ease-in;
+  -o-transition: background-color 10s ease-in;
+  transition: background-color 10s ease-in;
+  -webkit-flex-flow: row wrap;
+  justify-content: flex-end;
+}
 @keyframes stars {
   0% {background-position: 0px 0px, 0px 0px, 0px 0px;}
   50% {background-position: 500px 500px, 100px 200px, -100px 150px;}

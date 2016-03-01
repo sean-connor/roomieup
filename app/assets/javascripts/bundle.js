@@ -31088,36 +31088,7 @@
 	  renderLoggedOut: function renderLoggedOut() {
 	    return React.createElement(
 	      'ul',
-	      { className: 'navul' },
-	      React.createElement(
-	        'li',
-	        { className: 'navli splashli' },
-	        ' ',
-	        React.createElement(
-	          Link,
-	          { to: "/splash" },
-	          React.createElement('div', { className: 'splash' })
-	        ),
-	        React.createElement(
-	          'p',
-	          { className: 'navDesc', type: 'hidden' },
-	          'Home'
-	        )
-	      ),
-	      React.createElement(
-	        'li',
-	        { className: 'navli' },
-	        React.createElement(
-	          Link,
-	          { to: "/searchlistings" },
-	          React.createElement('div', { className: 'searchListings' })
-	        ),
-	        React.createElement(
-	          'p',
-	          { className: 'navDesc' },
-	          'Search'
-	        )
-	      ),
+	      { className: 'navul-login' },
 	      React.createElement(
 	        'li',
 	        { className: 'navli loginli' },
@@ -32066,7 +32037,7 @@
 	          React.createElement(
 	            'h1',
 	            { className: 'splash-header' },
-	            'connect.'
+	            'connect,'
 	          ),
 	          React.createElement(
 	            'h1',

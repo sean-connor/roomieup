@@ -7,9 +7,7 @@ module.exports = React.createClass({
 
 renderLoggedOut: function(){
   return(
-    <ul className="navul">
-      <li className="navli splashli"> <Link to ={"/splash"}><div className="splash"></div></Link><p className="navDesc" type="hidden">Home</p></li>
-      <li className="navli"><Link to ={"/searchlistings"}><div className="searchListings"></div></Link><p className="navDesc">Search</p></li>
+    <ul className="navul-login">
       <li className="navli loginli"><Link to ={"/auth"}><div className="login"></div></Link><p className="navDesc">Login</p></li>
     </ul>
   )
