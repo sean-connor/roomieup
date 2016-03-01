@@ -22,7 +22,7 @@ App = React.createClass({
       if(Auth.loggedIn()){
         this.history.pushState(null, '/home');
       } else {
-        this.history.pushState(null, '/auth');
+        this.history.pushState(null, '/splash');
       }
     }
   },

@@ -7,7 +7,7 @@ var NotificationStore = new Store(AppDispatcher);
 var _notifications = [];
 
 var resetNotifications = function (notifications) {
-  _notifications = notifications;
+  _notifications = notifications.reverse();
 };
 
 

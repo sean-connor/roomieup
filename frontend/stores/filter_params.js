@@ -1,7 +1,7 @@
 
 var AppDispatcher = require('../dispatcher');
 var Store = require('flux/utils').Store;
-var _params = { minPrice: 0, maxPrice: 5000, bedrooms: 3 };
+var _params = { minPrice: 0, maxPrice: 5000, bedrooms: 2 };
 var FilterConstants = require('../constants/filter_constants');
 
 var FilterParamsStore = new Store(AppDispatcher);

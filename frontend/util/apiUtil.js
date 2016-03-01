@@ -6,7 +6,7 @@ module.exports = {
   //Fetches Listings prompted by the search listings form
   fetchListings: function(){
     var filter = FilterParamsStore.params();
-      $.get("api/listings", filter, function(matchedListings){
+    $.get("api/listings", filter, function(matchedListings){
           ApiActions.receiveListings(matchedListings);
       }
     )

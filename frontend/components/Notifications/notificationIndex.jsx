@@ -26,7 +26,6 @@ var NotificationIndex = React.createClass({
   },
   componentWillUnmount: function(){
     console.log("Notification Index Unmounted");
-    ApiActions.resetNotifications();
     this.notificationListener.remove();
   },
   renderNotifications: function() {

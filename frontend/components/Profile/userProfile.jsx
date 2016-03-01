@@ -32,7 +32,7 @@ var UserProfile = React.createClass({
   },
   cloudinaryUpload: function(){
     that = this;
-     cloudinary.openUploadWidget({ cloud_name: 'roomieup-com', upload_preset: 'fkttonkf'},
+     cloudinary.openUploadWidget({ cloud_name: 'roomieup-com', upload_preset: 'fkttonkf', theme: 'white'},
        function(error, result) {
         if(error === null){
           this.updates = true;
@@ -55,7 +55,7 @@ var UserProfile = React.createClass({
         <div>
           <img className="profilephoto" src={this.state.profile_picture}/>
           <br/>
-          <button onClick={this.cloudinaryUpload}>Change Profile Photo</button>
+          <div className="photo-btn" onClick={this.cloudinaryUpload}></div>
           <br/>
           <h2 className="usernamedisp">{this.state.username}</h2>
           <br/>

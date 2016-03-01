@@ -7,7 +7,7 @@ module.exports = React.createClass({
 
 render: function(){
   return(
-    <div className="main">
+    <div className="wrapper">
       <UserProfile user={"current"}/>
       <NotificationIndex/>
     </div>

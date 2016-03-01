@@ -40,23 +40,22 @@ var Signup = React.createClass({
 
   render: function() {
     return (
-      <div>
+      <div className="frontauth">
+      <img className="logo" src="http://i.imgur.com/spbIxDB.png"/>
       <form className="signup" onSubmit={this.handleSubmit}>
 
-        <label className="form-label">Username:</label>
         <input className="form-input" onChange={this.handleChange}
           type="username"
           name="username"
           placeholder="Username"/>
         <br></br>
-        <label className="form-label">Password:</label>
         <input className="form-input" onChange={this.handleChange}
           type="password"
           name="password"
           placeholder="Password"/>
         <br></br>
-        <button className="form-submit" name="signup" type="submit" onClick={this.handleSubmit}>Sign Up</button>
         <button className="form-submit" name="signin" type="submit" onClick={this.handleSubmit}>Sign In</button>
+        <button className="form-submit" name="signup" type="submit" onClick={this.handleSubmit}>Sign Up</button>
       </form>
       <button className="form-submit" name="guest" onClick={this.handleSubmit}>Guest</button>
       </div>

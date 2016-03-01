@@ -3,20 +3,21 @@ var ReactRouter = require('react-router');
 var ListingIndexItemImage = require('../Listings/listingIndexItemImage');
 
 var Listing = React.createClass({
-  saveListing: function(event){
-    event.preventDefault();
-    ApiUtil.saveListing(this.props.listing);
-  },
+
   render: function () {
     var Link = ReactRouter.Link;
     var listing = this.props.listing;
+    var description = listing.description;
     return (
-      <div className="listContainer">
-        <ListingIndexItemImage key={listing.id} images={listing.imagelistings}/>
-        <p>Title: {listing.title}</p>
-        <p>Price: {listing.price}</p>
-        <p>Bedrooms: {listing.bedroom}</p>
-        <p className="list-btn" onClick={this.saveListing}>Save</p>)
+      <div className="modalContainer">
+        <div className="modalImages">
+          <ListingIndexItemImage key={listing.id} images={listing.imagelistings}/>
+        </div>
+        <p>Price: <strong>{listing.price}</strong></p>
+        <p>Bedrooms: <strong>{listing.bedroom}</strong></p>
+        <p>Description:</p>
+        <span dangerouslySetInnerHTML={{__html: description}}/>
+        <a className="title" href={listing.url} target="_blank" onClick={this.confirmAlert}>Rent me!</a>
       </div>
     );
   }

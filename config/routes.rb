@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resources :users, only: [:update, :index, :new, :create]
     resources :chats, only: [:index, :destroy]
     resources :messages, only: [:index, :create]
-    resources :messages, only: [:index]
+    resources :notifications, only: [:index]
   end
   delete 'api/savedlistings/delete', :to => 'api/savedlistings#destroy'
 

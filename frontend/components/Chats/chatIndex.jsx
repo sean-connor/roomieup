@@ -42,7 +42,6 @@ var ChatIndex = React.createClass({
   render: function(){
     return(
       <div className="chatIndex">
-        <h1>Chats:</h1>
         <ul className="chatList">
           {this.renderChats()}
         </ul>

@@ -43,9 +43,7 @@
 //End DESGIN GROUP
 
 //WORKING GROUP
-#root{
-  z-index: 0
-}
+
 //END WORKING GROUP
 
 
@@ -53,7 +51,7 @@
 
 //STYLING START
 html{
-//  background: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg') no-repeat center center fixed;
+  //background: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -65,7 +63,9 @@ html{
 body {
     margin: 0;
     padding: 0;
+    height: 100%;
 }
+
 //ROOT and APPDIV
 #root{
   display: -webkit-box;
@@ -99,11 +99,12 @@ body {
 
 //NAV BAR
 .navul {
+  position: relative;
+  z-index: 1;
   list-style: none;
   margin: 0;
-  margin-bottom: 25px;
   height: 65px;
-  background: rgba(240,240,247,.5);
+  background: transparentize(ghostwhite, .6);
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
@@ -155,7 +156,7 @@ body {
 
 }
 .navul li:hover {
-  background: darken(rgba(240,240,240,.5), 5%);
+  background: darken(ghostwhite, 5%);
   cursor: pointer;
   border-radius: 3px;
 }
@@ -190,35 +191,39 @@ body {
     border-bottom: none;
   }
 }
+.splash{
+  background-image: asset-data-url("splash.svg");
+  height: 50px;
+  width: 50px;
+}
+.splashli{
+  position: absolute;
+  left: 0;
+}
 .chat{
   background-image: asset-data-url("chat.svg");
   height: 50px;
   width: 50px;
-  z-index: 1;
 }
 .home{
   background-image: asset-data-url("home.svg");
   height: 50px;
   width: 50px;
-  z-index: 1;
 }
 .saved{
   background-image: asset-data-url("saved.svg");
   height: 50px;
   width: 50px;
-  z-index: 1;
 }
 .searchListings{
   background-image: asset-data-url("searching.svg");
   height: 50px;
   width: 50px;
-  z-index: 1;
 }
 .logout{
   background-image: asset-data-url("logout.svg");
   height: 50px;
   width: 50px;
-  z-index: 1;
   justify-content: flex-end;
 }
 .navli .authDiv{
@@ -233,7 +238,6 @@ body {
   border: none;
   background: none;
   display: block;
-  z-index: 2;
 }
 
 
@@ -241,7 +245,6 @@ body {
   background-image: asset-data-url("login.svg");
   height: 50px;
   width: 50px;
-  z-index: 1;
   justify-content: flex-end;
 }
 .logoutli{
@@ -253,39 +256,197 @@ body {
 //START CONTENT PANE
 .main{
   text-align: left;
-  min-height: 100%;
   height: auto;
-  height: 100%;
-  margin-left: 15px;
-  margin-right: 15px;
+  height: calc(100% - 65px);
   background: rgba(255,255,255,.75);
 }
 //END CONTENT PANE
+//SPLASH STYLING
+.splash-main{
+  height: 294%;
+}
+.splash-video{
+  position: absolute;
+  background: url(https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  top:0;
+  left:0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+}
+.splash-header-group{
+  position: relative;
+  text-align: left;
+  left: 20%;
+  top: 30%;
+}
+.splash-header{
+  color: white;
+  font-size: 110px;
+  font-weight: 700;
+  text-shadow: 0px 0px 50px black;
+  margin: 0;
+}
+.splash-about{
+  position: absolute;
+  top: 100%;
+  height: 100%;
+  width: 100%;
+  background: ghostwhite;
+}
+.splash-about-header{
+  position: relative;
+  top: 20%;
+  color: black;
+  font-size: 50px;
+  font-weight: 700;
+  text-shadow: 0px 0px 50px white;
+  margin: 0;
+}
+.splash-about-row{
+  position: absolute;
+  top: 43%;
+  left: 25%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+.about-row{
+  display: flex;
+  flex-flow: column;
+  justify-content:center;
+  align-items: center;
+  margin: 10px;
+  width: 20%;
+}
+.splash-login{
+  position: absolute;
+  top: 200%;
+  height: 100%;
+  width: 100%;
+  background: #eee;
+}
+.splash-down{
+  position: absolute;
+  top: 80%;
+  width: 20%;
+  left: 50%;
+  height: 10%;
+  z-index: 1;
+}
+.about-down{
+  position: relative;
+  top: 80%;
+  width: 20%;
+  left: 50%;
+  height: 10%;
+  z-index: 1;
+}
+.downarrow{
+  position: relative;
+  background-image: asset-data-url("downarrow.svg");
+  fill: ghostwhite;
+  height: 50px;
+  width: 50px;
+}
+.searchListings-splash{
+  background-image: asset-data-url("searching.svg");
+  height: 100px;
+  width: 100px;
+}
+.chat-splash{
+  background-image: asset-data-url("chat.svg");
+  height: 100px;
+  width: 100px;
+}
+.splash-splash{
+  background-image: asset-data-url("splash.svg");
+  height: 100px;
+  width: 100px;
+}
+
+// END SPLASH STYLING
 // PROFILE STYLING
 .profile{
   position: relative;
-  height: auto;
-  width: 60%;
-  left: 10%;
+  text-align: left;
+  width: 50%;
+  overflow-y: scroll;
+  height: 650px;
+  margin-left: 50px;
 }
 .profilephoto{
   width: 200px;
   height: auto;
-  border: 10px solid rgba(0,0,0,.2);
+  border: 5px solid ghostwhite;
   border-radius: 10px;
   left: 195px;
 }
 .usernamedisp{
   color: black;
+  width: 207px;
+  text-align: center;
+  height: 1.5em;
+  padding: 0;
   font-size: 24px;
+  margin: 0;
+  background: ghostwhite;
+  line-height: 1.5em;
+  border-radius: 3px;
+}
+.photo-btn{
+  background: rgba(0,0,0,.2);
+  height: 15px;
+  width: 10px;
+  position: absolute;
+  padding: 5px;
+  background-color: transparent;
+  margin: 3px 3px;
+  top: 20px;
+  left: 20px;
 }
 .profdesc{
   resize: none;
-  min-height: 300px;
-  height: auto;
-
+  min-height: 245px;
+  height: 50px;
   width: 200px;
+  border: 1px ridge;
+  background: rgba(15,80,255,.04);
 }
+.notificationList{
+  position: absolute;
+  top: 37%;
+  width: 100%;
+  left: 42%;
+  list-style: none;
+  border-left: 1px ridge;
+  border-top: 1px ridge;
+  margin: 10px;
+  max-height: 350px;
+  overflow-y: scroll;
+  text-align: left;
+}
+.photo-btn{
+  background-image: asset-data-url("edit.svg");
+  height: 15px;
+  width: 10px;
+  position: absolute;
+  padding: 5px;
+  background-color: transparent;
+  margin: 3px 3px;
+  top: 20px;
+  left: 20px;
+}
+.photo-btn:hover{
+  cursor: pointer;
+  background-color: ghostwhite;
+  opacity: .5;
+}
+
 //END PROFILE STYLING
 //START LISTING STYLING
 .wrapper {
@@ -310,11 +471,11 @@ body {
 }
 
 .index {
-  position: relative;
+  position: absolute;
   text-align: left;
-  width: 50%;
+  width: 50.9%;
   overflow-y: scroll;
-  height: 650px;
+  height: calc(100% - 217px);
 }
 
 @media all and (min-width: 800px) {
@@ -324,11 +485,9 @@ body {
 .map{
   position: absolute;
   display: block;
-  height: 650px;
-  left: 50%;
-  width: 47.8%;
-  border: 1px solid black;
-  margin: 10px;
+  height: 91%;
+  left: 50.8%;
+  width: 49.2%;
 }
 li > button{
   display: none;
@@ -336,6 +495,36 @@ li > button{
 .sliderimage{
   width: 400px;
   height: 400px;
+}
+.sliderlabel{
+  position: relative;
+  left: 200px;
+}
+.bedrooms{
+  border-top: 1px solid gray;
+}
+.filter{
+  margin-right: 2px;
+  display: flex;
+  top: 25%;
+  flex-flow: row;
+  justify-content: flex-start;
+  position: relative;
+  height: 45px;
+  line-height: 45px;
+
+}
+.form-price{
+  position: absolute;
+  left: 20%;
+}
+.form-br{
+  position: absolute;
+  left: 20%;
+  text-align: center;
+}
+.searchBox{
+  text-align: center;
 }
 .listContainer{
   position: relative;
@@ -356,6 +545,22 @@ li > button{
 .list-btn:hover{
   cursor: pointer;
   background: rgba(0,0,0, .75);
+}
+.searchBox{
+  text-size: 20px;
+  margin: 3px;
+  width: 15em;
+  height: 3em;
+}
+
+.listingForm{
+  height: 150px;
+  position: relative;
+  width: 50.7%;
+  display: flex;
+  flex-flow: column;
+  border: 1px ridge;
+  background: ghostwhite;
 }
 .indexForm{
   position: relative;
@@ -379,13 +584,12 @@ li > button{
   margin: 0;
   margin-top: 10px;
   list-style: none;
-
   display: -webkit-box;
   display: -moz-box;
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-
+  max-height: 650px;
   -webkit-flex-flow: row wrap;
   justify-content: space-around;
 }
@@ -393,7 +597,6 @@ li > button{
 .listing-index-item {
   display: relative;
   border-radius: 5px;
-  background: rgba(0, 0, 0, 0.1);
   padding-bottom: 5px;
   margin: 10px;
   width: 300px;
@@ -427,14 +630,70 @@ li > button{
   line-height: 1.5em;
   padding-left: .5em;
 }
+.modal{
+  position: absolute;
+  top: 15%;
+  left: 20%;
+  background: white;
+  width: 800px;
+  max-height:600px;
+  overflow-y: scroll;
+  border-radius: 1px;
+  box-shadow: 0px 0px 0px 8px rgba(0,0,0,0.1);
+  outline: none;
+  margin: 10px;
+}
+.modalclose{
+  position: absolute;
+  background: black;
+  color: white;
+  opacity: .5;
+  font-size: 20px;
+  font-weight: 500;
+  top: 0;
+  right: 0;
+}
+.modalclose:hover{
+  cursor: pointer;
+  opacity: .75;
+}
+.modalContainer{
+  margin: 10px;
+  position: relative;
+}
+.modalImages{
+  position: relative;
+  left: 30%;
+}
+
 //END LISTING STYLING
 //SIGN IN STYLE
-
-  .log{
-    html{
-      background: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg') no-repeat center center fixed;
-    }
+  .authDiv{
+    position: absolute;
+    top: 0;
+    right: 0;
     height: 100%;
+    width: 100%
+  }
+  .log{
+    height: 100%;
+  }
+  .frontauth{
+    height: calc(100% - 300px);
+    display: block;
+    position: relative;
+    top: 25%;
+  }
+  .frontauth:hover .logo{
+    opacity: 1;
+    transform: translateY(-50px);
+  }
+  .logo{
+    position: relative;
+    opacity: .75;
+    transition: transform 1s ease;
+  }
+  .log{
     display: flex;
     flex-direction:row;
     text-align: center;
@@ -443,7 +702,6 @@ li > button{
   }
 
   .signup{
-    display: flex;
     text-align: center;
     flex-direction: column;
     justify-content: center;
@@ -454,6 +712,8 @@ li > button{
   }
   .form-input{
     padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
   }
   .form-submit{
     color: white;
@@ -465,6 +725,7 @@ li > button{
     background: black;
     opacity: .5;
   }
+
   .form-submit:hover{
     opacity: .75;
   }
@@ -554,13 +815,18 @@ li > button{
   width: auto;
 }
 .messageForm{
-
+  width: 100%;
+  height: 50px;
 }
 .messageInput{
-
+  width: 80%;
+  height: 50px;
 }
 .messageSubmit{
-
+  width: 10%;
+  margin-left: 20px;
+  height: 50px;
+  background: ghostwhite;
 }
 
 //END CHAT STYLING

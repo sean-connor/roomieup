@@ -1,14 +1,20 @@
 var React = require('react');
 var FilterActions = require('../../actions/filter_actions');
 
+
 var Filters = React.createClass({
   maxPriceChanged: function(e){
-    FilterActions.updateMaxPrice(e.target.value);
+    e.preventDefault();
+    maxprice = e.target.value
+    FilterActions.updateMaxPrice(maxprice);
   },
   minPriceChanged: function (e) {
-    FilterActions.updateMinPrice(e.target.value);
+    e.preventDefault();
+    minprice = e.target.value
+    FilterActions.updateMinPrice(minprice);
   },
   bedroomsChanged: function(e) {
+    e.preventDefault();
     FilterActions.updateBedrooms(e.target.value);
   },
   currentMaxPrice: function(){
@@ -25,22 +31,29 @@ var Filters = React.createClass({
   //     pricing: {min: min, max: max}
   //   });
   // },
+  togglePerBR: function(){
+    this.perbedroom = !this.perbedroom;
+  },
+
+  componentDidMount: function(){
+    this.perbedroom = false;
+  },
   render: function(){
     return (
-      <div>
-        <label>Minimum Price</label>
-        <input type="number"
-          onChange={this.minPriceChanged}
-          value={this.currentMinPrice()}/>
-         <br/>
-        <label>Maximum Price</label>
-        <input type="number"
-          onChange={this.maxPriceChanged}
-          value={this.currentMaxPrice()}/>
-        <label>Bedrooms</label>
-        <input type="number"
-          onChange={this.bedroomsChanged}
-          value={this.currentBedrooms()}/>
+      <div className="listingForm">
+        <div className="filter">
+          <label>Price</label>
+          <div className="form-price">
+            <input className="searchBox" type="range" min="0" max="10000" step="100" value={this.currentMaxPrice()}  onChange={this.maxPriceChanged}/>
+
+          </div>
+        </div>
+        <div className="filter">
+          <label>Bedrooms</label>
+          <div className="form-br">
+            <input className="searchBox" type="number" step="1" value={this.currentBedrooms()} onChange={this.bedroomsChanged}/>
+          </div>
+        </div>
       </div>
     );
   }

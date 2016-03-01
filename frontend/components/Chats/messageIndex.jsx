@@ -12,12 +12,25 @@ var MessageIndex = React.createClass({
     router: React.PropTypes.func
   },
   _messagesChanged: function(){
-    this.setState({messages: _getAllMessages()});
+    var messages = _getAllMessages();
+    if (messages.length === 0) {
+      var chatId = this.props.chatId;
+    } else {
+      var chatId = messages[0].chat_id;
+    }
+
+    if (chatId === this.props.chatId) {
+      this.setState({messages: _getAllMessages()});
+    }
+
   },
   getInitialState: function(){
     return {
       messages: _getAllMessages(),
     };
+  },
+  componentWillMount: function(){
+    // ApiActions.resetMessages();
   },
   componentDidMount: function(){
     console.log("Message Index Mounted");
@@ -26,9 +39,9 @@ var MessageIndex = React.createClass({
   },
   componentWillUnmount: function(){
     console.log("Message Index Unmounted");
-    ApiActions.resetMessages();
     this.messageListener.remove();
   },
+
   renderMessages: function() {
     return (
       this.state.messages.map(function(message, idx){

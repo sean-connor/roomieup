@@ -26,22 +26,26 @@ module.exports = React.createClass({
           <form className="indexForm" action="" onSubmit={this.handleSubmit}>
 
             <h3>Price:</h3>
-            <div className="form-group">
-              <label>Min:</label>
-              <input className="form-control" name="minprice" ref="minprice" type="number" value={this.state.minprice}
-                onChange={this.handleChange}/>
-            </div>
-            <div className="form-group">
-              <label>Max:</label>
-              <input className="form-control" name="maxprice" ref="maxprice" type="number" value={this.state.maxprice}
-                onChange={this.handleChange}/>
+            <div className="form-price">
+              <div className="form-group">
+                <label>Min:</label>
+                <input className="form-control" name="minprice" ref="minprice" type="number" value={this.state.minprice}
+                  onChange={this.handleChange}/>
+              </div>
+              <div className="form-group">
+                <label>Max:</label>
+                <input className="form-control" name="maxprice" ref="maxprice" type="number" value={this.state.maxprice}
+                  onChange={this.handleChange}/>
+              </div>
             </div>
             <h3>Bedrooms:</h3>
 
-            <div className="form-group">
-              <label>Bedrooms:</label>
-              <input className="form-control" name="bedroom" ref="bedroom" required type="number" value={this.state.bedroom}
-                onChange={this.handleChange}/>
+            <div className="form-br">
+              <div className="form-group">
+                <label>Bedrooms:</label>
+                <input className="form-control" name="bedroom" ref="bedroom" required type="number" value={this.state.bedroom}
+                  onChange={this.handleChange}/>
+              </div>
             </div>
             <br/>
             <div className="form-group">

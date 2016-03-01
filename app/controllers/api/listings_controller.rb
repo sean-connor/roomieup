@@ -1,13 +1,11 @@
 class Api::ListingsController < ApplicationController
   def index
-    p params
     listings = Listing.in_bounds(params[:bounds])
-    p listings
-    if(params[:bedroom])
-      listings = listings.where("listings.bedroom = ?", params[:bedroom])
+    if(params[:bedrooms])
+      listings = listings.where("listings.bedroom = ?", params[:bedrooms])
     end
 
-    if(params[:minprice] && params[:maxprice])
+    if(params[:minPrice] && params[:maxPrice])
       listings = listings.where(price: price_range)
     end
     @listings = listings.includes(:listingimages)
@@ -17,6 +15,6 @@ class Api::ListingsController < ApplicationController
 
   private
   def price_range
-    (params[:minprice]..params[:maxprice])
+    (params[:minPrice]..params[:maxPrice])
   end
 end

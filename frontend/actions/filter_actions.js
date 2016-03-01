@@ -19,6 +19,12 @@ var FilterActions = {
       actionType: FilterConstants.UPDATE_MAX_PRICE,
       maxPrice: value,
     });
+  },
+  updateBedrooms: function (value){
+    AppDispatcher.dispatch({
+      actionType: FilterConstants.UPDATE_BEDROOMS,
+      bedrooms: value,
+    });
   }
 };
 
