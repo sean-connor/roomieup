@@ -1,5 +1,5 @@
 var AppDispatcher = require('../dispatcher');
-var AuthConstants = require('../constants/AuthConstants');
+var AuthConstants = require('../constants/authConstants');
 
 var authActions = {
 

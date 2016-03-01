@@ -1,57 +1,4 @@
-
-//DESIGN GROUP
-
-// body{
-//   border: 5px dashed rgba(0, 0, 0, .7);
-// }
-// #root{
-//   border: 5px dashed rgba(50, 0, 0, .4);
-// }
-// .appdiv{
-//   border: 5px dashed rgba(100, 0, 0, .7);
-// }
-// .navul{
-//   border: 5px dashed rgba(200, 0, 0, .7);
-// }
-// .navul a {
-//   border: 1px dashed rgba(255, 0, 0, .7);
-// }
-// .main{
-//   border: 5px dotted rgba(0, 0, 0, .7);
-// }
-// .profile{
-//   border: 1px dashed rgba(150, 0, 0, .4);
-// }
-// .profilephoto{
-//   border: 1px dashed rgba(200, 0, 0, .4);
-// }
-// .usernamedisp{
-//   border: 1px dashed rgba(250, 0, 0, .4);
-// }
-// .profdesc{
-//   border: 1px dashed rgba(0, 0, 0, .4);
-// }
-// .indexForm{
-//   border: 3px dashed rgba(150, 0, 0, .7);
-// }
-// .searchIndex, .savedIndex{
-//   border: 3px dashed rgba(150, 0, 0, .7);
-// }
-// .footer{
-//   border: 5px dashed rgba(0, 0, 0, .4);
-// }
-//End DESGIN GROUP
-
-//WORKING GROUP
-
-//END WORKING GROUP
-
-
-
-
-//STYLING START
 html{
-  //background: url('https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -66,7 +13,6 @@ body {
     height: 100%;
 }
 
-//ROOT and APPDIV
 #root{
   display: -webkit-box;
   display: -moz-box;
@@ -95,9 +41,7 @@ body {
   margin: 0;
   padding: 0;
 }
-//END ROOT and APPDIV
 
-//NAV BAR
 .navul {
   position: relative;
   z-index: 1;
@@ -110,7 +54,6 @@ body {
   display: -ms-flexbox;
   display: -webkit-flex;
   display: flex;
-  background-image:  url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
   -webkit-animation: stars 100s linear infinite;
   -moz-animation: stars 100s linear infinite;
   -ms-animation: stars 100s linear infinite;
@@ -143,7 +86,6 @@ body {
   100% {background-position: 500px 1000px, 200px 400px, -100px 300px;}
 }
 .navul:hover {
-  background-image:  url('http://www.wearewebstars.dk/codepen/img//s2.png'), url('http://www.wearewebstars.dk/codepen/img//s3.png');
   background-color: black;
 }
 
@@ -251,26 +193,23 @@ body {
   justify-content: flex-end;
   height: 65px;
 }
-//END NAV BAR
 
-//START CONTENT PANE
 .main{
   text-align: left;
   height: auto;
   height: calc(100% - 65px);
   background: rgba(255,255,255,.75);
 }
-//END CONTENT PANE
-//SPLASH STYLING
 .splash-main{
   height: 294%;
 }
 .splash-video{
   position: absolute;
   background: url(https://upload.wikimedia.org/wikipedia/commons/b/b9/Orion_Nebula_%28M42%29_part_HST_4800px.jpg) no-repeat center center fixed;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
+   -webkit-background-size: cover;
+   -moz-background-size: cover;
+   -o-background-size: cover;
+   background-size: cover;
   top:0;
   left:0;
   z-index: 1;
@@ -307,9 +246,9 @@ body {
   margin: 0;
 }
 .splash-about-row{
-  position: absolute;
+  position: relative;
   top: 43%;
-  left: 25%;
+  left: 1%;
   display: flex;
   flex-flow: row;
   justify-content: space-around;
@@ -339,7 +278,7 @@ body {
   z-index: 1;
 }
 .about-down{
-  position: relative;
+  position: absolute;
   top: 80%;
   width: 20%;
   left: 50%;
@@ -369,8 +308,6 @@ body {
   width: 100px;
 }
 
-// END SPLASH STYLING
-// PROFILE STYLING
 .profile{
   position: relative;
   text-align: left;
@@ -447,8 +384,6 @@ body {
   opacity: .5;
 }
 
-//END PROFILE STYLING
-//START LISTING STYLING
 .wrapper {
   display: -webkit-box;
   display: -moz-box;
@@ -666,8 +601,6 @@ li > button{
   left: 30%;
 }
 
-//END LISTING STYLING
-//SIGN IN STYLE
   .authDiv{
     position: absolute;
     top: 0;
@@ -729,9 +662,7 @@ li > button{
   .form-submit:hover{
     opacity: .75;
   }
-//SIGN IN STYLE END
 
-//CHAT STYLING
 .chatpane{
   width: 50%;
   margin: 0 10%;
@@ -829,14 +760,11 @@ li > button{
   background: ghostwhite;
 }
 
-//END CHAT STYLING
 
 
-//FOOTER STYLE
 .footer{
   position: fixed;
 }
 .push{
   height: 4em;
 }
-//END FOOTER STYLE

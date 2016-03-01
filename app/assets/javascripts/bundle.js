@@ -31327,7 +31327,7 @@
 	var Store = __webpack_require__(170).Store;
 	var AppDispatcher = __webpack_require__(161);
 	var router = __webpack_require__(186);
-	var AuthConstants = __webpack_require__(238);
+	var AuthConstants = __webpack_require__(526);
 	var ProfileConstants = __webpack_require__(166);
 	var _user = {};
 
@@ -31403,18 +31403,7 @@
 	module.exports = UserStore;
 
 /***/ },
-/* 238 */
-/***/ function(module, exports) {
-
-	module.exports = {
-	  RECEIVE_CREATE_ERROR: "RECEIVE_CREATE_ERROR",
-	  RECEIVE_LOGIN_SUCCESS: "RECEIVE_LOGIN_SUCCESS",
-	  RECEIVE_LOGIN_ERROR: "RECEIVE_LOGIN_ERROR",
-	  RECEIVE_LOGOUT_SUCCESS: "RECEIVE_LOGOUT_SUCCESS",
-	  RECEIVE_LOGOUT_ERROR: "RECEIVE_LOGOUT_ERROR"
-	};
-
-/***/ },
+/* 238 */,
 /* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -31497,7 +31486,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var AppDispatcher = __webpack_require__(161);
-	var AuthConstants = __webpack_require__(238);
+	var AuthConstants = __webpack_require__(526);
 
 	var authActions = {
 
@@ -51460,6 +51449,18 @@
 	});
 
 	module.exports = Splash;
+
+/***/ },
+/* 526 */
+/***/ function(module, exports) {
+
+	module.exports = {
+	  RECEIVE_CREATE_ERROR: "RECEIVE_CREATE_ERROR",
+	  RECEIVE_LOGIN_SUCCESS: "RECEIVE_LOGIN_SUCCESS",
+	  RECEIVE_LOGIN_ERROR: "RECEIVE_LOGIN_ERROR",
+	  RECEIVE_LOGOUT_SUCCESS: "RECEIVE_LOGOUT_SUCCESS",
+	  RECEIVE_LOGOUT_ERROR: "RECEIVE_LOGOUT_ERROR"
+	};
 
 /***/ }
 /******/ ]);

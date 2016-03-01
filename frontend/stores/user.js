@@ -1,7 +1,7 @@
 var Store = require('flux/utils').Store;
 var AppDispatcher = require('../dispatcher');
 var router = require('react-router');
-var AuthConstants = require('../constants/AuthConstants');
+var AuthConstants = require('../constants/authConstants');
 var ProfileConstants = require('../constants/profileConstants')
 var _user = {};
 
