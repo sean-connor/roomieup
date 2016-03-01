@@ -44,6 +44,8 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	//React
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
@@ -19687,149 +19689,151 @@
 /* 159 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var ApiActions = __webpack_require__(160);
 	var FilterParamsStore = __webpack_require__(169);
 
 	module.exports = {
 	  //LISTINGS GROUP
 	  //Fetches Listings prompted by the search listings form
-	  fetchListings: function () {
+	  fetchListings: function fetchListings() {
 	    var filter = FilterParamsStore.params();
 	    $.get("api/listings", filter, function (matchedListings) {
 	      ApiActions.receiveListings(matchedListings);
 	    });
 	  },
-	  fetchSavedListings: function () {
+	  fetchSavedListings: function fetchSavedListings() {
 	    $.ajax({
 	      url: "api/savedlistings",
-	      success: function (savedListings) {
+	      success: function success(savedListings) {
 	        ApiActions.receiveSavedListings(savedListings);
 	      }
 	    });
 	  },
-	  saveListing: function (listing) {
+	  saveListing: function saveListing(listing) {
 	    $.post({
 	      url: "api/savedlistings",
 	      data: { listing_id: listing.id },
-	      success: function (response) {
+	      success: function success(response) {
 	        ApiActions.receiveSavedListing(listing);
 	      }
 	    });
 	  },
-	  destroyUserListing: function (listing) {
+	  destroyUserListing: function destroyUserListing(listing) {
 	    listingId = listing.id;
 	    $.ajax({
 	      url: "api/savedlistings/delete",
 	      type: 'DELETE',
 	      data: { listing_id: listingId },
-	      success: function () {
+	      success: function success() {
 	        ApiActions.notifyDeletion(listingId);
 	      },
-	      error: function () {
+	      error: function error() {
 	        console.log('Unsuccessful Delete');
 	      }
 	    });
 	  },
 	  //USERS GROUP
-	  createUser: function (user, callback) {
+	  createUser: function createUser(user, callback) {
 	    $.ajax({
 	      url: "api/users",
 	      method: "POST",
 	      data: { user: user },
-	      success: function (user) {
+	      success: function success(user) {
 	        UserActions.receiveSingleUser(user);
 	        callback && callback(user.id);
 	      },
-	      error: function (errors) {
+	      error: function error(errors) {
 	        ErrorActions.receiveErrors(errors);
 	      }
 	    });
 	  },
-	  createSession: function (user, callback) {
+	  createSession: function createSession(user, callback) {
 	    $.ajax({
 	      url: "api/session",
 	      method: "POST",
 	      data: { user: user },
-	      success: function (user) {
+	      success: function success(user) {
 	        UserActions.receiveSingleUser(user);
 	        callback && callback(user.id);
 	      },
-	      error: function (errors) {
+	      error: function error(errors) {
 	        ErrorActions.receiveErrors(errors);
 	      }
 	    });
 	  },
-	  deleteSession: function (callback) {
+	  deleteSession: function deleteSession(callback) {
 	    $.ajax({
 	      url: "api/session",
 	      method: "DELETE",
-	      success: function (loggedOutUser) {
+	      success: function success(loggedOutUser) {
 	        UserActions.removeSingleUser();
 	        callback && callback(loggedOutUser);
 	      }
 	    });
 	  },
-	  readSession: function (user, callback) {
+	  readSession: function readSession(user, callback) {
 	    $.ajax({
 	      url: "api/session",
 	      method: "GET",
-	      success: function (user) {
+	      success: function success(user) {
 	        UserActions.receiveSingleUser(user);
 	        callback && callback(user.id);
 	      }
 	    });
 	  },
 
-	  fetchProfile: function (user) {
+	  fetchProfile: function fetchProfile(user) {
 	    $.ajax({
 	      url: "api/users",
 	      data: { user: user },
-	      success: function (profile) {
+	      success: function success(profile) {
 	        ApiActions.receiveProfile(profile);
 	      }
 	    });
 	  },
-	  commitProfileChanges: function (profileState) {
+	  commitProfileChanges: function commitProfileChanges(profileState) {
 	    $.ajax({
 	      type: "PATCH",
 	      url: "api/users/" + profileState.id,
 	      data: profileState,
-	      success: function () {
+	      success: function success() {
 	        ApiActions.receiveProfile(profileState);
 	      }
 	    });
 	  },
 	  //CHAT GROUP
-	  fetchChats: function () {
+	  fetchChats: function fetchChats() {
 	    $.get("api/chats", function (chats) {
 	      ApiActions.receiveChats(chats);
 	    });
 	  },
-	  fetchMessages: function (chat_id) {
+	  fetchMessages: function fetchMessages(chat_id) {
 	    $.get("api/messages", { chat_id: chat_id }, function (messages) {
 	      ApiActions.receiveMessages(messages);
 	    });
 	  },
-	  saveMessage: function (message) {
+	  saveMessage: function saveMessage(message) {
 	    var that = this;
 	    $.post({
 	      url: "api/messages",
 	      data: message,
-	      success: function () {
+	      success: function success() {
 	        that.fetchMessages(message.chat_id);
 	      }
 	    });
 	  },
-	  fetchProfiles: function (user) {
+	  fetchProfiles: function fetchProfiles(user) {
 	    $.ajax({
 	      url: "api/users",
 	      data: { user: user },
-	      success: function (profile) {
+	      success: function success(profile) {
 	        ApiActions.receiveProfile(profile);
 	      }
 	    });
 	  },
-	  fetchNotifications: function () {
+	  fetchNotifications: function fetchNotifications() {
 	    $.get("api/notifications", function (notifications) {
 	      ApiActions.receiveNotifications(notifications);
 	    });
@@ -19840,6 +19844,8 @@
 /* 160 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var AppDispatcher = __webpack_require__(161);
 	var ListingConstants = __webpack_require__(165);
 	var ProfileConstants = __webpack_require__(166);
@@ -19849,55 +19855,55 @@
 	var ApiActions = {
 	  //LISTINGS GROUP
 	  //ReceiveListings is called as the success to a user's search
-	  receiveListings: function (listings) {
+	  receiveListings: function receiveListings(listings) {
 	    AppDispatcher.dispatch({
 	      actionType: ListingConstants.LISTINGS_RECEIVED,
 	      listings: listings
 	    });
 	  },
 	  //Occcurs Once on Sign In, listings added during session are handled via saveListing Action
-	  receiveSavedListings: function (listings) {
+	  receiveSavedListings: function receiveSavedListings(listings) {
 	    AppDispatcher.dispatch({
 	      actionType: ListingConstants.SAVED_LISTINGS_RECEIVED,
 	      listings: listings
 	    });
 	  },
-	  notifyDeletion: function (listingId) {
+	  notifyDeletion: function notifyDeletion(listingId) {
 	    AppDispatcher.dispatch({
 	      actionType: ListingConstants.SAVED_LISTING_DELETED,
 	      id: listingId
 	    });
 	  },
-	  receiveProfile: function (profile) {
+	  receiveProfile: function receiveProfile(profile) {
 	    AppDispatcher.dispatch({
 	      actionType: ProfileConstants.PROFILE_RECEIVED,
 	      profile: profile
 	    });
 	  },
-	  receiveChats: function (chats) {
+	  receiveChats: function receiveChats(chats) {
 	    AppDispatcher.dispatch({
 	      actionType: ChatConstants.CHATS_RECEIVED,
 	      chats: chats
 	    });
 	  },
-	  receiveMessages: function (messages) {
+	  receiveMessages: function receiveMessages(messages) {
 	    AppDispatcher.dispatch({
 	      actionType: ChatConstants.MESSAGES_RECEIVED,
 	      messages: messages
 	    });
 	  },
-	  receiveMessage: function (message) {
+	  receiveMessage: function receiveMessage(message) {
 	    AppDispatcher.dispatch({
 	      actionType: ChatConstants.MESSAGE_RECEIVED,
 	      message: message
 	    });
 	  },
-	  resetMessages: function () {
+	  resetMessages: function resetMessages() {
 	    AppDispatcher.dispatch({
 	      actionType: ChatConstants.RESET_MESSAGES
 	    });
 	  },
-	  receiveNotifications: function (notifications) {
+	  receiveNotifications: function receiveNotifications(notifications) {
 	    AppDispatcher.dispatch({
 	      actionType: NotificationConstants.NOTIFICATIONS_RECEIVED,
 	      notifications: notifications
@@ -19911,6 +19917,8 @@
 /***/ },
 /* 161 */
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	var Dispatcher = __webpack_require__(162).Dispatcher;
 	module.exports = new Dispatcher();
@@ -20227,6 +20235,8 @@
 /* 165 */
 /***/ function(module, exports) {
 
+	"use strict";
+
 	module.exports = {
 	  LISTINGS_RECEIVED: "LISTINGS_RECEIVED",
 	  SAVED_LISTINGS_RECEIVED: "SAVED_LISTINGS_RECEIVED",
@@ -20238,6 +20248,8 @@
 /* 166 */
 /***/ function(module, exports) {
 
+	"use strict";
+
 	module.exports = {
 	  PROFILE_RECEIVED: "PROFILE_RECEIVED"
 	};
@@ -20245,6 +20257,8 @@
 /***/ },
 /* 167 */
 /***/ function(module, exports) {
+
+	"use strict";
 
 	module.exports = {
 	  CHATS_RECEIVED: "CHATS_RECEIVED",
@@ -20257,6 +20271,8 @@
 /* 168 */
 /***/ function(module, exports) {
 
+	"use strict";
+
 	module.exports = {
 	  NOTIFICATIONS_RECEIVED: "NOTIFICATIONS_RECEIVED"
 	};
@@ -20265,7 +20281,8 @@
 /* 169 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
+	'use strict';
+
 	var AppDispatcher = __webpack_require__(161);
 	var Store = __webpack_require__(170).Store;
 	var _params = { minPrice: 0, maxPrice: 5000, bedrooms: 2 };
@@ -26653,6 +26670,8 @@
 /* 185 */
 /***/ function(module, exports) {
 
+	"use strict";
+
 	var FilterConstants = {
 	  UPDATE_BOUNDS: "UPDATE_BOUNDS",
 	  UPDATE_MIN_PRICE: "UPDATE_MIN_PRICE",
@@ -31000,6 +31019,8 @@
 /* 233 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var Nav = __webpack_require__(234);
 	var Footer = __webpack_require__(246);
@@ -31012,14 +31033,14 @@
 	  displayName: 'App',
 
 	  mixins: [Router.Navigation, History],
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    console.log("FETCH LOGGED IN");
 	    return {
 	      loggedIn: Auth.loggedIn()
 	    };
 	  },
 
-	  _userChanged: function () {
+	  _userChanged: function _userChanged() {
 	    console.log("USER SIGN IN / SIGN OUT");
 	    if (Auth.loggedIn() !== this.loggedIn) {
 	      this.setState({ loggedIn: Auth.loggedIn() });
@@ -31031,15 +31052,15 @@
 	    }
 	  },
 
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    this.userListener.remove();
 	  },
-	  componentWillMount: function () {
+	  componentWillMount: function componentWillMount() {
 	    Auth.checkSession();
 	    this.userListener = UserStore.addListener(this._userChanged);
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'appdiv' },
@@ -31056,6 +31077,8 @@
 /* 234 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
 	var Auth = __webpack_require__(235);
@@ -31064,7 +31087,7 @@
 	  displayName: 'exports',
 
 
-	  renderLoggedOut: function () {
+	  renderLoggedOut: function renderLoggedOut() {
 	    return React.createElement(
 	      'ul',
 	      { className: 'navul' },
@@ -31114,7 +31137,7 @@
 	    );
 	  },
 
-	  renderLoggedIn: function () {
+	  renderLoggedIn: function renderLoggedIn() {
 	    return React.createElement(
 	      'ul',
 	      { className: 'navul' },
@@ -31191,7 +31214,7 @@
 	    );
 	  },
 
-	  renderChoice: function () {
+	  renderChoice: function renderChoice() {
 	    if (this.props.loggedIn === true) {
 	      return this.renderLoggedIn();
 	    } else {
@@ -31199,7 +31222,7 @@
 	    }
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'navbar' },
@@ -31213,7 +31236,8 @@
 /* 235 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
+	'use strict';
+
 	var React = __webpack_require__(1);
 
 	var LoginForm = __webpack_require__(236);
@@ -31224,7 +31248,7 @@
 	var Auth = React.createClass({
 	  displayName: 'Auth',
 
-	  renderCheck: function () {
+	  renderCheck: function renderCheck() {
 	    if (UserStore.signedIn()) {
 	      return React.createElement(Logout, null);
 	    } else {
@@ -31235,7 +31259,7 @@
 	      );
 	    }
 	  },
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'authDiv' },
@@ -31251,6 +31275,10 @@
 /* 236 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	var React = __webpack_require__(1);
 	var UserStore = __webpack_require__(237);
 	var SessionActions = __webpack_require__(239);
@@ -31260,14 +31288,14 @@
 	  displayName: 'Login',
 
 	  mixins: [Router.Navigation],
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return {
 	      username: "",
 	      password: ""
 	    };
 	  },
 
-	  handleSubmit: function (event) {
+	  handleSubmit: function handleSubmit(event) {
 	    event.preventDefault();
 	    SessionActions.login({
 	      username: this.state.username,
@@ -31275,12 +31303,12 @@
 	    });
 	  },
 
-	  handleChange: function (event) {
+	  handleChange: function handleChange(event) {
 	    event.preventDefault();
-	    // this.setState({[event.target.name]: event.target.value});
+	    this.setState(_defineProperty({}, event.target.name, event.target.value));
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'form',
 	      { className: 'signin', onSubmit: this.handleSubmit },
@@ -31324,6 +31352,8 @@
 /* 237 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var Store = __webpack_require__(170).Store;
 	var AppDispatcher = __webpack_require__(161);
 	var router = __webpack_require__(186);
@@ -31343,25 +31373,25 @@
 	  return _user;
 	};
 
-	var error = function (data) {
+	var error = function error(data) {
 	  console.log(data.error);
 	  _user = {};
 	};
 
-	var handleLogin = function (data) {
+	var handleLogin = function handleLogin(data) {
 	  localStorage.token = data.token;
 	  _user = data;
 	  _user['signed_in'] = true;
 	};
 
-	var update = function (profile) {
+	var update = function update(profile) {
 	  if (_user["id"] === profile["id"]) {
 	    _user["description"] = profile["description"];
 	    _user["profile_picture"] = profile["profile_picture"];
 	  }
 	};
 
-	var handleLogout = function (data) {
+	var handleLogout = function handleLogout(data) {
 	  localStorage.clear();
 	  _user = {};
 	};
@@ -31406,6 +31436,8 @@
 /* 238 */
 /***/ function(module, exports) {
 
+	"use strict";
+
 	module.exports = {
 	  RECEIVE_CREATE_ERROR: "RECEIVE_CREATE_ERROR",
 	  RECEIVE_LOGIN_SUCCESS: "RECEIVE_LOGIN_SUCCESS",
@@ -31418,17 +31450,19 @@
 /* 239 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var SessionUtil = __webpack_require__(240);
 
 	var SessionActions = {
-	  checktoken: function (token) {
+	  checktoken: function checktoken(token) {
 	    SessionUtil.function(token);
 	  },
-	  login: function (user) {
+	  login: function login(user) {
 	    SessionUtil.createSession(user);
 	  },
 
-	  logout: function () {
+	  logout: function logout() {
 	    SessionUtil.destroySession();
 	  }
 	};
@@ -31439,11 +31473,12 @@
 /* 240 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
+	"use strict";
+
 	var authActions = __webpack_require__(241);
 
 	var sessionApiUtils = {
-	  createSession: function (user) {
+	  createSession: function createSession(user) {
 	    $.ajax({
 	      method: "POST",
 	      url: "api/session",
@@ -31453,37 +31488,37 @@
 	          password: user.password
 	        }
 	      },
-	      success: function (res) {
+	      success: function success(res) {
 	        authActions.receiveLogin(res);
 	      },
-	      error: function (res) {
+	      error: function error(res) {
 	        authActions.receiveLoginError(res);
 	      }
 	    });
 	  },
-	  checkSession: function (token) {
+	  checkSession: function checkSession(token) {
 	    $.ajax({
 	      method: "POST",
 	      url: "api/session",
 	      data: {
 	        token: token
 	      },
-	      success: function (res) {
+	      success: function success(res) {
 	        authActions.receiveLogin(res);
 	      },
-	      error: function (res) {
+	      error: function error(res) {
 	        authActions.receiveLoginError(res);
 	      }
 	    });
 	  },
-	  destroySession: function () {
+	  destroySession: function destroySession() {
 	    $.ajax({
 	      method: "DELETE",
 	      url: "api/session",
-	      success: function (res) {
+	      success: function success(res) {
 	        authActions.receiveLogout(res);
 	      },
-	      error: function (res) {
+	      error: function error(res) {
 	        authActions.receiveLogoutError(res);
 	      }
 	    });
@@ -31496,40 +31531,42 @@
 /* 241 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var AppDispatcher = __webpack_require__(161);
 	var AuthConstants = __webpack_require__(238);
 
 	var authActions = {
 
-	  receiveCreateError: function (data) {
+	  receiveCreateError: function receiveCreateError(data) {
 	    AppDispatcher.dispatch({
 	      actionType: AuthConstants.RECEIVE_CREATE_ERROR,
 	      data: data
 	    });
 	  },
 
-	  receiveLogin: function (data) {
+	  receiveLogin: function receiveLogin(data) {
 	    AppDispatcher.dispatch({
 	      actionType: AuthConstants.RECEIVE_LOGIN_SUCCESS,
 	      data: data
 	    });
 	  },
 
-	  receiveLoginError: function (data) {
+	  receiveLoginError: function receiveLoginError(data) {
 	    AppDispatcher.dispatch({
 	      actionType: AuthConstants.RECEIVE_LOGIN_ERROR,
 	      data: data
 	    });
 	  },
 
-	  receiveLogout: function (data) {
+	  receiveLogout: function receiveLogout(data) {
 	    AppDispatcher.dispatch({
 	      actionType: AuthConstants.RECEIVE_LOGOUT_SUCCESS,
 	      data: data
 	    });
 	  },
 
-	  receiveLogoutError: function (data) {
+	  receiveLogoutError: function receiveLogoutError(data) {
 	    AppDispatcher.dispatch({
 	      actionType: AuthConstants.RECEIVE_LOGOUT_ERROR,
 	      data: data
@@ -31544,6 +31581,10 @@
 /* 242 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	var React = __webpack_require__(1);
 
 	// Actions
@@ -31553,14 +31594,14 @@
 	var Signup = React.createClass({
 	  displayName: 'Signup',
 
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return {
 	      username: "",
 	      password: ""
 	    };
 	  },
 
-	  handleSubmit: function (event) {
+	  handleSubmit: function handleSubmit(event) {
 	    console.log(event.target.name);
 	    event.preventDefault();
 	    if (event.target.name === "signup") {
@@ -31581,12 +31622,12 @@
 	    }
 	  },
 
-	  handleChange: function (event) {
+	  handleChange: function handleChange(event) {
 	    event.preventDefault();
-	    // this.setState({[event.target.name]: event.target.value});
+	    this.setState(_defineProperty({}, event.target.name, event.target.value));
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'frontauth' },
@@ -31631,10 +31672,12 @@
 /* 243 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var userUtils = __webpack_require__(244);
 
 	var userActions = {
-	  create: function (user) {
+	  create: function create(user) {
 	    userUtils.createUser(user);
 	  }
 	};
@@ -31645,10 +31688,12 @@
 /* 244 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var userServerActions = __webpack_require__(241);
 
 	var userUtils = {
-	  createUser: function (user) {
+	  createUser: function createUser(user) {
 	    $.ajax({
 	      method: "POST",
 	      url: "api/users",
@@ -31658,10 +31703,10 @@
 	          password: user.password
 	        }
 	      },
-	      success: function (res) {
+	      success: function success(res) {
 	        userServerActions.receiveLogin(res);
 	      },
-	      error: function (res) {
+	      error: function error(res) {
 	        userServerActions.receiveLogoutError(res);
 	      }
 	    });
@@ -31674,6 +31719,8 @@
 /* 245 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var UserStore = __webpack_require__(237);
 	var sessionActions = __webpack_require__(239);
@@ -31681,21 +31728,21 @@
 	var Logout = React.createClass({
 	  displayName: 'Logout',
 
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return { user: UserStore.getUser() };
 	  },
-	  handleChange: function () {
+	  handleChange: function handleChange() {
 	    this.setState({ user: UserStore.getUser() });
 	  },
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    this.usListener = UserStore.addListener(this.handleChange);
 	  },
 
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    this.usListener.remove();
 	  },
 
-	  userLoggedIn: function () {
+	  userLoggedIn: function userLoggedIn() {
 	    if (this.state.user.signed_in) {
 	      return React.createElement(
 	        'div',
@@ -31715,11 +31762,11 @@
 	    }
 	  },
 
-	  logout: function () {
+	  logout: function logout() {
 	    sessionActions.logout();
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement('div', { onClick: this.logout, className: 'logout' });
 	  }
 
@@ -31731,13 +31778,15 @@
 /* 246 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 
 	module.exports = React.createClass({
 	  displayName: "exports",
 
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement("div", { className: "footer" });
 	  }
 
@@ -31747,20 +31796,22 @@
 /* 247 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var SessionUtil = __webpack_require__(240);
 
 	module.exports = {
-	  checkSession: function () {
+	  checkSession: function checkSession() {
 	    if (this.loggedIn()) {
 	      SessionUtil.checkSession(this.getToken());
 	    }
 	  },
 
-	  getToken: function () {
+	  getToken: function getToken() {
 	    return localStorage.token;
 	  },
 
-	  loggedIn: function () {
+	  loggedIn: function loggedIn() {
 	    if (localStorage.token === "undefined") {
 	      return false;
 	    } else {
@@ -31773,6 +31824,8 @@
 /* 248 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
 	var UserProfile = __webpack_require__(249);
@@ -31782,7 +31835,7 @@
 	  displayName: 'exports',
 
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'wrapper' },
@@ -31797,6 +31850,8 @@
 /* 249 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
 	var UserStore = __webpack_require__(237);
@@ -31809,28 +31864,28 @@
 	  displayName: 'UserProfile',
 
 	  //Fetches User based on usertype prop, either current user or user in a chatroom.
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    this.updates = false;
 	    profile = _getProfile();
 	    return { id: profile.id, profile_picture: profile.profile_picture, username: profile.username, description: profile.description };
 	  },
 
-	  _profileChanged: function () {
+	  _profileChanged: function _profileChanged() {
 	    profile = _getProfile();
 	    this.setState({ id: profile.id, profile_picture: profile.profile_picture, username: profile.username, description: profile.description });
 	  },
 	  //Adds a listeneer and fetches User on mount based on usertype prop, either current user or user in a chatroom.
 
 	  // Commit any profile changes.
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    console.log("Profile Page Unmounting.");
 	    console.log(this.state);
 	    ApiUtil.commitProfileChanges(this.state);
 	  },
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    console.log("Profile Page Mounting.");
 	  },
-	  cloudinaryUpload: function () {
+	  cloudinaryUpload: function cloudinaryUpload() {
 	    that = this;
 	    cloudinary.openUploadWidget({ cloud_name: 'roomieup-com', upload_preset: 'fkttonkf', theme: 'white' }, function (error, result) {
 	      if (error === null) {
@@ -31840,13 +31895,13 @@
 	    });
 	  },
 
-	  handleDescriptionChange: function (event) {
+	  handleDescriptionChange: function handleDescriptionChange(event) {
 	    event.preventDefault();
 	    this.updates = true;
 	    this.setState({ description: event.target.value });
 	  },
 
-	  renderProfile: function () {
+	  renderProfile: function renderProfile() {
 	    if (this.state.profile_picture === "") {
 	      return;
 	    } else {
@@ -31875,7 +31930,7 @@
 	    }
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'profile' },
@@ -31890,6 +31945,8 @@
 /***/ },
 /* 250 */
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	var React = __webpack_require__(1);
 	var NotificationStore = __webpack_require__(251);
@@ -31906,24 +31963,24 @@
 	  contextTypes: {
 	    router: React.PropTypes.func
 	  },
-	  _notificationsChanged: function () {
+	  _notificationsChanged: function _notificationsChanged() {
 	    this.setState({ notifications: _getAllNotifications() });
 	  },
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return {
 	      notifications: _getAllNotifications()
 	    };
 	  },
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    console.log("Notification Index Mounted");
 	    this.notificationListener = NotificationStore.addListener(this._notificationsChanged);
 	    ApiUtil.fetchNotifications();
 	  },
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    console.log("Notification Index Unmounted");
 	    this.notificationListener.remove();
 	  },
-	  renderNotifications: function () {
+	  renderNotifications: function renderNotifications() {
 	    return this.state.notifications.map(function (notification, idx) {
 	      return React.createElement(
 	        'li',
@@ -31936,7 +31993,7 @@
 	      );
 	    });
 	  },
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'ul',
 	      { className: 'notificationList' },
@@ -31951,6 +32008,8 @@
 /* 251 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var Store = __webpack_require__(170).Store;
 	var AppDispatcher = __webpack_require__(161);
 	var NotificationConstants = __webpack_require__(168);
@@ -31959,7 +32018,7 @@
 
 	var _notifications = [];
 
-	var resetNotifications = function (notifications) {
+	var resetNotifications = function resetNotifications(notifications) {
 	  _notifications = notifications.reverse();
 	};
 
@@ -31982,6 +32041,8 @@
 /* 252 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var Auth = __webpack_require__(235);
 
@@ -31989,7 +32050,7 @@
 	  displayName: 'Splash',
 
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'splash-main' },
@@ -32100,6 +32161,8 @@
 /* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
 	var SearchListingForm = __webpack_require__(254);
@@ -32110,7 +32173,7 @@
 	  displayName: 'exports',
 
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'main' },
@@ -32124,6 +32187,10 @@
 /* 254 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
 
@@ -32131,24 +32198,24 @@
 	  displayName: 'exports',
 
 
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return {
 	      minprice: NaN,
 	      maxprice: NaN,
 	      bedroom: NaN
 	    };
 	  },
-	  handleSubmit: function (event) {
+	  handleSubmit: function handleSubmit(event) {
 	    event.preventDefault();
 	    ApiUtil.fetchListings(this.state);
 	  },
 
-	  handleChange: function (event) {
+	  handleChange: function handleChange(event) {
 	    event.preventDefault();
-	    // this.setState({[event.target.name]: event.target.value})
+	    this.setState(_defineProperty({}, event.target.name, event.target.value));
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'form' },
@@ -32225,6 +32292,8 @@
 /* 255 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
 	var ListingStore = __webpack_require__(256);
@@ -32238,11 +32307,11 @@
 	  displayName: 'exports',
 
 
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return { listings: [] };
 	  },
 
-	  renderListings: function () {
+	  renderListings: function renderListings() {
 	    if (this.state.listings === undefined) {
 	      return React.createElement(
 	        'h3',
@@ -32260,21 +32329,21 @@
 	    }
 	  },
 
-	  _listingsChanged: function () {
+	  _listingsChanged: function _listingsChanged() {
 	    this.setState({ listings: _getAllListings() });
 	  },
 
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    this.listingListener = ListingStore.addListener(this._listingsChanged);
 
 	    //ApiUtil.fetchListings();
 	  },
 
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    this.listingListener.remove();
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'index' },
@@ -32288,6 +32357,8 @@
 /* 256 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var Store = __webpack_require__(170).Store;
 	var AppDispatcher = __webpack_require__(161);
 	var ListingConstants = __webpack_require__(165);
@@ -32296,7 +32367,7 @@
 
 	var _listings = [];
 
-	var resetListings = function (listings) {
+	var resetListings = function resetListings(listings) {
 	  _listings = listings;
 	};
 
@@ -32320,6 +32391,8 @@
 /* 257 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ListingIndexItemImage = __webpack_require__(258);
 	var History = __webpack_require__(186).History;
@@ -32330,10 +32403,10 @@
 
 	  //mixins: [History],
 
-	  showDetail: function () {
+	  showDetail: function showDetail() {
 	    //this.history.pushState(null, '/listing/' + this.props.listing.id, {});
 	  },
-	  editListing: function (event) {
+	  editListing: function editListing(event) {
 	    event.preventDefault();
 	    if (event.target.innerHTML === "Save") {
 	      ApiUtil.saveListing(this.props.listing);
@@ -32341,7 +32414,7 @@
 	      ApiUtil.destroyUserListing(this.props.listing);
 	    }
 	  },
-	  renderEditButton: function () {
+	  renderEditButton: function renderEditButton() {
 	    if (UserStore.signedIn()) {
 	      return React.createElement(
 	        'p',
@@ -32351,7 +32424,7 @@
 	    }
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'li',
 	      { onClick: this.showDetail, className: 'listing-index-item' },
@@ -32387,6 +32460,8 @@
 /* 258 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var Carousel = __webpack_require__(259);
 
@@ -32394,7 +32469,7 @@
 	  component: React.createClass({
 	    displayName: 'component',
 
-	    render: function () {
+	    render: function render() {
 	      return React.createElement(
 	        'button',
 	        {
@@ -32414,13 +32489,13 @@
 
 	  mixins: [Carousel.ControllerMixin],
 
-	  createImgComps: function () {
+	  createImgComps: function createImgComps() {
 	    return this.props.images.map(function (image, idx) {
 	      return React.createElement('img', { className: 'sliderimage', key: idx, src: image.url });
 	    });
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      Carousel,
 	      { ref: 'carousel',
@@ -33433,15 +33508,17 @@
 /* 265 */
 /***/ function(module, exports, __webpack_require__) {
 
+	"use strict";
+
 	var React = __webpack_require__(1);
 
 	var Map = React.createClass({
 	  displayName: "Map",
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement("div", { className: "map", ref: "map" });
 	  },
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    var mapDOMNode = this.refs.map;
 	    var mapOptions = {
 	      center: { lat: 37.8, lng: -122.435 },
@@ -33456,7 +33533,8 @@
 /* 266 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ListingStore = __webpack_require__(256);
 	var FilterParamsStore = __webpack_require__(169);
@@ -33478,35 +33556,35 @@
 	  contextTypes: {
 	    router: React.PropTypes.func
 	  },
-	  _listingsChanged: function () {
+	  _listingsChanged: function _listingsChanged() {
 	    this.setState({ listings: _getAllListings() });
 	  },
-	  _filtersChanged: function () {
+	  _filtersChanged: function _filtersChanged() {
 	    var newParams = _getFilterParams();
 	    this.setState({ filterParams: newParams });
 	    ApiUtil.fetchListings();
 	  },
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return {
 	      listings: _getAllListings(),
 	      filterParams: _getFilterParams(),
 	      clickedLoc: null
 	    };
 	  },
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    this.listingListener = ListingStore.addListener(this._listingsChanged);
 	    this.filterListener = FilterParamsStore.addListener(this._filtersChanged);
 	    ApiUtil.fetchListings();
 	  },
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    this.listingListener.remove();
 	    this.filterListener.remove();
 	  },
 
-	  handleMarkerClick: function (listing) {
+	  handleMarkerClick: function handleMarkerClick(listing) {
 	    this.props.history.pushState(null, "listings/" + listing.id);
 	  },
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      null,
@@ -33529,33 +33607,35 @@
 /* 267 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var FilterActions = __webpack_require__(268);
 
 	var Filters = React.createClass({
 	  displayName: 'Filters',
 
-	  maxPriceChanged: function (e) {
+	  maxPriceChanged: function maxPriceChanged(e) {
 	    e.preventDefault();
 	    maxprice = e.target.value;
 	    FilterActions.updateMaxPrice(maxprice);
 	  },
-	  minPriceChanged: function (e) {
+	  minPriceChanged: function minPriceChanged(e) {
 	    e.preventDefault();
 	    minprice = e.target.value;
 	    FilterActions.updateMinPrice(minprice);
 	  },
-	  bedroomsChanged: function (e) {
+	  bedroomsChanged: function bedroomsChanged(e) {
 	    e.preventDefault();
 	    FilterActions.updateBedrooms(e.target.value);
 	  },
-	  currentMaxPrice: function () {
+	  currentMaxPrice: function currentMaxPrice() {
 	    return this.props.filterParams.maxPrice;
 	  },
-	  currentMinPrice: function () {
+	  currentMinPrice: function currentMinPrice() {
 	    return this.props.filterParams.minPrice;
 	  },
-	  currentBedrooms: function () {
+	  currentBedrooms: function currentBedrooms() {
 	    return this.props.filterParams.bedrooms;
 	  },
 	  // updatePricing: function (min, max) {
@@ -33563,14 +33643,14 @@
 	  //     pricing: {min: min, max: max}
 	  //   });
 	  // },
-	  togglePerBR: function () {
+	  togglePerBR: function togglePerBR() {
 	    this.perbedroom = !this.perbedroom;
 	  },
 
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    this.perbedroom = false;
 	  },
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'listingForm' },
@@ -33612,29 +33692,31 @@
 /* 268 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var AppDispatcher = __webpack_require__(161);
 	var FilterConstants = __webpack_require__(185);
 
 	var FilterActions = {
-	  updateBounds: function (bounds) {
+	  updateBounds: function updateBounds(bounds) {
 	    AppDispatcher.dispatch({
 	      actionType: FilterConstants.UPDATE_BOUNDS,
 	      bounds: bounds
 	    });
 	  },
-	  updateMinPrice: function (value) {
+	  updateMinPrice: function updateMinPrice(value) {
 	    AppDispatcher.dispatch({
 	      actionType: FilterConstants.UPDATE_MIN_PRICE,
 	      minPrice: value
 	    });
 	  },
-	  updateMaxPrice: function (value) {
+	  updateMaxPrice: function updateMaxPrice(value) {
 	    AppDispatcher.dispatch({
 	      actionType: FilterConstants.UPDATE_MAX_PRICE,
 	      maxPrice: value
 	    });
 	  },
-	  updateBedrooms: function (value) {
+	  updateBedrooms: function updateBedrooms(value) {
 	    AppDispatcher.dispatch({
 	      actionType: FilterConstants.UPDATE_BEDROOMS,
 	      bedrooms: value
@@ -33648,18 +33730,19 @@
 /* 269 */
 /***/ function(module, exports, __webpack_require__) {
 
-	
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var IndexItem = __webpack_require__(270);
 
 	var Index = React.createClass({
 	  displayName: 'Index',
 
-	  handleItemClick: function (listing) {
+	  handleItemClick: function handleItemClick(listing) {
 	    //ADD HISTORY MIX IN
 	    this.props.history.pushState(null, "listings/" + listing.id);
 	  },
-	  render: function () {
+	  render: function render() {
 	    var handleItemClick = this.handleItemClick;
 	    return React.createElement(
 	      'div',
@@ -33685,6 +33768,8 @@
 /* 270 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(186);
 	var ApiUtil = __webpack_require__(159);
@@ -33697,29 +33782,29 @@
 
 	  mixins: [ReactRouter.history],
 
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return { showModal: false };
 	  },
 
-	  close: function () {
+	  close: function close() {
 	    console.log("Close Modal");
 	    this.setState({ showModal: false });
 	  },
 
-	  open: function () {
+	  open: function open() {
 	    console.log("Open Modal");
 	    this.setState({ showModal: true });
 	  },
 
-	  saveListing: function (event) {
+	  saveListing: function saveListing(event) {
 	    event.preventDefault();
 	    ApiUtil.saveListing(this.props.listing);
 	  },
 
-	  confirmAlert: function () {
+	  confirmAlert: function confirmAlert() {
 	    confirm("Your listing will open in a new window.");
 	  },
-	  render: function () {
+	  render: function render() {
 	    var listing = this.props.listing;
 	    return React.createElement(
 	      'li',
@@ -33789,6 +33874,8 @@
 /* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ReactRouter = __webpack_require__(186);
 	var ListingIndexItemImage = __webpack_require__(258);
@@ -33797,7 +33884,7 @@
 	  displayName: 'Listing',
 
 
-	  render: function () {
+	  render: function render() {
 	    var Link = ReactRouter.Link;
 	    var listing = this.props.listing;
 	    var description = listing.description;
@@ -50800,6 +50887,8 @@
 /* 514 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 	var FilterActions = __webpack_require__(268);
@@ -50816,7 +50905,7 @@
 	var Map = React.createClass({
 	  displayName: 'Map',
 
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    console.log('map mounted');
 	    var map = ReactDOM.findDOMNode(this.refs.map);
 	    var mapOptions = {
@@ -50828,7 +50917,7 @@
 	    this.markers = [];
 	    this.props.listings.forEach(this.createMarkerFromListing);
 	  },
-	  centerListingCoords: function () {
+	  centerListingCoords: function centerListingCoords() {
 	    if (this.props.listings[0] && this.props.listings[0].lng) {
 	      var listing = this.props.listings[0];
 	      return { lat: listing.lat, lng: listing.lng };
@@ -50836,10 +50925,10 @@
 	      return CENTER;
 	    }
 	  },
-	  componentDidUpdate: function (oldProps) {
+	  componentDidUpdate: function componentDidUpdate(oldProps) {
 	    this._onChange();
 	  },
-	  _onChange: function () {
+	  _onChange: function _onChange() {
 	    var listings = this.props.listings;
 	    var toAdd = [],
 	        toRemove = this.markers.slice(0);
@@ -50869,10 +50958,10 @@
 	      this.map.setCenter(this.centerListingCoords());
 	    }
 	  },
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    console.log("map UNmounted");
 	  },
-	  registerListeners: function () {
+	  registerListeners: function registerListeners() {
 	    var that = this;
 	    google.maps.event.addListener(this.map, 'idle', function () {
 	      var bounds = that.map.getBounds();
@@ -50890,7 +50979,7 @@
 	      that.props.onMapClick(coords);
 	    });
 	  },
-	  createMarkerFromListing: function (listing) {
+	  createMarkerFromListing: function createMarkerFromListing(listing) {
 	    var that = this;
 	    var pos = new google.maps.LatLng(listing.lat, listing.lng);
 	    var marker = new google.maps.Marker({
@@ -50903,7 +50992,7 @@
 	    });
 	    this.markers.push(marker);
 	  },
-	  removeMarker: function (marker) {
+	  removeMarker: function removeMarker(marker) {
 	    for (var i = 0; i < this.markers.length; i++) {
 	      if (this.markers[i].listingId === marker.listingId) {
 	        this.markers[i].setMap(null);
@@ -50912,7 +51001,7 @@
 	      }
 	    }
 	  },
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'map', ref: 'map' },
@@ -50927,6 +51016,8 @@
 /* 515 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
 	var SavedListingIndex = __webpack_require__(516);
@@ -50934,7 +51025,7 @@
 	  displayName: 'exports',
 
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'main' },
@@ -50947,6 +51038,8 @@
 /***/ },
 /* 516 */
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
@@ -50961,11 +51054,11 @@
 	  displayName: 'exports',
 
 
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return { listings: "Loading" };
 	  },
 
-	  renderListings: function () {
+	  renderListings: function renderListings() {
 	    if (this.state.listings === 'Loading') {
 	      return React.createElement(
 	        'h3',
@@ -50983,22 +51076,22 @@
 	    }
 	  },
 
-	  _listingsChanged: function () {
+	  _listingsChanged: function _listingsChanged() {
 	    this.setState({ listings: _getAllListings() });
 	  },
 
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    console.log("Saved Listings Mounting");
 	    this.listingListener = SavedListingStore.addListener(this._listingsChanged);
 	    ApiUtil.fetchSavedListings();
 	  },
 
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    console.log("Saved Listings Unmounting");
 	    this.listingListener.remove();
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'savedIndex' },
@@ -51012,6 +51105,8 @@
 /* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var Store = __webpack_require__(170).Store;
 	var AppDispatcher = __webpack_require__(161);
 	var ListingConstants = __webpack_require__(165);
@@ -51020,11 +51115,11 @@
 
 	var _listings = [];
 
-	var resetListings = function (listings) {
+	var resetListings = function resetListings(listings) {
 	  _listings = listings;
 	};
 
-	var deleteListing = function (id) {
+	var deleteListing = function deleteListing(id) {
 	  var spliceIdx = NaN;
 	  _listings.forEach(function (listing, idx) {
 	    if (listing.id === id) {
@@ -51059,6 +51154,8 @@
 /* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
 	var ChatIndex = __webpack_require__(519);
@@ -51066,7 +51163,7 @@
 	  displayName: 'exports',
 
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'chatpane' },
@@ -51079,6 +51176,8 @@
 /***/ },
 /* 519 */
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	var React = __webpack_require__(1);
 	var ChatStore = __webpack_require__(520);
@@ -51095,24 +51194,24 @@
 	  contextTypes: {
 	    router: React.PropTypes.func
 	  },
-	  _chatsChanged: function () {
+	  _chatsChanged: function _chatsChanged() {
 	    this.setState({ chats: _getAllChats() });
 	  },
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return {
 	      chats: _getAllChats()
 	    };
 	  },
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    console.log("Chat Index Mounted");
 	    this.chatListener = ChatStore.addListener(this._chatsChanged);
 	    ApiUtil.fetchChats();
 	  },
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    console.log("Chat Index Unmounted");
 	    this.chatListener.remove();
 	  },
-	  renderChats: function () {
+	  renderChats: function renderChats() {
 	    return this.state.chats.map(function (chat, idx) {
 	      return React.createElement(
 	        'li',
@@ -51121,7 +51220,7 @@
 	      );
 	    });
 	  },
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'chatIndex' },
@@ -51140,6 +51239,8 @@
 /* 520 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var Store = __webpack_require__(170).Store;
 	var AppDispatcher = __webpack_require__(161);
 	var ChatConstants = __webpack_require__(167);
@@ -51148,7 +51249,7 @@
 
 	var _chats = [];
 
-	var resetChats = function (chats) {
+	var resetChats = function resetChats(chats) {
 	  _chats = chats;
 	};
 
@@ -51172,6 +51273,8 @@
 /* 521 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ChatStore = __webpack_require__(520);
 	var ApiUtil = __webpack_require__(159);
@@ -51184,17 +51287,17 @@
 	  contextTypes: {
 	    router: React.PropTypes.func
 	  },
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return { messages: "" };
 	  },
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    console.log("Chat Mounted");
 	    this.selected = "";
 	  },
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    console.log("Chat Unmounted");
 	  },
-	  renderMessages: function (event) {
+	  renderMessages: function renderMessages(event) {
 	    event.preventDefault();
 	    this.setState({
 	      messages: ""
@@ -51213,7 +51316,7 @@
 	      this.selected = "";
 	    }
 	  },
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      { className: 'chatItem' },
@@ -51235,6 +51338,8 @@
 /* 522 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var MessageStore = __webpack_require__(523);
 	var ApiUtil = __webpack_require__(159);
@@ -51250,7 +51355,7 @@
 	  contextTypes: {
 	    router: React.PropTypes.func
 	  },
-	  _messagesChanged: function () {
+	  _messagesChanged: function _messagesChanged() {
 	    var messages = _getAllMessages();
 	    if (messages.length === 0) {
 	      var chatId = this.props.chatId;
@@ -51262,25 +51367,25 @@
 	      this.setState({ messages: _getAllMessages() });
 	    }
 	  },
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return {
 	      messages: _getAllMessages()
 	    };
 	  },
-	  componentWillMount: function () {
+	  componentWillMount: function componentWillMount() {
 	    // ApiActions.resetMessages();
 	  },
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    console.log("Message Index Mounted");
 	    this.messageListener = MessageStore.addListener(this._messagesChanged);
 	    ApiUtil.fetchMessages(this.props.chatId);
 	  },
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    console.log("Message Index Unmounted");
 	    this.messageListener.remove();
 	  },
 
-	  renderMessages: function () {
+	  renderMessages: function renderMessages() {
 	    return this.state.messages.map(function (message, idx) {
 	      return React.createElement(
 	        'li',
@@ -51293,7 +51398,7 @@
 	      );
 	    });
 	  },
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'ul',
 	      { className: 'messageList' },
@@ -51308,6 +51413,8 @@
 /* 523 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var Store = __webpack_require__(170).Store;
 	var AppDispatcher = __webpack_require__(161);
 	var ChatConstants = __webpack_require__(167);
@@ -51316,11 +51423,11 @@
 
 	var _messages = [];
 
-	var resetMessages = function (messages) {
+	var resetMessages = function resetMessages(messages) {
 	  _messages = messages;
 	};
 
-	var clearMessages = function () {
+	var clearMessages = function clearMessages() {
 	  _messages = [];
 	};
 
@@ -51348,19 +51455,23 @@
 /* 524 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 	var React = __webpack_require__(1);
 	var Router = __webpack_require__(186);
 	var ApiUtil = __webpack_require__(159);
 	var MessageForm = React.createClass({
 	  displayName: 'MessageForm',
 
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    return {
 	      body: ""
 	    };
 	  },
 
-	  handleSubmit: function (event) {
+	  handleSubmit: function handleSubmit(event) {
 	    event.preventDefault();
 	    ApiUtil.saveMessage({
 	      body: this.state.body,
@@ -51368,12 +51479,12 @@
 	    });
 	  },
 
-	  handleChange: function (event) {
+	  handleChange: function handleChange(event) {
 	    event.preventDefault();
-	    // this.setState({[event.target.name]: event.target.value});
+	    this.setState(_defineProperty({}, event.target.name, event.target.value));
 	  },
 
-	  render: function () {
+	  render: function render() {
 	    return React.createElement(
 	      'form',
 	      { className: 'messageForm', onSubmit: this.handleSubmit },
@@ -51396,6 +51507,8 @@
 /* 525 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ListingStore = __webpack_require__(256);
 	var ReactRouter = __webpack_require__(186);
@@ -51409,12 +51522,12 @@
 	  contextTypes: {
 	    router: React.PropTypes.func
 	  },
-	  getInitialState: function () {
+	  getInitialState: function getInitialState() {
 	    var listingId = this.props.params.listingId;
 	    var listing = this._findListingById(listingId) || {};
 	    return { listing: listing };
 	  },
-	  _findListingById: function (id) {
+	  _findListingById: function _findListingById(id) {
 	    var res;
 	    ListingStore.all().forEach(function (listing) {
 	      if (id == listing.id) {
@@ -51423,19 +51536,19 @@
 	    }.bind(this));
 	    return res;
 	  },
-	  componentDidMount: function () {
+	  componentDidMount: function componentDidMount() {
 	    this.listingListener = ListingStore.addListener(this._listingChanged);
 	    ApiUtil.fetchListings();
 	  },
-	  componentWillUnmount: function () {
+	  componentWillUnmount: function componentWillUnmount() {
 	    this.listingListener.remove();
 	  },
-	  _listingChanged: function () {
+	  _listingChanged: function _listingChanged() {
 	    var listingId = this.props.params.listingId;
 	    var listing = this._findListingById(listingId);
 	    this.setState({ listing: listing });
 	  },
-	  render: function () {
+	  render: function render() {
 	    var listings = [];
 	    if (this.state.listing) {
 	      listings.push(this.state.listing);
