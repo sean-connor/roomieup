@@ -29,7 +29,7 @@ module.exports = {
     })
   },
   destroyUserListing: function(listing){
-      listingId = listing.id;
+      var listingId = listing.id;
       $.ajax({
       url: "api/savedlistings/delete",
       type: 'DELETE',

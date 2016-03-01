@@ -5,12 +5,12 @@ var FilterActions = require('../../actions/filter_actions');
 var Filters = React.createClass({
   maxPriceChanged: function(e){
     e.preventDefault();
-    maxprice = e.target.value
+    var maxprice = e.target.value
     FilterActions.updateMaxPrice(maxprice);
   },
   minPriceChanged: function (e) {
     e.preventDefault();
-    minprice = e.target.value
+    var minprice = e.target.value
     FilterActions.updateMinPrice(minprice);
   },
   bedroomsChanged: function(e) {
@@ -42,7 +42,7 @@ var Filters = React.createClass({
     return (
       <div className="listingForm">
         <div className="filter">
-          <label>Price</label>
+          <label>Price({this.currentMaxPrice()})</label>
           <div className="form-price">
             <input className="searchBox" type="range" min="0" max="10000" step="100" value={this.currentMaxPrice()}  onChange={this.maxPriceChanged}/>
 

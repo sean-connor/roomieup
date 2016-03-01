@@ -11,7 +11,7 @@ var UserProfile = React.createClass({
   //Fetches User based on usertype prop, either current user or user in a chatroom.
   getInitialState: function(){
     this.updates = false;
-    profile = _getProfile();
+    var profile = _getProfile();
     return ({id: profile.id, profile_picture: profile.profile_picture, username: profile.username, description: profile.description});
   },
 
@@ -31,7 +31,7 @@ var UserProfile = React.createClass({
     console.log("Profile Page Mounting.");
   },
   cloudinaryUpload: function(){
-    that = this;
+    var that = this;
      cloudinary.openUploadWidget({ cloud_name: 'roomieup-com', upload_preset: 'fkttonkf', theme: 'white'},
        function(error, result) {
         if(error === null){

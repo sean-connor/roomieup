@@ -15,10 +15,10 @@ var Splash = React.createClass({
         </div>
         <div className="splash-down">
           <div className="downarrow"></div>
-          
+
         </div>
         <div className="splash-about">
-          <h2 className="splash-about-header">finding a place and friends to live with is difficult, let's change that.</h2>
+          <h2 className="splash-about-header">finding a place to live is difficult, let's change that.</h2>
           <div className="splash-about-row">
             <div className="about-row">
               <div className="searchListings-splash"></div>

@@ -19721,7 +19721,7 @@
 	    });
 	  },
 	  destroyUserListing: function destroyUserListing(listing) {
-	    listingId = listing.id;
+	    var listingId = listing.id;
 	    $.ajax({
 	      url: "api/savedlistings/delete",
 	      type: 'DELETE',
@@ -31029,8 +31029,8 @@
 	var Router = __webpack_require__(186);
 	var History = __webpack_require__(186).History;
 
-	App = React.createClass({
-	  displayName: 'App',
+	module.exports = React.createClass({
+	  displayName: 'exports',
 
 	  mixins: [Router.Navigation, History],
 	  getInitialState: function getInitialState() {
@@ -31070,8 +31070,6 @@
 	    );
 	  }
 	});
-
-	module.exports = App;
 
 /***/ },
 /* 234 */
@@ -31866,7 +31864,7 @@
 	  //Fetches User based on usertype prop, either current user or user in a chatroom.
 	  getInitialState: function getInitialState() {
 	    this.updates = false;
-	    profile = _getProfile();
+	    var profile = _getProfile();
 	    return { id: profile.id, profile_picture: profile.profile_picture, username: profile.username, description: profile.description };
 	  },
 
@@ -31886,7 +31884,7 @@
 	    console.log("Profile Page Mounting.");
 	  },
 	  cloudinaryUpload: function cloudinaryUpload() {
-	    that = this;
+	    var that = this;
 	    cloudinary.openUploadWidget({ cloud_name: 'roomieup-com', upload_preset: 'fkttonkf', theme: 'white' }, function (error, result) {
 	      if (error === null) {
 	        this.updates = true;
@@ -32088,7 +32086,7 @@
 	        React.createElement(
 	          'h2',
 	          { className: 'splash-about-header' },
-	          'finding a place and friends to live with is difficult, let\'s change that.'
+	          'finding a place to live is difficult, let\'s change that.'
 	        ),
 	        React.createElement(
 	          'div',
@@ -33617,12 +33615,12 @@
 
 	  maxPriceChanged: function maxPriceChanged(e) {
 	    e.preventDefault();
-	    maxprice = e.target.value;
+	    var maxprice = e.target.value;
 	    FilterActions.updateMaxPrice(maxprice);
 	  },
 	  minPriceChanged: function minPriceChanged(e) {
 	    e.preventDefault();
-	    minprice = e.target.value;
+	    var minprice = e.target.value;
 	    FilterActions.updateMinPrice(minprice);
 	  },
 	  bedroomsChanged: function bedroomsChanged(e) {
@@ -33660,7 +33658,9 @@
 	        React.createElement(
 	          'label',
 	          null,
-	          'Price'
+	          'Price(',
+	          this.currentMaxPrice(),
+	          ')'
 	        ),
 	        React.createElement(
 	          'div',

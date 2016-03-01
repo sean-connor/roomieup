@@ -6,7 +6,7 @@ var UserStore = require('../stores/user');
 var Router = require('react-router');
 var History = require('react-router').History;
 
-App = React.createClass({
+module.exports = React.createClass({
   mixins: [Router.Navigation, History],
   getInitialState: function () {
     console.log("FETCH LOGGED IN");
@@ -44,6 +44,4 @@ App = React.createClass({
       </div>
     );
   }
-});
-
-module.exports = App;
+})
