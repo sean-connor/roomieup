@@ -29,10 +29,12 @@ module.exports = React.createClass({
 
   componentWillUnmount: function(){
     this.userListener.remove();
+
   },
   componentWillMount: function() {
     Auth.checkSession();
     this.userListener = UserStore.addListener(this._userChanged);
+    this._userChanged();
   },
 
   render: function () {

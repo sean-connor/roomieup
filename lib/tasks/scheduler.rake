@@ -4,19 +4,19 @@ task :clpull => :environment do
   numsregex = /\d+/
     numregex = /\d/
     newlineregex = /\r?\n|\r/
-    browser = Watir::Browser.new :phantomjs
-    browser.goto 'http://sfbay.craigslist.org/search/apa?hasPic=1&search_distance=10&postal=94105&min_price=1&bedrooms=1'
+    browser = Watir::Browser.new :firefox
+    browser.goto 'http://sfbay.craigslist.org/search/apa?hasPic=1&search_distance=10&postal=94105&min_price=1&bedrooms=2'
     listings = Nokogiri::HTML.parse(browser.html)
     p listings.css("div[class=content]").length
     numlistings = listings.css("div[class=content]").children.length
     i = 3
-    (40 - 4).times do
+    (numlistings - 4).times do
       urlpartial = listings.css("div[class=content]").children[i].children[3].children[3].children[3].attributes["href"].value
       url = 'http://sfbay.craigslist.org' + urlpartial
       browser.goto url
       listing = Nokogiri::HTML.parse(browser.html)
-      latresult = listing.css("div[id=map]")[0].attributes["data-latitude"].value
-      lngresult = listing.css("div[id=map]")[0].attributes["data-longitude"].value
+      latresult = listing.css("div[id=map]")[0].attributes["data-latitude"].value || 37.6
+      lngresult = listing.css("div[id=map]")[0].attributes["data-longitude"].value || -122.45
       housingresult = listing.css("span[class=housing]").children[0].content
       housingresult = numregex.match(housingresult)[0]
       priceresult = listing.css("span[class=price]").children[0].content

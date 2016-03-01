@@ -31058,6 +31058,7 @@
 	  componentWillMount: function componentWillMount() {
 	    Auth.checkSession();
 	    this.userListener = UserStore.addListener(this._userChanged);
+	    this._userChanged();
 	  },
 
 	  render: function render() {
