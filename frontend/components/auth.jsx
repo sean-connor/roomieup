@@ -7,7 +7,7 @@ var Logout = require('./Authentication/logout');
 var UserStore = require('../stores/user');
 
 var Auth = React.createClass({
-  renderCheck :function(){
+  renderCheck: function(){
     if(UserStore.signedIn()){
       return(
        <Logout />

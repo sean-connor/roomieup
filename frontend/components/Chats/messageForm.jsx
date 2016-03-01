@@ -18,7 +18,7 @@ var MessageForm = React.createClass({
 
   handleChange: function(event) {
     event.preventDefault();
-    this.setState({[event.target.name]: event.target.value});
+    // this.setState({[event.target.name]: event.target.value});
   },
 
 

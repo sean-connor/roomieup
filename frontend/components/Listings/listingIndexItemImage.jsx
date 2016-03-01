@@ -3,7 +3,7 @@ var Carousel = require('nuka-carousel');
 
 var Decorators = [{
   component: React.createClass({
-    render() {
+    render: function () {
       return (
         <button
           onClick={this.props.previousSlide}>

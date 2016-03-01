@@ -8,7 +8,7 @@ var History = require('react-router').History;
 
 App = React.createClass({
   mixins: [Router.Navigation, History],
-  getInitialState() {
+  getInitialState: function () {
     console.log("FETCH LOGGED IN");
     return {
       loggedIn: Auth.loggedIn()
