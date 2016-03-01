@@ -14,4 +14,4 @@ render: function(){
   )
 }
 
-})
+});
