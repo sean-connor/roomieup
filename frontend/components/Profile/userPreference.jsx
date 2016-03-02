@@ -7,38 +7,37 @@ function _getProfile(){
 }
 
 
-var UserPreference = React.createClass({
-  getInitialState: function(){
-    this.updates = false;
-    var profile = _getProfile();
-    return ({id: profile.id, timepref: profile.timepref, cleanpref: profile.cleanpref, socialpref: profile.socialpref});
-  },
-
-  _profileChanged: function(){
-    profile = _getProfile()
-    this.setState({id: profile.id, timepref: profile.timepref, cleanpref: profile.cleanpref, socialpref: profile.socialpref});
-  },
-  //Adds a listeneer and fetches User on mount based on usertype prop, either current user or user in a chatroom.
-
-  // Commit any profile changes.
-  componentWillUnmount: function(){
-    ApiUtil.commitProfileChanges(this.state);
-  },
-  componentDidMount: function(){
-    console.log("Profile Preferences Mounting.");
-  },
-  timeprefChanged: function(e){
-    e.preventDefault();
-    this.state.timepref = e.target.value
-  },
-  cleanprefChanged: function (e) {
-    e.preventDefault();
-    this.state.cleanpref = e.target.value
-  },
-  socialprefChanged: function(e) {
-    e.preventDefault();
-    this.state.socialpref = e.target.value
-  },
+// var UserPreference = React.createClass({
+//   getInitialState: function(){
+//     this.updates = false;
+//     var profile = _getProfile();
+//     return ({id: profile.id, timepref: profile.timepref, cleanpref: profile.cleanpref, socialpref: profile.socialpref});
+//   },
+//
+//   _profileChanged: function(){
+//     profile = _getProfile()
+//     this.setState({id: profile.id, timepref: profile.timepref, cleanpref: profile.cleanpref, socialpref: profile.socialpref});
+//   },
+//   //Adds a listeneer and fetches User on mount based on usertype prop, either current user or user in a chatroom.
+//
+//   // Commit any profile changes.
+//   componentWillUnmount: function(){
+//   },
+//   componentDidMount: function(){
+//     console.log("Profile Preferences Mounting.");
+//   },
+//   timeprefChanged: function(e){
+//     e.preventDefault();
+//     this.state.timepref = e.target.value
+//   },
+//   cleanprefChanged: function (e) {
+//     e.preventDefault();
+//     this.state.cleanpref = e.target.value
+//   },
+//   socialprefChanged: function(e) {
+//     e.preventDefault();
+//     this.state.socialpref = e.target.value
+//   },
 
   render: function(){
     return(
