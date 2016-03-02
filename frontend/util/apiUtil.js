@@ -36,9 +36,6 @@ module.exports = {
       data: {listing_id: listingId},
       success: function(){
         ApiActions.notifyDeletion(listingId);
-      },
-      error: function(){
-        console.log('Unsuccessful Delete');
       }
     })
   },

@@ -1,1 +1,1 @@
-json.extract! @message, :id, :body, :user_id
+json.extract! @message, :id, :body, :user_id, :username

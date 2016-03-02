@@ -23,12 +23,9 @@ var UserProfile = React.createClass({
 
   // Commit any profile changes.
   componentWillUnmount: function(){
-    console.log("Profile Page Unmounting.");
-    console.log(this.state);
     ApiUtil.commitProfileChanges(this.state);
   },
   componentDidMount: function(){
-    console.log("Profile Page Mounting.");
   },
   cloudinaryUpload: function(){
     var that = this;

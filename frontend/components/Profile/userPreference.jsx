@@ -42,7 +42,7 @@ var UserPreference = React.createClass({
   render: function(){
     return(
       <div className="pref-group">
-        <h1 className="pref-header">Preferences</h1>
+        <h1 className="pref-header">Roommate Preferences</h1>
         <div className="preferences">
           <div className="pref-div">
             <label>Morning - Evening</label>

@@ -13,7 +13,6 @@ var Signup = React.createClass({
   },
 
   handleSubmit: function(event) {
-    console.log(event.target.name);
     event.preventDefault();
     if(event.target.name === "signup"){
       UserActions.create({

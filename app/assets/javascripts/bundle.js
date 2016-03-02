@@ -19728,9 +19728,6 @@
 	      data: { listing_id: listingId },
 	      success: function success() {
 	        ApiActions.notifyDeletion(listingId);
-	      },
-	      error: function error() {
-	        console.log('Unsuccessful Delete');
 	      }
 	    });
 	  },
@@ -31034,18 +31031,16 @@
 
 	  mixins: [Router.Navigation, History],
 	  getInitialState: function getInitialState() {
-	    console.log("FETCH LOGGED IN");
 	    return {
 	      loggedIn: Auth.loggedIn()
 	    };
 	  },
 
 	  _userChanged: function _userChanged() {
-	    console.log("USER SIGN IN / SIGN OUT");
 	    if (Auth.loggedIn() !== this.loggedIn) {
 	      this.setState({ loggedIn: Auth.loggedIn() });
 	      if (Auth.loggedIn()) {
-	        this.history.pushState(null, '/home');
+	        this.history.pushState(null, '/searchlistings');
 	      } else {
 	        this.history.pushState(null, '/splash');
 	      }
@@ -31572,7 +31567,6 @@
 	  },
 
 	  handleSubmit: function handleSubmit(event) {
-	    console.log(event.target.name);
 	    event.preventDefault();
 	    if (event.target.name === "signup") {
 	      UserActions.create({
@@ -31868,13 +31862,9 @@
 
 	  // Commit any profile changes.
 	  componentWillUnmount: function componentWillUnmount() {
-	    console.log("Profile Page Unmounting.");
-	    console.log(this.state);
 	    ApiUtil.commitProfileChanges(this.state);
 	  },
-	  componentDidMount: function componentDidMount() {
-	    console.log("Profile Page Mounting.");
-	  },
+	  componentDidMount: function componentDidMount() {},
 	  cloudinaryUpload: function cloudinaryUpload() {
 	    var that = this;
 	    cloudinary.openUploadWidget({ cloud_name: 'roomieup-com', upload_preset: 'fkttonkf', theme: 'white' }, function (error, result) {
@@ -31962,12 +31952,10 @@
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    console.log("Notification Index Mounted");
 	    this.notificationListener = NotificationStore.addListener(this._notificationsChanged);
 	    ApiUtil.fetchNotifications();
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
-	    console.log("Notification Index Unmounted");
 	    this.notificationListener.remove();
 	  },
 	  renderNotifications: function renderNotifications() {
@@ -33833,13 +33821,11 @@
 	  },
 
 	  close: function close() {
-	    console.log("Close Modal");
 	    this.setState({ showModal: false });
 	  },
 
 	  open: function open() {
-	    console.log("Open Modal");
-	    this.setState({ showModal: true });
+	    this.setState({ showModal: true, backdrop: true });
 	  },
 
 	  saveListing: function saveListing(event) {
@@ -33852,6 +33838,7 @@
 	  },
 	  render: function render() {
 	    var listing = this.props.listing;
+	    var backdrop = true;
 	    return React.createElement(
 	      'li',
 	      { className: 'listing-index-item' },
@@ -33867,7 +33854,7 @@
 	        ),
 	        React.createElement(
 	          Modal,
-	          { className: 'modal', show: this.state.showModal, onHide: this.close },
+	          { className: 'modal', show: this.state.showModal, onHide: this.close, backdrop: backdrop },
 	          React.createElement(
 	            Modal.Header,
 	            null,
@@ -50952,7 +50939,6 @@
 	  displayName: 'Map',
 
 	  componentDidMount: function componentDidMount() {
-	    console.log('map mounted');
 	    var map = ReactDOM.findDOMNode(this.refs.map);
 	    var mapOptions = {
 	      center: this.centerListingCoords(),
@@ -51004,9 +50990,7 @@
 	      this.map.setCenter(this.centerListingCoords());
 	    }
 	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    console.log("map UNmounted");
-	  },
+	  componentWillUnmount: function componentWillUnmount() {},
 	  registerListeners: function registerListeners() {
 	    var that = this;
 	    google.maps.event.addListener(this.map, 'idle', function () {
@@ -51127,13 +51111,11 @@
 	  },
 
 	  componentDidMount: function componentDidMount() {
-	    console.log("Saved Listings Mounting");
 	    this.listingListener = SavedListingStore.addListener(this._listingsChanged);
 	    ApiUtil.fetchSavedListings();
 	  },
 
 	  componentWillUnmount: function componentWillUnmount() {
-	    console.log("Saved Listings Unmounting");
 	    this.listingListener.remove();
 	  },
 
@@ -51249,12 +51231,10 @@
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    console.log("Chat Index Mounted");
 	    this.chatListener = ChatStore.addListener(this._chatsChanged);
 	    ApiUtil.fetchChats();
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
-	    console.log("Chat Index Unmounted");
 	    this.chatListener.remove();
 	  },
 	  renderChats: function renderChats() {
@@ -51337,18 +51317,14 @@
 	    return { messages: "" };
 	  },
 	  componentDidMount: function componentDidMount() {
-	    console.log("Chat Mounted");
 	    this.selected = "";
 	  },
-	  componentWillUnmount: function componentWillUnmount() {
-	    console.log("Chat Unmounted");
-	  },
+	  componentWillUnmount: function componentWillUnmount() {},
 	  renderMessages: function renderMessages(event) {
 	    event.preventDefault();
 	    this.setState({
 	      messages: ""
 	    });
-	    console.log("CLICK");
 	    if (event.target.innerHTML !== this.selected) {
 	      this.selected = event.target.innerHTML;
 	      this.setState({ messages: React.createElement(
@@ -51422,12 +51398,10 @@
 	    // ApiActions.resetMessages();
 	  },
 	  componentDidMount: function componentDidMount() {
-	    console.log("Message Index Mounted");
 	    this.messageListener = MessageStore.addListener(this._messagesChanged);
 	    ApiUtil.fetchMessages(this.props.chatId);
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
-	    console.log("Message Index Unmounted");
 	    this.messageListener.remove();
 	  },
 
@@ -51439,6 +51413,8 @@
 	        React.createElement(
 	          'p',
 	          { className: 'messageText' },
+	          message.username,
+	          ': ',
 	          message.body
 	        )
 	      );
@@ -51678,7 +51654,7 @@
 	      React.createElement(
 	        'h1',
 	        { className: 'pref-header' },
-	        'Preferences'
+	        'Roommate Preferences'
 	      ),
 	      React.createElement(
 	        'div',

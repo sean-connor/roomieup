@@ -12,18 +12,15 @@ var Chat = React.createClass({
     return {messages: ""}
   },
   componentDidMount: function(){
-    console.log("Chat Mounted");
     this.selected = "";
   },
   componentWillUnmount: function(){
-    console.log("Chat Unmounted");
   },
   renderMessages: function(event) {
     event.preventDefault();
     this.setState({
       messages: ""
     })
-    console.log("CLICK");
     if (event.target.innerHTML !== this.selected) {
       this.selected = event.target.innerHTML;
       this.setState(

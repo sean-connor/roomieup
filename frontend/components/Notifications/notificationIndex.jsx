@@ -20,12 +20,10 @@ var NotificationIndex = React.createClass({
     };
   },
   componentDidMount: function(){
-    console.log("Notification Index Mounted");
     this.notificationListener = NotificationStore.addListener(this._notificationsChanged);
     ApiUtil.fetchNotifications();
   },
   componentWillUnmount: function(){
-    console.log("Notification Index Unmounted");
     this.notificationListener.remove();
   },
   renderNotifications: function() {

@@ -33,12 +33,10 @@ var MessageIndex = React.createClass({
     // ApiActions.resetMessages();
   },
   componentDidMount: function(){
-    console.log("Message Index Mounted");
     this.messageListener = MessageStore.addListener(this._messagesChanged);
     ApiUtil.fetchMessages(this.props.chatId);
   },
   componentWillUnmount: function(){
-    console.log("Message Index Unmounted");
     this.messageListener.remove();
   },
 
@@ -47,7 +45,7 @@ var MessageIndex = React.createClass({
       this.state.messages.map(function(message, idx){
           return(
             <li className="message" key={idx}>
-              <p className="messageText">{message.body}</p>
+              <p className="messageText">{message.username}:&nbsp;{message.body}</p>
             </li>
           )
       })

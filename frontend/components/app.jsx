@@ -9,18 +9,16 @@ var History = require('react-router').History;
 module.exports = React.createClass({
   mixins: [Router.Navigation, History],
   getInitialState: function () {
-    console.log("FETCH LOGGED IN");
     return {
       loggedIn: Auth.loggedIn()
       }
   },
 
   _userChanged: function(){
-    console.log("USER SIGN IN / SIGN OUT");
     if (Auth.loggedIn() !== this.loggedIn){
       this.setState({loggedIn: Auth.loggedIn()})
       if(Auth.loggedIn()){
-        this.history.pushState(null, '/home');
+        this.history.pushState(null, '/searchlistings');
       } else {
         this.history.pushState(null, '/splash');
       }
@@ -29,6 +27,7 @@ module.exports = React.createClass({
 
   componentWillUnmount: function(){
     this.userListener.remove();
+
 
   },
   componentWillMount: function() {

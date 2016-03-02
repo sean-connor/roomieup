@@ -13,7 +13,6 @@ var CENTER = {lat: 37.7758, lng: -122.435};
 
 var Map = React.createClass({
   componentDidMount: function(){
-    console.log('map mounted');
     var map = ReactDOM.findDOMNode(this.refs.map);
     var mapOptions = {
       center: this.centerListingCoords(),
@@ -65,7 +64,6 @@ var Map = React.createClass({
     }
   },
   componentWillUnmount: function(){
-    console.log("map UNmounted");
   },
   registerListeners: function(){
     var that = this;

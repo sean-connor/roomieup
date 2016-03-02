@@ -20,12 +20,10 @@ var ChatIndex = React.createClass({
     };
   },
   componentDidMount: function(){
-    console.log("Chat Index Mounted");
     this.chatListener = ChatStore.addListener(this._chatsChanged);
     ApiUtil.fetchChats();
   },
   componentWillUnmount: function(){
-    console.log("Chat Index Unmounted");
     this.chatListener.remove();
   },
   renderChats: function() {

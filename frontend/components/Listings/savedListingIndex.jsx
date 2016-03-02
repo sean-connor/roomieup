@@ -32,13 +32,11 @@ _listingsChanged: function(){
 },
 
 componentDidMount: function(){
-  console.log("Saved Listings Mounting");
   this.listingListener = SavedListingStore.addListener(this._listingsChanged);
   ApiUtil.fetchSavedListings();
 },
 
 componentWillUnmount: function(){
-  console.log("Saved Listings Unmounting");
   this.listingListener.remove();
 },
 
