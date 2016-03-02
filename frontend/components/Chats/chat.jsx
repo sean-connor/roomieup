@@ -41,7 +41,7 @@ var Chat = React.createClass({
   render: function(){
     return(
       <div className="chatItem">
-        <h2 className="chatName" onClick={this.renderMessages}> {this.props.title}  </h2>
+        <h2 className="chatName" onClick={this.renderMessages}> {this.props.title} &#9660; </h2>
         {this.state.messages}
       </div>
     );

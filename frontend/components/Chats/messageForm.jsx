@@ -14,6 +14,7 @@ var MessageForm = React.createClass({
         body: this.state.body,
         chat_id: this.props.chatId
     });
+    this.setState({body: ""});
   },
 
   handleChange: function(event) {
@@ -28,7 +29,8 @@ var MessageForm = React.createClass({
         <input className="messageInput" onChange={this.handleChange}
           type="text"
           name="body"
-          placeholder="Message"/>
+          defaultValue="Message"
+          value={this.state.body}/>
         <button className="messageSubmit" type="submit">Send</button>
       </form>
     );

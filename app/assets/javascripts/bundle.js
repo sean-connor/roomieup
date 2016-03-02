@@ -32070,7 +32070,11 @@
 	      React.createElement(
 	        'div',
 	        { className: 'splash-down' },
-	        React.createElement('div', { className: 'downarrow' })
+	        React.createElement(
+	          'div',
+	          { className: 'downarrow' },
+	          '▼'
+	        )
 	      ),
 	      React.createElement(
 	        'div',
@@ -32132,7 +32136,11 @@
 	        React.createElement(
 	          'div',
 	          { className: 'about-down' },
-	          React.createElement('div', { className: 'downarrow' })
+	          React.createElement(
+	            'div',
+	            { className: 'downarrow' },
+	            '▼'
+	          )
 	        )
 	      ),
 	      React.createElement(
@@ -51363,7 +51371,7 @@
 	        { className: 'chatName', onClick: this.renderMessages },
 	        ' ',
 	        this.props.title,
-	        '  '
+	        ' ▼ '
 	      ),
 	      this.state.messages
 	    );
@@ -51515,6 +51523,7 @@
 	      body: this.state.body,
 	      chat_id: this.props.chatId
 	    });
+	    this.setState({ body: "" });
 	  },
 
 	  handleChange: function handleChange(event) {
@@ -51529,7 +51538,8 @@
 	      React.createElement('input', { className: 'messageInput', onChange: this.handleChange,
 	        type: 'text',
 	        name: 'body',
-	        placeholder: 'Message' }),
+	        defaultValue: 'Message',
+	        value: this.state.body }),
 	      React.createElement(
 	        'button',
 	        { className: 'messageSubmit', type: 'submit' },
@@ -51630,6 +51640,37 @@
 	var UserPreference = React.createClass({
 	  displayName: 'UserPreference',
 
+	  getInitialState: function getInitialState() {
+	    this.updates = false;
+	    var profile = _getProfile();
+	    return { id: profile.id, timepref: profile.timepref, cleanpref: profile.cleanpref, socialpref: profile.socialpref };
+	  },
+
+	  _profileChanged: function _profileChanged() {
+	    profile = _getProfile();
+	    this.setState({ id: profile.id, timepref: profile.timepref, cleanpref: profile.cleanpref, socialpref: profile.socialpref });
+	  },
+	  //Adds a listeneer and fetches User on mount based on usertype prop, either current user or user in a chatroom.
+
+	  // Commit any profile changes.
+	  componentWillUnmount: function componentWillUnmount() {
+	    ApiUtil.commitProfileChanges(this.state);
+	  },
+	  componentDidMount: function componentDidMount() {
+	    console.log("Profile Preferences Mounting.");
+	  },
+	  timeprefChanged: function timeprefChanged(e) {
+	    e.preventDefault();
+	    this.state.timepref = e.target.value;
+	  },
+	  cleanprefChanged: function cleanprefChanged(e) {
+	    e.preventDefault();
+	    this.state.cleanpref = e.target.value;
+	  },
+	  socialprefChanged: function socialprefChanged(e) {
+	    e.preventDefault();
+	    this.state.socialpref = e.target.value;
+	  },
 
 	  render: function render() {
 	    return React.createElement(
@@ -51651,7 +51692,7 @@
 	            null,
 	            'Morning - Evening'
 	          ),
-	          React.createElement('input', { className: 'searchBox', type: 'range', min: '0', max: '10', step: '1' })
+	          React.createElement('input', { className: 'searchBox', type: 'range', min: '1', max: '10', step: '1', defaultValue: '5' })
 	        ),
 	        React.createElement(
 	          'div',
@@ -51661,7 +51702,7 @@
 	            null,
 	            'Messy - Tidy'
 	          ),
-	          React.createElement('input', { className: 'searchBox', type: 'range', min: '0', max: '10', step: '1' })
+	          React.createElement('input', { className: 'searchBox', type: 'range', min: '1', max: '10', step: '1', defaultValue: '5' })
 	        ),
 	        React.createElement(
 	          'div',
@@ -51671,7 +51712,7 @@
 	            null,
 	            'Home - Out'
 	          ),
-	          React.createElement('input', { className: 'searchBox', type: 'range', min: '0', max: '10', step: '1' })
+	          React.createElement('input', { className: 'searchBox', type: 'range', min: '1', max: '10', step: '1', defaultValue: '5' })
 	        )
 	      )
 	    );

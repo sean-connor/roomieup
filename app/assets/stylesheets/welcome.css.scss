@@ -183,8 +183,7 @@ body {
 
 .main{
   text-align: left;
-  height: auto;
-  height: calc(100% - 65px);
+  height: calc(100% - 110px);
   background: rgba(255,255,255,.75);
 }
 .splash-main{
@@ -263,6 +262,7 @@ body {
   left: 50%;
   height: 10%;
   z-index: 1;
+  color: ghostwhite;
 }
 .about-down{
   position: absolute;
@@ -271,11 +271,12 @@ body {
   left: 50%;
   height: 10%;
   z-index: 1;
+  color: #222;
 }
 .downarrow{
   position: relative;
-  background-image: asset-data-url("downarrow.svg");
-  fill: ghostwhite;
+  // background-image: asset-data-url("downarrow.svg");
+  font-size: 30px;
   height: 50px;
   width: 50px;
 }
@@ -537,7 +538,7 @@ li > button{
 }
 .searchIndex, .savedIndex{
   overflow: auto;
-  height: 900px;
+  height: 100%;
   position: relative;
   display: flex;
   flex-flow: column;
@@ -574,7 +575,15 @@ li > button{
   border-radius: 3px;
 }
 .title{
+  font-size: 19px;
+  position: absolute;
   padding-left: 5px;
+  top: 90%;
+  opacity: 0.5;
+}
+.title:hover{
+  cursor:pointer;
+  opacity: 1;
 }
 .price{
   position: absolute;
@@ -695,6 +704,7 @@ li > button{
 
   .form-submit:hover{
     opacity: .75;
+    cursor: pointer;
   }
 
 .chatpane{
@@ -724,6 +734,9 @@ li > button{
 
   min-height: 3em;
   line-height: 3em;
+}
+.chatTitle:hover{
+  cursor: pointer;
 }
 .chatItem{
   margin: 0;

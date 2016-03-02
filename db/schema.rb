@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160227062751) do
+ActiveRecord::Schema.define(version: 20160302002616) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -89,6 +89,9 @@ ActiveRecord::Schema.define(version: 20160227062751) do
     t.boolean  "is_new",          default: true
     t.text     "description",     default: "Enter a profile description!"
     t.string   "profile_picture", default: "http://res.cloudinary.com/roomieup-com/image/upload/v1456353088/moymcoe5khih7l1wsztr.jpg"
+    t.integer  "timepref",        default: 5
+    t.integer  "cleanpref",       default: 5
+    t.integer  "socialpref",      default: 5
   end
 
 end

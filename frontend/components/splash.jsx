@@ -14,7 +14,7 @@ var Splash = React.createClass({
           </div>
         </div>
         <div className="splash-down">
-          <div className="downarrow"></div>
+          <div className="downarrow">&#9660;</div>
 
         </div>
         <div className="splash-about">
@@ -37,7 +37,7 @@ var Splash = React.createClass({
             </div>
           </div>
           <div className="about-down">
-            <div className="downarrow"></div>
+            <div className="downarrow">&#9660;</div>
           </div>
         </div>
         <div className="splash-login">
