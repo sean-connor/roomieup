@@ -31892,7 +31892,7 @@
 	  },
 
 	  renderProfile: function renderProfile() {
-	    if (this.state.profile_picture === "") {
+	    if (this.state.profile_picture === undefined) {
 	      return;
 	    } else {
 	      return React.createElement(

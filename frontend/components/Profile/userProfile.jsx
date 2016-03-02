@@ -48,7 +48,7 @@ var UserProfile = React.createClass({
   },
 
   renderProfile: function(){
-    if(this.state.profile_picture === ""){
+    if(this.state.profile_picture === undefined){
       return
     } else {
       return (
