@@ -31818,7 +31818,7 @@
 	var ApiUtil = __webpack_require__(159);
 	var UserProfile = __webpack_require__(249);
 	var NotificationIndex = __webpack_require__(250);
-	var UserPreference = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"./Profile/userPreference\""); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+	var UserPreference = __webpack_require__(527);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -51621,6 +51621,105 @@
 	});
 
 	module.exports = ListingShow;
+
+/***/ },
+/* 526 */,
+/* 527 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(1);
+	var ApiUtil = __webpack_require__(159);
+	var UserStore = __webpack_require__(237);
+
+	function _getProfile() {
+	  return UserStore.getUser();
+	}
+
+	var UserPreference = React.createClass({
+	  displayName: 'UserPreference',
+
+	  //   getInitialState: function(){
+	  //     this.updates = false;
+	  //     var profile = _getProfile();
+	  //     return ({id: profile.id, timepref: profile.timepref, cleanpref: profile.cleanpref, socialpref: profile.socialpref});
+	  //   },
+	  //
+	  //   _profileChanged: function(){
+	  //     profile = _getProfile()
+	  //     this.setState({id: profile.id, timepref: profile.timepref, cleanpref: profile.cleanpref, socialpref: profile.socialpref});
+	  //   },
+	  //   //Adds a listeneer and fetches User on mount based on usertype prop, either current user or user in a chatroom.
+	  //
+	  //   // Commit any profile changes.
+	  //   componentWillUnmount: function(){
+	  //   },
+	  //   componentDidMount: function(){
+	  //     console.log("Profile Preferences Mounting.");
+	  //   },
+	  //   timeprefChanged: function(e){
+	  //     e.preventDefault();
+	  //     this.state.timepref = e.target.value
+	  //   },
+	  //   cleanprefChanged: function (e) {
+	  //     e.preventDefault();
+	  //     this.state.cleanpref = e.target.value
+	  //   },
+	  //   socialprefChanged: function(e) {
+	  //     e.preventDefault();
+	  //     this.state.socialpref = e.target.value
+	  //   },
+
+	  render: function render() {
+	    return React.createElement(
+	      'div',
+	      { className: 'pref-group' },
+	      React.createElement(
+	        'h1',
+	        { className: 'pref-header' },
+	        'Preferences'
+	      ),
+	      React.createElement(
+	        'div',
+	        { className: 'preferences' },
+	        React.createElement(
+	          'div',
+	          { className: 'pref-div' },
+	          React.createElement(
+	            'label',
+	            null,
+	            'Morning - Evening'
+	          ),
+	          React.createElement('input', { className: 'searchBox', type: 'range', min: '1', max: '10', step: '1', defaultValue: '5' })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'pref-div' },
+	          React.createElement(
+	            'label',
+	            null,
+	            'Messy - Tidy'
+	          ),
+	          React.createElement('input', { className: 'searchBox', type: 'range', min: '1', max: '10', step: '1', defaultValue: '5' })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'pref-div' },
+	          React.createElement(
+	            'label',
+	            null,
+	            'Home - Out'
+	          ),
+	          React.createElement('input', { className: 'searchBox', type: 'range', min: '1', max: '10', step: '1', defaultValue: '5' })
+	        )
+	      )
+	    );
+	  }
+
+	});
+
+	module.exports = UserPreference;
 
 /***/ }
 /******/ ]);

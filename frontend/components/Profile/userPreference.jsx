@@ -7,7 +7,7 @@ function _getProfile(){
 }
 
 
-// var UserPreference = React.createClass({
+var UserPreference = React.createClass({
 //   getInitialState: function(){
 //     this.updates = false;
 //     var profile = _getProfile();
