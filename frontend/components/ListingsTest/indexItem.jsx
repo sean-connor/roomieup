@@ -4,7 +4,7 @@ var ApiUtil = require('../../util/apiUtil.js');
 var ListingIndexItemImage = require('../Listings/listingIndexItemImage');
 var Listing = require('../ListingsTest/listing');
 var Modal = require('react-bootstrap').Modal;
-
+var Button = require('react-bootstrap').Button;
 var IndexItem = React.createClass({
   mixins: [ReactRouter.history],
 
@@ -17,7 +17,7 @@ var IndexItem = React.createClass({
   },
 
   open: function() {
-    this.setState({ showModal: true, backdrop: true});
+    this.setState({ showModal: true});
   },
 
   saveListing: function(event){
@@ -30,13 +30,12 @@ var IndexItem = React.createClass({
   },
   render: function(){
     var listing = this.props.listing;
-    var backdrop = true;
     return (
         <li className="listing-index-item">
           <div className="listContainer">
             <ListingIndexItemImage key={listing.id} images={listing.imagelistings}/>
             <a className="title" onClick={this.open}>{listing.title}!&nbsp;(Click for Detail)</a>
-            <Modal className="modal" show={this.state.showModal} onHide={this.close} backdrop={backdrop}>
+            <Modal className="modal" show={this.state.showModal} onHide={this.close}>
                <Modal.Header>
                  <Modal.Title>{listing.title}</Modal.Title>
                </Modal.Header>
@@ -44,7 +43,7 @@ var IndexItem = React.createClass({
                  <Listing listing={listing}/>
                </Modal.Body>
                <Modal.Footer>
-                 <button className="modalclose" onClick={this.close}>X</button>
+                 <Button onClick={this.close}>Close</Button>
                </Modal.Footer>
             </Modal>
             <p className="price">${listing.price}</p>

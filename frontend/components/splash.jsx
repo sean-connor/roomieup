@@ -3,6 +3,12 @@ var Auth = require('./auth');
 
 var Splash = React.createClass({
 
+  scrollToAbout: function(){
+    window.scrollTo(0,window.innerHeight)
+  },
+  scrollToLog: function(){
+    window.scrollTo(0,2*window.innerHeight)
+  },
   render: function() {
     return (
       <div className="splash-main">
@@ -14,7 +20,7 @@ var Splash = React.createClass({
           </div>
         </div>
         <div className="splash-down">
-          <div className="downarrow">&#9660;</div>
+          <div className="downarrow" onClick={this.scrollToAbout}>&#9660;</div>
 
         </div>
         <div className="splash-about">
@@ -37,7 +43,7 @@ var Splash = React.createClass({
             </div>
           </div>
           <div className="about-down">
-            <div className="downarrow">&#9660;</div>
+            <div className="downarrow" onClick={this.scrollToLog}>&#9660;</div>
           </div>
         </div>
         <div className="splash-login">

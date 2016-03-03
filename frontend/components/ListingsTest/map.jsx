@@ -82,6 +82,7 @@ var Map = React.createClass({
       var coords = { lat: event.latLng.lat(), lng: event.latLng.lng() };
       that.props.onMapClick(coords);
     });
+
   },
   createMarkerFromListing: function (listing) {
     var that = this;
