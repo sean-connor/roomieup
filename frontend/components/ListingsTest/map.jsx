@@ -9,13 +9,12 @@ function _getCoordsObj(latLng) {
   };
 }
 
-var CENTER = {lat: 37.7758, lng: -122.435};
 
 var Map = React.createClass({
   componentDidMount: function(){
     var map = ReactDOM.findDOMNode(this.refs.map);
     var mapOptions = {
-      center: this.centerListingCoords(),
+      center: {lat: 37.7758, lng: -122.435},
       zoom: 13
     };
     this.map = new google.maps.Map(map, mapOptions);
@@ -28,7 +27,7 @@ var Map = React.createClass({
       var listing = this.props.listings[0];
       return { lat: listing.lat, lng: listing.lng };
     } else {
-      return CENTER;
+      return this.props.center;
     }
   },
   componentDidUpdate: function (oldProps) {
@@ -65,6 +64,12 @@ var Map = React.createClass({
   },
   componentWillUnmount: function(){
   },
+  componentWillReceiveProps: function(nProps){
+    if(nProps.center !== this.props.center){
+      this.map.setCenter(nProps.center);
+      this.map.setZoom(13);
+    }
+  },
   registerListeners: function(){
     var that = this;
     google.maps.event.addListener(this.map, 'idle', function() {
@@ -84,6 +89,7 @@ var Map = React.createClass({
     });
 
   },
+
   createMarkerFromListing: function (listing) {
     var that = this;
     var pos = new google.maps.LatLng(listing.lat, listing.lng);
@@ -93,7 +99,8 @@ var Map = React.createClass({
       listingId: listing.id
     });
     marker.addListener('click', function () {
-      that.props.onMarkerClick(listing)
+      this.map.panTo(this.getPosition());
+      this.map.setZoom(18);
     });
     this.markers.push(marker);
   },

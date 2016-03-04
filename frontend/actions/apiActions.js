@@ -20,6 +20,12 @@ var ApiActions = {
       listings: listings
     })
   },
+  receiveSavedListing: function(listing){
+    AppDispatcher.dispatch({
+      actionType: ListingConstants.SAVED_LISTING_RECEIVED,
+      listing: listing
+    })
+  },
   notifyDeletion: function(listingId){
     AppDispatcher.dispatch({
       actionType: ListingConstants.SAVED_LISTING_DELETED,

@@ -9,6 +9,15 @@ var _listings = [];
 var resetListings = function (listings) {
   _listings = listings;
 }
+SavedListingStore.isListingSaved = function(id){
+  _listings.forEach(function(listing, idx){
+    if(listing.id === id) {
+      console.log("listing is saved");
+      return true;
+    }
+  })
+  return false;
+}
 
 var deleteListing = function(id) {
   var spliceIdx = NaN;

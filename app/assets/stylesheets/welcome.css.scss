@@ -1,3 +1,5 @@
+
+
 html{
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -199,7 +201,8 @@ body {
   top:0;
   left:0;
   z-index: 2;
-  width: 100%;
+  overflow-x: hidden;
+  width: 101%;
   height: 100%;
 }
 .splash-header-group{
@@ -218,12 +221,12 @@ body {
   position: absolute;
   top: 100%;
   height: 100%;
-  width: 100%;
+  width: 101%;
   background: ghostwhite;
 }
 .splash-about-header{
   position: relative;
-  top: 20%;
+  top: 100px;
   color: black;
   font-size: 50px;
   font-weight: 700;
@@ -232,7 +235,7 @@ body {
 }
 .splash-about-row{
   position: relative;
-  top: 40%;
+  top: 30%;
   left: 1%;
   display: flex;
   flex-flow: row;
@@ -251,7 +254,7 @@ body {
   position: absolute;
   top: 200%;
   height: 100%;
-  width: 100%;
+  width: 101%;
   background: #eee;
 }
 .splash-down{
@@ -265,7 +268,7 @@ body {
 }
 .about-down{
   position: absolute;
-  top: 80%;
+  bottom: 50px;
   width: 20%;
   left: 50%;
   height: 10%;
@@ -307,7 +310,7 @@ body {
   margin-left: 50px;
 }
 .profilephoto{
-  width: 300px;
+  width: 60%;
   height: auto;
   border: 5px solid ghostwhite;
   border-radius: 10px;
@@ -315,7 +318,7 @@ body {
 }
 .usernamedisp{
   color: black;
-  width: 300px;
+  width: 60%;
   text-align: center;
   height: 1.5em;
   padding: 0;
@@ -340,7 +343,7 @@ body {
   resize: none;
   min-height: 245px;
   height: 50px;
-  width: 300px;
+  width: 60%;
   border: 1px ridge;
   background: rgba(15,80,255,.04);
 }

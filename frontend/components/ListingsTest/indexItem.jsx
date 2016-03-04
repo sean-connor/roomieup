@@ -5,11 +5,15 @@ var ListingIndexItemImage = require('../Listings/listingIndexItemImage');
 var Listing = require('../ListingsTest/listing');
 var Modal = require('react-bootstrap').Modal;
 var Button = require('react-bootstrap').Button;
+
+
+
 var IndexItem = React.createClass({
   mixins: [ReactRouter.history],
 
   getInitialState: function() {
-    return { showModal: false };
+    return { showModal: false,
+             saved: this.props.saved}
   },
 
   close: function() {
@@ -20,14 +24,21 @@ var IndexItem = React.createClass({
     this.setState({ showModal: true});
   },
 
-  saveListing: function(event){
-    event.preventDefault();
-    ApiUtil.saveListing(this.props.listing);
-  },
-
   confirmAlert: function(){
     confirm("Your listing will open in a new window.");
   },
+
+  editListing: function(event){
+    event.preventDefault();
+    if(event.target.innerHTML === "Save"){
+      ApiUtil.saveListing(this.props.listing);
+      this.setState({saved: "Saved"})
+    } else {
+      ApiUtil.destroyUserListing(this.props.listing);
+      this.setState({saved: "Save"})
+    }
+  },
+
   render: function(){
     var listing = this.props.listing;
     return (
@@ -48,7 +59,7 @@ var IndexItem = React.createClass({
             </Modal>
             <p className="price">${listing.price}</p>
             <p className="bedroom">Bedrooms: {listing.bedroom}</p>
-            <p className="list-btn" onClick={this.saveListing}>Save</p>
+            <p className="list-btn" onClick={this.editListing}>{this.state.saved}</p>
           </div>
         </li>
     );

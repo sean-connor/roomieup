@@ -1,23 +1,33 @@
 
 var React = require('react');
 var IndexItem = require('./indexItem');
+var ApiUtil = require('../../util/apiUtil.js');
+
+
 
 var Index = React.createClass({
-  handleItemClick: function (listing) {
-    //ADD HISTORY MIX IN
-    this.props.history.pushState(null, "listings/" + listing.id );
+
+  isSaved: function(listing){
+    var saved = "Save"
+    this.props.savedlistings.forEach(function(savedlisting, idx){
+      if(savedlisting.id === listing.id) {
+        saved = "Saved";
+      }
+    })
+    return saved;
   },
+
   render: function(){
     var handleItemClick = this.handleItemClick;
+    var that = this;
     return (
       <div className="index">
         <ul className="listingcollection">
           {
             this.props.listings.map(function(listing){
-              var boundClick = handleItemClick.bind(null, listing);
               return <IndexItem
-                onClick={boundClick}
                 listing={listing}
+                saved={that.isSaved(listing)}
                 key={listing.id} />
             })
           }

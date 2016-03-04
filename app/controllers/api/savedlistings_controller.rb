@@ -16,9 +16,7 @@ class Api::SavedlistingsController < ApplicationController
           end
       end
     end
-    respond_to do |format|
-      format.json {head :ok}
-    end
+    render :create
   end
 
   def index

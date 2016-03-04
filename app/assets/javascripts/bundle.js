@@ -60,7 +60,7 @@
 	var Home = __webpack_require__(248);
 	var Splash = __webpack_require__(253);
 	var SearchListings = __webpack_require__(254);
-	var SavedListings = __webpack_require__(516);
+	var SavedListings = __webpack_require__(517);
 	var Chat = __webpack_require__(519);
 	var Auth = __webpack_require__(235);
 	var ListingShow = __webpack_require__(526);
@@ -19865,6 +19865,12 @@
 	      listings: listings
 	    });
 	  },
+	  receiveSavedListing: function receiveSavedListing(listing) {
+	    AppDispatcher.dispatch({
+	      actionType: ListingConstants.SAVED_LISTING_RECEIVED,
+	      listing: listing
+	    });
+	  },
 	  notifyDeletion: function notifyDeletion(listingId) {
 	    AppDispatcher.dispatch({
 	      actionType: ListingConstants.SAVED_LISTING_DELETED,
@@ -20237,6 +20243,7 @@
 	module.exports = {
 	  LISTINGS_RECEIVED: "LISTINGS_RECEIVED",
 	  SAVED_LISTINGS_RECEIVED: "SAVED_LISTINGS_RECEIVED",
+	  SAVED_LISTING_RECEIVED: "SAVED_LISTING_RECEIVED",
 	  LISTING_SAVED: "LISTING_SAVED",
 	  SAVED_LISTING_DELETED: "SAVED_LISTING_DELETED"
 	};
@@ -33646,14 +33653,21 @@
 
 	var React = __webpack_require__(1);
 	var ListingStore = __webpack_require__(257);
+	var SavedListingStore = __webpack_require__(515);
 	var FilterParamsStore = __webpack_require__(169);
 	var ApiUtil = __webpack_require__(159);
 	var Filters = __webpack_require__(268);
 	var Index = __webpack_require__(270);
-	var Map = __webpack_require__(515);
+	var Map = __webpack_require__(516);
+	var Modal = __webpack_require__(273).Modal;
+	var Button = __webpack_require__(273).Button;
+	var Listing = __webpack_require__(272);
 
 	function _getAllListings() {
 	  return ListingStore.all();
+	}
+	function _getSavedListings() {
+	  return SavedListingStore.all();
 	}
 
 	function _getFilterParams() {
@@ -33668,6 +33682,9 @@
 	  _listingsChanged: function _listingsChanged() {
 	    this.setState({ listings: _getAllListings() });
 	  },
+	  _savedListingsChanged: function _savedListingsChanged() {
+	    this.setState({ savedlistings: _getSavedListings() });
+	  },
 	  _filtersChanged: function _filtersChanged() {
 	    var newParams = _getFilterParams();
 	    this.setState({ filterParams: newParams });
@@ -33676,35 +33693,51 @@
 	  getInitialState: function getInitialState() {
 	    return {
 	      listings: _getAllListings(),
+	      savedlistings: _getSavedListings(),
 	      filterParams: _getFilterParams(),
-	      clickedLoc: null
+	      clickedLoc: null,
+	      showModal: false,
+	      center: { lat: 37.7758, lng: -122.435 }
 	    };
 	  },
 	  componentDidMount: function componentDidMount() {
 	    this.listingListener = ListingStore.addListener(this._listingsChanged);
+	    this.savedListingListener = SavedListingStore.addListener(this._savedListingsChanged);
 	    this.filterListener = FilterParamsStore.addListener(this._filtersChanged);
+	    ApiUtil.fetchSavedListings();
 	    ApiUtil.fetchListings();
 	  },
 	  componentWillUnmount: function componentWillUnmount() {
 	    this.listingListener.remove();
+	    this.savedListingListener.remove();
 	    this.filterListener.remove();
 	  },
 
-	  handleMarkerClick: function handleMarkerClick(listing) {
-	    this.props.history.pushState(null, "listings/" + listing.id);
+	  onCityUpdate: function onCityUpdate(city) {
+	    if (city.currentTarget.selectedOptions[0].value === "sfbay") {
+	      this.setState({ center: { lat: 37.7758, lng: -122.435 } });
+	    } else if (city.currentTarget.selectedOptions[0].value === "nyc") {
+	      this.setState({ center: { lat: 40.75149, lng: -73.98413 } });
+	    } else if (city.currentTarget.selectedOptions[0].value === "chi") {
+	      this.setState({ center: { lat: 41.888429, lng: -87.624601 } });
+	    } else {
+	      this.setState({ center: { lat: 37.7758, lng: -122.435 } });
+	    }
 	  },
 	  render: function render() {
 	    return React.createElement(
 	      'div',
 	      null,
 	      React.createElement(Map, {
+	        center: this.state.center,
 	        onMarkerClick: this.handleMarkerClick,
-	        listings: this.state.listings }),
+	        listings: this.state.listings,
+	        savedlistings: this.state.savedlistings }),
 	      React.createElement(
 	        'div',
 	        { className: 'half' },
-	        React.createElement(Filters, { listings: this.state.listings, filterParams: this.state.filterParams }),
-	        React.createElement(Index, { listings: this.state.listings, history: this.props.history })
+	        React.createElement(Filters, { listings: this.state.listings, filterParams: this.state.filterParams, onCityUpdate: this.onCityUpdate }),
+	        React.createElement(Index, { listings: this.state.listings, history: this.props.history, savedlistings: this.state.savedlistings })
 	      )
 	    );
 	  }
@@ -33806,7 +33839,7 @@
 	          { className: 'form-city' },
 	          React.createElement(
 	            'select',
-	            { className: 'city', name: 'city' },
+	            { className: 'city', name: 'city', onChange: this.props.onCityUpdate },
 	            React.createElement(
 	              'option',
 	              { value: 'sfbay' },
@@ -33816,6 +33849,11 @@
 	              'option',
 	              { value: 'nyc' },
 	              'New York City'
+	            ),
+	            React.createElement(
+	              'option',
+	              { value: 'chi' },
+	              'Chicago'
 	            )
 	          )
 	        )
@@ -33872,16 +33910,25 @@
 
 	var React = __webpack_require__(1);
 	var IndexItem = __webpack_require__(271);
+	var ApiUtil = __webpack_require__(159);
 
 	var Index = React.createClass({
 	  displayName: 'Index',
 
-	  handleItemClick: function handleItemClick(listing) {
-	    //ADD HISTORY MIX IN
-	    this.props.history.pushState(null, "listings/" + listing.id);
+
+	  isSaved: function isSaved(listing) {
+	    var saved = "Save";
+	    this.props.savedlistings.forEach(function (savedlisting, idx) {
+	      if (savedlisting.id === listing.id) {
+	        saved = "Saved";
+	      }
+	    });
+	    return saved;
 	  },
+
 	  render: function render() {
 	    var handleItemClick = this.handleItemClick;
+	    var that = this;
 	    return React.createElement(
 	      'div',
 	      { className: 'index' },
@@ -33889,10 +33936,9 @@
 	        'ul',
 	        { className: 'listingcollection' },
 	        this.props.listings.map(function (listing) {
-	          var boundClick = handleItemClick.bind(null, listing);
 	          return React.createElement(IndexItem, {
-	            onClick: boundClick,
 	            listing: listing,
+	            saved: that.isSaved(listing),
 	            key: listing.id });
 	        })
 	      )
@@ -33915,13 +33961,15 @@
 	var Listing = __webpack_require__(272);
 	var Modal = __webpack_require__(273).Modal;
 	var Button = __webpack_require__(273).Button;
+
 	var IndexItem = React.createClass({
 	  displayName: 'IndexItem',
 
 	  mixins: [ReactRouter.history],
 
 	  getInitialState: function getInitialState() {
-	    return { showModal: false };
+	    return { showModal: false,
+	      saved: this.props.saved };
 	  },
 
 	  close: function close() {
@@ -33932,14 +33980,21 @@
 	    this.setState({ showModal: true });
 	  },
 
-	  saveListing: function saveListing(event) {
-	    event.preventDefault();
-	    ApiUtil.saveListing(this.props.listing);
-	  },
-
 	  confirmAlert: function confirmAlert() {
 	    confirm("Your listing will open in a new window.");
 	  },
+
+	  editListing: function editListing(event) {
+	    event.preventDefault();
+	    if (event.target.innerHTML === "Save") {
+	      ApiUtil.saveListing(this.props.listing);
+	      this.setState({ saved: "Saved" });
+	    } else {
+	      ApiUtil.destroyUserListing(this.props.listing);
+	      this.setState({ saved: "Save" });
+	    }
+	  },
+
 	  render: function render() {
 	    var listing = this.props.listing;
 	    return React.createElement(
@@ -33996,8 +34051,8 @@
 	        ),
 	        React.createElement(
 	          'p',
-	          { className: 'list-btn', onClick: this.saveListing },
-	          'Save'
+	          { className: 'list-btn', onClick: this.editListing },
+	          this.state.saved
 	        )
 	      )
 	    );
@@ -51025,6 +51080,64 @@
 
 	'use strict';
 
+	var Store = __webpack_require__(170).Store;
+	var AppDispatcher = __webpack_require__(161);
+	var ListingConstants = __webpack_require__(165);
+
+	var SavedListingStore = new Store(AppDispatcher);
+
+	var _listings = [];
+
+	var resetListings = function resetListings(listings) {
+	  _listings = listings;
+	};
+	SavedListingStore.isListingSaved = function (id) {
+	  _listings.forEach(function (listing, idx) {
+	    if (listing.id === id) {
+	      console.log("listing is saved");
+	      return true;
+	    }
+	  });
+	  return false;
+	};
+
+	var deleteListing = function deleteListing(id) {
+	  var spliceIdx = NaN;
+	  _listings.forEach(function (listing, idx) {
+	    if (listing.id === id) {
+	      spliceIdx = idx;
+	    }
+	  });
+	  if (spliceIdx !== NaN) {
+	    _listings.splice(spliceIdx, 1);
+	  }
+	};
+
+	SavedListingStore.all = function () {
+	  return _listings.slice(0);
+	};
+
+	SavedListingStore.__onDispatch = function (payload) {
+	  switch (payload.actionType) {
+	    case ListingConstants.SAVED_LISTINGS_RECEIVED:
+	      resetListings(payload.listings);
+	      SavedListingStore.__emitChange();
+	      break;
+	    case ListingConstants.SAVED_LISTING_DELETED:
+	      deleteListing(payload.id);
+	      SavedListingStore.__emitChange();
+	      break;
+	  }
+	};
+
+	module.exports = SavedListingStore;
+
+/***/ },
+/* 516 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 	var FilterActions = __webpack_require__(269);
@@ -51036,15 +51149,13 @@
 	  };
 	}
 
-	var CENTER = { lat: 37.7758, lng: -122.435 };
-
 	var Map = React.createClass({
 	  displayName: 'Map',
 
 	  componentDidMount: function componentDidMount() {
 	    var map = ReactDOM.findDOMNode(this.refs.map);
 	    var mapOptions = {
-	      center: this.centerListingCoords(),
+	      center: { lat: 37.7758, lng: -122.435 },
 	      zoom: 13
 	    };
 	    this.map = new google.maps.Map(map, mapOptions);
@@ -51057,7 +51168,7 @@
 	      var listing = this.props.listings[0];
 	      return { lat: listing.lat, lng: listing.lng };
 	    } else {
-	      return CENTER;
+	      return this.props.center;
 	    }
 	  },
 	  componentDidUpdate: function componentDidUpdate(oldProps) {
@@ -51094,6 +51205,12 @@
 	    }
 	  },
 	  componentWillUnmount: function componentWillUnmount() {},
+	  componentWillReceiveProps: function componentWillReceiveProps(nProps) {
+	    if (nProps.center !== this.props.center) {
+	      this.map.setCenter(nProps.center);
+	      this.map.setZoom(13);
+	    }
+	  },
 	  registerListeners: function registerListeners() {
 	    var that = this;
 	    google.maps.event.addListener(this.map, 'idle', function () {
@@ -51112,6 +51229,7 @@
 	      that.props.onMapClick(coords);
 	    });
 	  },
+
 	  createMarkerFromListing: function createMarkerFromListing(listing) {
 	    var that = this;
 	    var pos = new google.maps.LatLng(listing.lat, listing.lng);
@@ -51121,7 +51239,8 @@
 	      listingId: listing.id
 	    });
 	    marker.addListener('click', function () {
-	      that.props.onMarkerClick(listing);
+	      this.map.panTo(this.getPosition());
+	      this.map.setZoom(18);
 	    });
 	    this.markers.push(marker);
 	  },
@@ -51146,14 +51265,14 @@
 	module.exports = Map;
 
 /***/ },
-/* 516 */
+/* 517 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
-	var SavedListingIndex = __webpack_require__(517);
+	var SavedListingIndex = __webpack_require__(518);
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
@@ -51169,14 +51288,14 @@
 	});
 
 /***/ },
-/* 517 */
+/* 518 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
 
 	var React = __webpack_require__(1);
 	var ApiUtil = __webpack_require__(159);
-	var SavedListingStore = __webpack_require__(518);
+	var SavedListingStore = __webpack_require__(515);
 	var ListingIndexItem = __webpack_require__(258);
 
 	function _getAllListings() {
@@ -51231,55 +51350,6 @@
 	  }
 
 	});
-
-/***/ },
-/* 518 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var Store = __webpack_require__(170).Store;
-	var AppDispatcher = __webpack_require__(161);
-	var ListingConstants = __webpack_require__(165);
-
-	var SavedListingStore = new Store(AppDispatcher);
-
-	var _listings = [];
-
-	var resetListings = function resetListings(listings) {
-	  _listings = listings;
-	};
-
-	var deleteListing = function deleteListing(id) {
-	  var spliceIdx = NaN;
-	  _listings.forEach(function (listing, idx) {
-	    if (listing.id === id) {
-	      spliceIdx = idx;
-	    }
-	  });
-	  if (spliceIdx !== NaN) {
-	    _listings.splice(spliceIdx, 1);
-	  }
-	};
-
-	SavedListingStore.all = function () {
-	  return _listings.slice(0);
-	};
-
-	SavedListingStore.__onDispatch = function (payload) {
-	  switch (payload.actionType) {
-	    case ListingConstants.SAVED_LISTINGS_RECEIVED:
-	      resetListings(payload.listings);
-	      SavedListingStore.__emitChange();
-	      break;
-	    case ListingConstants.SAVED_LISTING_DELETED:
-	      deleteListing(payload.id);
-	      SavedListingStore.__emitChange();
-	      break;
-	  }
-	};
-
-	module.exports = SavedListingStore;
 
 /***/ },
 /* 519 */
@@ -51640,7 +51710,7 @@
 	var ListingStore = __webpack_require__(257);
 	var ReactRouter = __webpack_require__(186);
 	var Listing = __webpack_require__(272);
-	var Map = __webpack_require__(515);
+	var Map = __webpack_require__(516);
 	var ApiUtil = __webpack_require__(159);
 
 	var ListingShow = React.createClass({

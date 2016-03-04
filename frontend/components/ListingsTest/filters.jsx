@@ -57,9 +57,10 @@ var Filters = React.createClass({
         <div className="filter-city">
           <label>City:&nbsp;</label>
           <div className="form-city">
-            <select className="city" name="city">
+            <select className="city" name="city" onChange={this.props.onCityUpdate}>
               <option value="sfbay">San Francisco</option>
               <option value="nyc">New York City</option>
+              <option value="chi">Chicago</option>
             </select>
           </div>
         </div>
