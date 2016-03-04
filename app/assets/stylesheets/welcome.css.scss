@@ -226,6 +226,7 @@ body {
 }
 .splash-about-header{
   position: absolute;
+  width: 50%;
   top: 100px;
   color: black;
   font-size: 50px;
@@ -236,8 +237,9 @@ body {
 }
 .splash-about-row{
   position: absolute;
+  width: 50%;
   top: 35%;
-  left: 25%;
+  left: calc(100% - 74%);
   display: flex;
   flex-flow: row;
   margin-top: 10px;
