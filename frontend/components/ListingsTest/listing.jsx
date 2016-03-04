@@ -17,7 +17,7 @@ var Listing = React.createClass({
         <p>Bedrooms: <strong>{listing.bedroom}</strong></p>
         <p>Description:</p>
         <span dangerouslySetInnerHTML={{__html: description}}/>
-        <a className="title" href={listing.url} target="_blank" onClick={this.confirmAlert}>Rent me!</a>
+        <a className="rentlink" href={listing.url} target="_blank" onClick={this.confirmAlert}>Rent me!</a>
       </div>
     );
   }

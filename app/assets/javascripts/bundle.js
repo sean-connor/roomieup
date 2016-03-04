@@ -34032,7 +34032,7 @@
 	            null,
 	            React.createElement(
 	              Button,
-	              { onClick: this.close },
+	              { className: 'modalclose', onClick: this.close },
 	              'Close'
 	            )
 	          )
@@ -34115,7 +34115,7 @@
 	      React.createElement('span', { dangerouslySetInnerHTML: { __html: description } }),
 	      React.createElement(
 	        'a',
-	        { className: 'title', href: listing.url, target: '_blank', onClick: this.confirmAlert },
+	        { className: 'rentlink', href: listing.url, target: '_blank', onClick: this.confirmAlert },
 	        'Rent me!'
 	      )
 	    );

@@ -54,7 +54,7 @@ var IndexItem = React.createClass({
                  <Listing listing={listing}/>
                </Modal.Body>
                <Modal.Footer>
-                 <Button onClick={this.close}>Close</Button>
+                 <Button className="modalclose" onClick={this.close}>Close</Button>
                </Modal.Footer>
             </Modal>
             <p className="price">${listing.price}</p>
