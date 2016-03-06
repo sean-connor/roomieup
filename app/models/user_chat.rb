@@ -11,6 +11,7 @@
 
 class UserChat < ActiveRecord::Base
   validates :user_id, :chat_id, presence: true
+  validates :chat_id, uniqueness: {scope: :user_id}
 
   belongs_to :user
   belongs_to :chat

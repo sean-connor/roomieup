@@ -43,7 +43,8 @@ var Search = React.createClass({
       filterParams: _getFilterParams(),
       clickedLoc: null,
       showModal: false,
-      center: {lat: 37.7758, lng: -122.435}
+      center: {lat: 37.7758, lng: -122.435},
+      activeListing: null
     };
   },
   componentDidMount: function(){
@@ -72,17 +73,21 @@ var Search = React.createClass({
       this.setState({center: {lat: 37.7758, lng: -122.435}});
     }
   },
+  onHoverActive: function(listing){
+    this.setState({activeListing: listing});
+  },
   render: function(){
     return(
       <div>
         <Map
           center={this.state.center}
+          activeListing={this.state.listing}
           onMarkerClick={this.handleMarkerClick}
           listings={this.state.listings}
           savedlistings={this.state.savedlistings}/>
         <div className="half">
           <Filters listings={this.state.listings} filterParams={this.state.filterParams} onCityUpdate={this.onCityUpdate}/>
-          <Index listings={this.state.listings} history={this.props.history} savedlistings={this.state.savedlistings}/>
+          <Index listings={this.state.listings} history={this.props.history} onHoverActive={this.onHoverActive} savedlistings={this.state.savedlistings}/>
         </div>
       </div>
     );

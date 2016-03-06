@@ -69,6 +69,9 @@ var Map = React.createClass({
       this.map.setCenter(nProps.center);
       this.map.setZoom(13);
     }
+    // if(nProps.activeListing !== null){
+    //   this.bounceMarker(nProps.activeListing);
+    // }
   },
   registerListeners: function(){
     var that = this;
@@ -89,7 +92,15 @@ var Map = React.createClass({
     });
 
   },
-
+  bounceMarker: function(listing){
+    this.markers.map(function(marker){
+      if (marker.listingId === listing.id){
+        marker.setAnimation(google.maps.Animation.BOUNCE);
+      } else {
+        marker.setAnimation(null);
+      }
+    })
+  },
   createMarkerFromListing: function (listing) {
     var that = this;
     var pos = new google.maps.LatLng(listing.lat, listing.lng);

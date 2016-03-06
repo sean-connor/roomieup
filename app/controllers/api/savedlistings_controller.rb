@@ -16,7 +16,7 @@ class Api::SavedlistingsController < ApplicationController
           end
       end
     end
-    render :create
+    render :json => {:success => "success", :status_code => "200"}
   end
 
   def index
@@ -26,6 +26,9 @@ class Api::SavedlistingsController < ApplicationController
 
   def destroy
     @savedlisting = Savedlisting.where("savedlistings.user_id = ? AND savedlistings.listing_id = ?", current_user.id, params[:listing_id])
+    unless @savedlisting[0].user.chats.where("chats.listing_id = ?", params[:listing_id]).empty?
+      @savedlisting[0].user.chats.where("chats.listing_id = ?", params[:listing_id])[0].destroy
+    end
     @savedlisting[0].destroy
     render :json => { :success => "success", :status_code => "200" }
   end
