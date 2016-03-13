@@ -2,7 +2,11 @@
 
 [roomieup.com][roomieup] is a web application for users to find living spaces based on mutual interest. Users can search through apartment listings and indicate their interest.  Once the number of interested users matches the number of available bedrooms, in a listing, the users are connected.
 
+#Home Page
 ![RoomieUp homepage: http://www.roomieup.com][home page]
+
+#Search
+![Roomieup search:][search]
 
 ##Features
 
@@ -28,7 +32,7 @@ Roomieup is a single-page application built on Rails and JavaScript, utilizing R
 -[Backend technology][backend]
 -[Frontend technology][frontend]
 
-
+[roomieup]: http://roomieup.com
 [home page]: ./docs/images/home_page.png "Roomieup Home Page"
 [search]: ./docs/images/search.png "A user's search"
 [proposal]: ./docs/proposal.md
