@@ -29,8 +29,8 @@ A [database schema][schema] was prepared along with the design proposal.
 
 Roomieup is a single-page application built on Rails and JavaScript, utilizing React.js.
 
--[Backend technology][backend]
--[Frontend technology][frontend]
+- [Backend technology][backend]
+- [Frontend technology][frontend]
 
 [roomieup]: http://roomieup.com
 [home page]: ./docs/images/home_page.png "Roomieup Home Page"
