@@ -8,10 +8,10 @@ var ApiUtil = require('../../util/apiUtil.js');
 var Index = React.createClass({
 
   isSaved: function(listing){
-    var saved = "Save"
+    var saved = false;
     this.props.savedlistings.forEach(function(savedlisting, idx){
       if(savedlisting.id === listing.id) {
-        saved = "Saved";
+        saved = true;
       }
     })
     return saved;

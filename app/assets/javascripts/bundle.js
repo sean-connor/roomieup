@@ -31102,7 +31102,7 @@
 	        ),
 	        React.createElement(
 	          'p',
-	          { className: 'navDesc' },
+	          { className: 'navDescIn' },
 	          'Login'
 	        )
 	      )
@@ -31139,20 +31139,6 @@
 	          'p',
 	          { className: 'navDesc' },
 	          'Search'
-	        )
-	      ),
-	      React.createElement(
-	        'li',
-	        { className: 'navli' },
-	        React.createElement(
-	          Link,
-	          { to: "/savedlistings" },
-	          React.createElement('div', { className: 'saved' })
-	        ),
-	        React.createElement(
-	          'p',
-	          { className: 'navDesc' },
-	          'Saved'
 	        )
 	      ),
 	      React.createElement(
@@ -31819,7 +31805,7 @@
 	var ApiUtil = __webpack_require__(159);
 	var UserProfile = __webpack_require__(249);
 	var NotificationIndex = __webpack_require__(250);
-	var UserPreference = __webpack_require__(252);
+	var SavedListingIndex = __webpack_require__(518);
 
 	module.exports = React.createClass({
 	  displayName: 'exports',
@@ -31830,7 +31816,7 @@
 	      'div',
 	      { className: 'wrapper' },
 	      React.createElement(UserProfile, { user: "current" }),
-	      React.createElement(UserPreference, null),
+	      React.createElement(SavedListingIndex, null),
 	      React.createElement(NotificationIndex, null)
 	    );
 	  }
@@ -31982,6 +31968,11 @@
 	    return React.createElement(
 	      'ul',
 	      { className: 'notificationList' },
+	      React.createElement(
+	        'li',
+	        { className: 'notificationHead' },
+	        'Notifications:'
+	      ),
 	      this.renderNotifications()
 	    );
 	  }
@@ -32023,104 +32014,7 @@
 	module.exports = NotificationStore;
 
 /***/ },
-/* 252 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	var React = __webpack_require__(1);
-	var ApiUtil = __webpack_require__(159);
-	var UserStore = __webpack_require__(237);
-
-	function _getProfile() {
-	  return UserStore.getUser();
-	}
-
-	var UserPreference = React.createClass({
-	  displayName: 'UserPreference',
-
-	  //   getInitialState: function(){
-	  //     this.updates = false;
-	  //     var profile = _getProfile();
-	  //     return ({id: profile.id, timepref: profile.timepref, cleanpref: profile.cleanpref, socialpref: profile.socialpref});
-	  //   },
-	  //
-	  //   _profileChanged: function(){
-	  //     profile = _getProfile()
-	  //     this.setState({id: profile.id, timepref: profile.timepref, cleanpref: profile.cleanpref, socialpref: profile.socialpref});
-	  //   },
-	  //   //Adds a listeneer and fetches User on mount based on usertype prop, either current user or user in a chatroom.
-	  //
-	  //   // Commit any profile changes.
-	  //   componentWillUnmount: function(){
-	  //   },
-	  //   componentDidMount: function(){
-	  //     console.log("Profile Preferences Mounting.");
-	  //   },
-	  //   timeprefChanged: function(e){
-	  //     e.preventDefault();
-	  //     this.state.timepref = e.target.value
-	  //   },
-	  //   cleanprefChanged: function (e) {
-	  //     e.preventDefault();
-	  //     this.state.cleanpref = e.target.value
-	  //   },
-	  //   socialprefChanged: function(e) {
-	  //     e.preventDefault();
-	  //     this.state.socialpref = e.target.value
-	  //   },
-
-	  render: function render() {
-	    return React.createElement(
-	      'div',
-	      { className: 'pref-group' },
-	      React.createElement(
-	        'h1',
-	        { className: 'pref-header' },
-	        'Roommate Preferences'
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'preferences' },
-	        React.createElement(
-	          'div',
-	          { className: 'pref-div' },
-	          React.createElement(
-	            'label',
-	            null,
-	            'Morning - Evening'
-	          ),
-	          React.createElement('input', { className: 'searchBox', type: 'range', min: '1', max: '10', step: '1', defaultValue: '5' })
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'pref-div' },
-	          React.createElement(
-	            'label',
-	            null,
-	            'Messy - Tidy'
-	          ),
-	          React.createElement('input', { className: 'searchBox', type: 'range', min: '1', max: '10', step: '1', defaultValue: '5' })
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'pref-div' },
-	          React.createElement(
-	            'label',
-	            null,
-	            'Home - Out'
-	          ),
-	          React.createElement('input', { className: 'searchBox', type: 'range', min: '1', max: '10', step: '1', defaultValue: '5' })
-	        )
-	      )
-	    );
-	  }
-
-	});
-
-	module.exports = UserPreference;
-
-/***/ },
+/* 252 */,
 /* 253 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -32514,6 +32408,9 @@
 	var History = __webpack_require__(186).History;
 	var ApiUtil = __webpack_require__(159);
 	var UserStore = __webpack_require__(237);
+	var Modal = __webpack_require__(274).Modal;
+	var Listing = __webpack_require__(273);
+	var Button = __webpack_require__(274).Button;
 	module.exports = React.createClass({
 	  displayName: 'exports',
 
@@ -32522,20 +32419,28 @@
 	  showDetail: function showDetail() {
 	    //this.history.pushState(null, '/listing/' + this.props.listing.id, {});
 	  },
+	  getInitialState: function getInitialState() {
+	    return { showModal: false };
+	  },
 	  editListing: function editListing(event) {
 	    event.preventDefault();
-	    if (event.target.innerHTML === "Save") {
-	      ApiUtil.saveListing(this.props.listing);
-	    } else {
-	      ApiUtil.destroyUserListing(this.props.listing);
+	    ApiUtil.destroyUserListing(this.props.listing);
+	  },
+	  close: function close() {
+	    this.setState({ showModal: false });
+	  },
+
+	  open: function open(event) {
+	    if (event.target.classList[0] == "title" || event.target.classList[0] == "sliderimage") {
+	      this.setState({ showModal: true });
 	    }
 	  },
 	  renderEditButton: function renderEditButton() {
 	    if (UserStore.signedIn()) {
 	      return React.createElement(
 	        'p',
-	        { className: 'list-btn', onClick: this.editListing },
-	        this.props.action
+	        { className: 'list-btn', id: 'true', onClick: this.editListing },
+	        '♥'
 	      );
 	    }
 	  },
@@ -32543,15 +32448,33 @@
 	  render: function render() {
 	    return React.createElement(
 	      'li',
-	      { onClick: this.showDetail, className: 'listing-index-item' },
+	      { onClick: this.open, className: 'saved-listing-index-item' },
 	      React.createElement(
 	        'div',
 	        { className: 'listContainer' },
 	        React.createElement(ListingIndexItemImage, { key: this.props.listing.id, images: this.props.listing.imagelistings }),
 	        React.createElement(
-	          'p',
-	          { className: 'title' },
-	          this.props.listing.title
+	          Modal,
+	          { className: 'modal', show: this.state.showModal, onHide: this.close },
+	          React.createElement(
+	            Modal.Header,
+	            null,
+	            React.createElement(
+	              Modal.Title,
+	              null,
+	              this.props.listing.title
+	            )
+	          ),
+	          React.createElement(
+	            Modal.Body,
+	            null,
+	            React.createElement(
+	              Button,
+	              { className: 'modalclose', onClick: this.close },
+	              '✖'
+	            ),
+	            React.createElement(Listing, { listing: this.props.listing })
+	          )
 	        ),
 	        React.createElement(
 	          'p',
@@ -33865,19 +33788,23 @@
 	        React.createElement(
 	          'label',
 	          null,
-	          'Price ($',
+	          'Min Price ($',
+	          this.currentMinPrice(),
+	          ')'
+	        ),
+	        React.createElement('input', { className: 'rangeSearch', type: 'range', min: '0', max: '10000', step: '100', value: this.currentMinPrice(), onChange: this.minPriceChanged }),
+	        React.createElement(
+	          'label',
+	          null,
+	          'Max Price ($',
 	          this.currentMaxPrice(),
 	          ')'
 	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'form-price' },
-	          React.createElement('input', { className: 'searchBox', type: 'range', min: '0', max: '10000', step: '100', value: this.currentMaxPrice(), onChange: this.maxPriceChanged })
-	        )
+	        React.createElement('input', { className: 'rangeSearch', type: 'range', min: '0', max: '10000', step: '100', value: this.currentMaxPrice(), onChange: this.maxPriceChanged })
 	      ),
 	      React.createElement(
 	        'div',
-	        { className: 'filter' },
+	        { className: 'filter-br' },
 	        React.createElement(
 	          'label',
 	          null,
@@ -33895,7 +33822,7 @@
 	        React.createElement(
 	          'label',
 	          null,
-	          'City: '
+	          'City '
 	        ),
 	        React.createElement(
 	          'div',
@@ -33980,10 +33907,10 @@
 
 
 	  isSaved: function isSaved(listing) {
-	    var saved = "Save";
+	    var saved = false;
 	    this.props.savedlistings.forEach(function (savedlisting, idx) {
 	      if (savedlisting.id === listing.id) {
-	        saved = "Saved";
+	        saved = true;
 	      }
 	    });
 	    return saved;
@@ -34039,8 +33966,10 @@
 	    this.setState({ showModal: false });
 	  },
 
-	  open: function open() {
-	    this.setState({ showModal: true });
+	  open: function open(event) {
+	    if (event.target.classList[0] == "title" || event.target.classList[0] == "sliderimage") {
+	      this.setState({ showModal: true });
+	    }
 	  },
 
 	  confirmAlert: function confirmAlert() {
@@ -34048,13 +33977,14 @@
 	  },
 
 	  editListing: function editListing(event) {
+
 	    event.preventDefault();
-	    if (event.target.innerHTML === "Save") {
+	    if (!this.state.saved) {
 	      ApiUtil.saveListing(this.props.listing);
-	      this.setState({ saved: "Saved" });
+	      this.setState({ saved: true });
 	    } else {
 	      ApiUtil.destroyUserListing(this.props.listing);
-	      this.setState({ saved: "Save" });
+	      this.setState({ saved: false });
 	    }
 	  },
 
@@ -34065,13 +33995,12 @@
 	      { className: 'listing-index-item' },
 	      React.createElement(
 	        'div',
-	        { className: 'listContainer' },
+	        { className: 'listContainer', onClick: this.open },
 	        React.createElement(ListingIndexItemImage, { key: listing.id, images: listing.imagelistings }),
 	        React.createElement(
 	          'a',
-	          { className: 'title', onClick: this.open },
-	          listing.title,
-	          '! (Click for Detail)'
+	          { className: 'title' },
+	          listing.title
 	        ),
 	        React.createElement(
 	          Modal,
@@ -34088,16 +34017,12 @@
 	          React.createElement(
 	            Modal.Body,
 	            null,
-	            React.createElement(Listing, { listing: listing })
-	          ),
-	          React.createElement(
-	            Modal.Footer,
-	            null,
 	            React.createElement(
 	              Button,
 	              { className: 'modalclose', onClick: this.close },
-	              'Close'
-	            )
+	              '✖'
+	            ),
+	            React.createElement(Listing, { listing: listing })
 	          )
 	        ),
 	        React.createElement(
@@ -34114,8 +34039,8 @@
 	        ),
 	        React.createElement(
 	          'p',
-	          { className: 'list-btn', onClick: this.editListing },
-	          this.state.saved
+	          { className: 'list-btn', id: this.state.saved, onClick: this.editListing },
+	          '♥'
 	        )
 	      )
 	    );
@@ -51336,7 +51261,7 @@
 	    } else {
 	      return React.createElement(
 	        'ul',
-	        { className: 'listingcollection' },
+	        { className: 'saved-listingcollection' },
 	        this.state.listings.map(function (listing) {
 	          return React.createElement(ListingIndexItem, { key: listing.id, action: "Delete", listing: listing });
 	        })
@@ -51555,11 +51480,14 @@
 	var MessageStore = __webpack_require__(524);
 	var ApiUtil = __webpack_require__(159);
 	var ApiActions = __webpack_require__(160);
+	var UserStore = __webpack_require__(237);
 
 	function _getAllMessages() {
 	  return MessageStore.all();
 	}
-
+	function _getCurrentUser() {
+	  return UserStore.getUser();
+	}
 	var MessageIndex = React.createClass({
 	  displayName: 'MessageIndex',
 
@@ -51595,15 +51523,29 @@
 	  },
 
 	  renderMessages: function renderMessages() {
+	    var user = _getCurrentUser();
+	    var mymessage;
+	    var displayname;
+	    var colon;
 	    return this.state.messages.map(function (message, idx) {
+	      if (user.username === message.username) {
+	        mymessage = true;
+	        displayname = "";
+	        colon = "";
+	      } else {
+	        mymessage = false;
+	        displayname = message.username;
+	        colon = ":";
+	      }
 	      return React.createElement(
 	        'li',
-	        { className: 'message', key: idx },
+	        { className: 'message', id: mymessage, key: idx },
 	        React.createElement(
 	          'p',
-	          { className: 'messageText' },
-	          message.username,
-	          ': ',
+	          { className: 'messageText', id: mymessage },
+	          displayname,
+	          colon,
+	          ' ',
 	          message.body
 	        )
 	      );

@@ -1,4 +1,32 @@
+input[type=range]{
+    -webkit-appearance: none;
+}
 
+input[type=range]::-webkit-slider-runnable-track {
+    width: 300px;
+    height: 5px;
+    background: #ccc;
+    border: none;
+    border-radius: 3px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    border: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: rgba(72, 61, 139, 1);
+    margin-top: -4px;
+}
+
+input[type=range]:focus {
+    outline: none;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+    background: rgba(72, 61, 139, .5);
+}
 
 html{
   -webkit-background-size: cover;
@@ -40,6 +68,7 @@ body {
 }
 .appdiv{
   height: 100%;
+  width: 100%;
   margin: 0;
   padding: 0;
 }
@@ -77,6 +106,9 @@ body {
   -webkit-flex-flow: row wrap;
   justify-content: flex-end;
 }
+.navul li{
+  transition: background 0.5s ease-in-out, padding 0.8s linear;
+}
 
 
 .navul a {
@@ -93,12 +125,20 @@ body {
   border-radius: 3px;
 }
 .navDesc{
-  display: none;
+  display: block;
+  opacity: 0;
+  font-weight: 100;
+  font-variant: small-caps;
+  padding: 0;
+  margin: 0;
+  transition: opacity 0.5s ease-in-out, padding 0.8s linear;
+}
+.navDescIn{
   padding: 0;
   margin: 0;
 }
 .navli:hover .navDesc{
-  display: block;
+  opacity: 1;
 
 }
 @media all and (max-width: 800px) {
@@ -254,7 +294,7 @@ body {
   justify-content:center;
   align-items: center;
   margin: 10px;
-  width: 10%;
+  width: 20%;
 }
 .splash-login{
   position: absolute;
@@ -287,6 +327,7 @@ body {
   font-size: 30px;
   height: 50px;
   width: 50px;
+  z-index: 3;
 }
 .downarrow:hover{
   cursor: pointer;
@@ -310,8 +351,8 @@ body {
 .profile{
   position: absolute;
   text-align: left;
-  width: 50%;
-  overflow-y: scroll;
+  width: 25%;
+  overflow: hidden;
   height: calc(100% - 110px);
   margin-left: 50px;
 }
@@ -355,16 +396,26 @@ body {
 }
 .notificationList{
   position: absolute;
-  top: 35%;
-  width: 100%;
-  left: 42%;
+  top: 350px;
+  width: 70%;
+  left: 21%;
   list-style: none;
   border-left: 1px ridge;
   border-top: 1px ridge;
   margin: 10px;
-  max-height: 350px;
+  height: 200px;
   overflow-y: scroll;
+  overflow-x: hidden;
   text-align: left;
+}
+.notificationHead{
+  font-weight: 700;
+  font-size: 25px;
+}
+.notification{
+  position: relative;
+  left: 5%;
+  font-weight: 400;
 }
 .pref-group{
   position: absolute;
@@ -426,7 +477,7 @@ body {
   display: -webkit-flex;
   display: flex;
   position: relative;
-  width: 50%;
+  width: 100%;
   -webkit-flex-flow: row wrap;
   flex-flow: row wrap;
   height: calc(100% - 110px);
@@ -466,7 +517,9 @@ li > button{
 .sliderimage{
   width: 300px;
   height: 300px;
-
+}
+.sliderimage:hover{
+  cursor: pointer;
 }
 .sliderlabel{
   position: relative;
@@ -478,21 +531,39 @@ li > button{
 .filter{
   margin-right: 2px;
   display: flex;
-  top: 25%;
-  left: 10%;
-  flex-flow: row;
-  justify-content: flex-start;
+  flex-flow: column;
+  align-content: center;
   position: relative;
-  height: 45px;
+  height: 150px;
   line-height: 45px;
-
+  margin-left: 10px;
+}
+.filter-br{
+  display: flex;
+  flex-flow: column;
+  align-content: center;
+  position: relative;
+  height: 150px;
+  width: 70px;
+  line-height: 50px;
 }
 .filter-city{
-  width: 200px;
-  position: absolute;
-  top: 50%;
-  right: 10%;
+  width: 100px;
+  position: relative;
   display: flex;
+  flex-flow: column;
+  align-content: center;
+  height: 150px;
+  line-height: 50px;
+  margin-right: 15px;
+}
+.city{
+  border: none;
+  background: white;
+  color: black;
+  font-size: 16px;
+  font-family: 'Josefin Sans', sans-serif;
+  height: 1.5em;
 }
 .form-price{
   position: absolute;
@@ -503,9 +574,6 @@ li > button{
   left: 20%;
   text-align: center;
 }
-.searchBox{
-  text-align: center;
-}
 .listContainer{
   position: relative;
   height: 370px;
@@ -513,21 +581,42 @@ li > button{
 .list-btn{
   position: absolute;
   border-radius: 5px;
-  font-size: 20px;
+  font-size: 40px;
   font-weight: 400;
-  color: white;
-  background: rgba(0,0,0, .6);
   padding: 5px;
-  width: 50px;
+  width: 30px;
   margin: 3px 3px;
+  text-align: center;
+  line-height: 1.25em;
+  height: 1em;
   top: 0;
   right: 0;
+  text-shadow: 0 0 1px rgba(0,0,0,.5);
+  transition: color .5s ease-in-out;
+}
+.list-btn#false{
+  color: white;
+
+}
+.list-btn#true{
+  color: red;
 }
 .list-btn:hover{
   cursor: pointer;
-  background: rgba(0,0,0, .75);
+  font-size: 45px;
 }
 .searchBox{
+  margin: 3px;
+  font-size: 15px;
+  width: 2em;
+  height: 2em;
+  text-align: center;
+  border-radius: 3px;
+  color: black;
+  background: white;
+}
+.rangeSearch{
+  background: ghostwhite;
   text-size: 20px;
   margin: 3px;
   width: 15em;
@@ -539,16 +628,17 @@ li > button{
   position: relative;
   width: 50.6%;
   display: flex;
-  flex-flow: column;
+  flex-flow: wrap;
   border: 1px ridge;
   background: ghostwhite;
+  justify-content: space-around;
 }
 .indexForm{
   position: relative;
   padding: 10px;
   border-radius: 30px;
 }
-.searchIndex, .savedIndex{
+.searchIndex{
   overflow: auto;
   height: 100%;
   position: relative;
@@ -559,7 +649,20 @@ li > button{
   margin: 0 10px;
   border-radius: 30px;
 }
-
+.savedIndex{
+height: 325px;
+max-width: 75%;
+left: 21%;
+overflow-x: scroll;
+overflow-y: hidden;
+position: relative;
+display: flex;
+flex-flow: row;
+flex-wrap: wrap;
+padding: 5px;
+margin: 0 10px;
+border-radius: 30px;
+}
 .listingcollection {
   padding: 0;
   margin: 0;
@@ -574,6 +677,20 @@ li > button{
   -webkit-flex-flow: row wrap;
   justify-content: space-around;
 }
+.saved-listingcollection {
+  padding: 0;
+  margin: 0;
+  margin-top: 10px;
+  list-style: none;
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  max-height: 320px;
+  -webkit-flex-flow: row;
+  justify-content: space-around;
+}
 
 .listing-index-item {
   display: relative;
@@ -582,6 +699,15 @@ li > button{
   margin: 10px;
   width: 300px;
   height: 450px;
+  box-shadow: 0 0 15px #EEE;
+}
+.saved-listing-index-item {
+  display: relative;
+  border-radius: 5px;
+  padding-bottom: 5px;
+  margin: 10px;
+  width: 300px;
+  height: 300px;
   box-shadow: 0 0 15px #EEE;
 }
 .slider-frame{
@@ -637,11 +763,13 @@ li > button{
 .modalclose{
   background: #222;
   color: ghostwhite;
-  width: 75px;
+  width: 50px;
   height: 50px;
-  position: absolute;
-  top: 0px;
-  right: 0px;
+  border-radius: 50px;
+  font-size: 30px;
+  position: absolute;;
+  top: 0;
+  right: 0;
   opacity: .5;
 }
 .modalclose:hover{
@@ -675,14 +803,11 @@ li > button{
 
   .authDiv{
     position: absolute;
-    bottom: 100px;
     right: 0;
     height: 100%;
     width: 100%
   }
-  .log{
-    height: 100%;
-  }
+
   .frontauth{
     height: calc(100% - 300px);
     display: block;
@@ -699,11 +824,10 @@ li > button{
     transition: transform 1s ease;
   }
   .log{
-    display: flex;
-    flex-direction:row;
-    text-align: center;
-    justify-content: center;
-    align-content: center;
+    display: block;
+    position: absolute;
+    left: calc(50% - 203px);
+    top: calc(50% - 300px);
   }
 
   .signup{
@@ -779,6 +903,7 @@ li > button{
   padding-left: 5px;
   padding-right: 15px;
   text-align: right;
+  margin-bottom: 0;
 }
 .chatName:hover{
   opacity: .5;
@@ -818,40 +943,56 @@ li > button{
   padding: 0;
 }
 .message{
-  padding-bottom: 1em;
-  padding-top: 1em;
-  line-height: 1em;
-  position: relative;
   display: block;
-  background: white;
+  margin-bottom: 0px;
+  line-height: 1em;
   text-align: left;
-  height: 1em;
   position: relative;
-  width: auto;
-  padding-left: .5em;
-  border-bottom: .01em ridge;
+}
+#true.message{
+  text-align: right;
+}
+#true.messageText{
+  background: darken(ghostwhite, 15%);
+  margin-right: 0px;
+  margin-left: 50px;
+  color: white;
+  text-align: right;
 }
 .messageText{
-  margin: 0;
-  width: auto;
+  display: inline-block;
+  margin-bottom: 5px;
+  margin-top: 5px;
+  background: white;
+  font-size: 20px;
+  padding-bottom: .5em;
+  padding-top: .5em;
+  padding-right: .5em;
+  padding-left: .5em;
+  border-radius: 10px;
 }
 .messageForm{
   width: 100%;
-  height: 50px;
+  font-size: 20px;
+  height: 2em;
 }
 .messageInput{
   width: 80%;
-  height: 50px;
+  height: 2em;
 }
 .messageSubmit{
   width: 10%;
   margin-left: 20px;
-  height: 50px;
+  font-size: 20px;
+  padding-top: .5em;
+  padding-bottom: .5em;
+  height: 2em;
   border: none;
-  background: darken(ghostwhite, 5%);
+  background: darken(ghostwhite, 15%);
   font-weight: 600;
-  font-size: 16px;
   font-family: 'Josefin Sans', sans-serif;
+  color: white;
+  border-radius: 5px;
 
 }
 .messageSubmit:hover{

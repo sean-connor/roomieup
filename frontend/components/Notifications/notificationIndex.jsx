@@ -40,6 +40,7 @@ var NotificationIndex = React.createClass({
   render: function(){
     return(
         <ul className="notificationList">
+          <li className='notificationHead'>Notifications:</li>
           {this.renderNotifications()}
         </ul>
     );

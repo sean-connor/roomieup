@@ -8,7 +8,7 @@ module.exports = React.createClass({
 renderLoggedOut: function(){
   return(
     <ul className="navul-login">
-      <li className="navli loginli"><Link to ={"/auth"}><div className="login"></div></Link><p className="navDesc">Login</p></li>
+      <li className="navli loginli"><Link to ={"/auth"}><div className="login"></div></Link><p className="navDescIn">Login</p></li>
     </ul>
   )
 },
@@ -30,13 +30,6 @@ renderLoggedIn: function(){
           </div>
         </Link>
         <p className="navDesc">Search</p>
-      </li>
-      <li className="navli">
-        <Link to ={"/savedlistings"}>
-          <div className="saved">
-          </div>
-        </Link>
-        <p className="navDesc">Saved</p>
       </li>
       <li className="navli">
         <Link to ={"/chat"}>

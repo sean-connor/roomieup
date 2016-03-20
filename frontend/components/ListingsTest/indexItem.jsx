@@ -20,8 +20,10 @@ var IndexItem = React.createClass({
     this.setState({ showModal: false });
   },
 
-  open: function() {
-    this.setState({ showModal: true});
+  open: function(event) {
+    if(event.target.classList[0] == "title" || event.target.classList[0] == "sliderimage"){
+      this.setState({ showModal: true});
+    }
   },
 
   confirmAlert: function(){
@@ -29,13 +31,15 @@ var IndexItem = React.createClass({
   },
 
   editListing: function(event){
+
     event.preventDefault();
-    if(event.target.innerHTML === "Save"){
+    if(!(this.state.saved)){
       ApiUtil.saveListing(this.props.listing);
-      this.setState({saved: "Saved"})
+      this.setState({saved: true})
     } else {
       ApiUtil.destroyUserListing(this.props.listing);
-      this.setState({saved: "Save"})
+      this.setState({saved: false})
+
     }
   },
 
@@ -43,23 +47,21 @@ var IndexItem = React.createClass({
     var listing = this.props.listing;
     return (
         <li className="listing-index-item">
-          <div className="listContainer">
+          <div className="listContainer" onClick={this.open}>
             <ListingIndexItemImage key={listing.id} images={listing.imagelistings}/>
-            <a className="title" onClick={this.open}>{listing.title}!&nbsp;(Click for Detail)</a>
+            <a className="title">{listing.title}</a>
             <Modal className="modal" show={this.state.showModal} onHide={this.close}>
                <Modal.Header>
                  <Modal.Title>{listing.title}</Modal.Title>
                </Modal.Header>
                <Modal.Body>
+                 <Button className="modalclose" onClick={this.close}>&#x2716;</Button>
                  <Listing listing={listing}/>
                </Modal.Body>
-               <Modal.Footer>
-                 <Button className="modalclose" onClick={this.close}>Close</Button>
-               </Modal.Footer>
             </Modal>
             <p className="price">${listing.price}</p>
             <p className="bedroom">Bedrooms: {listing.bedroom}</p>
-            <p className="list-btn" onClick={this.editListing}>{this.state.saved}</p>
+            <p className="list-btn" id={this.state.saved} onClick={this.editListing}>&#9829;</p>
           </div>
         </li>
     );

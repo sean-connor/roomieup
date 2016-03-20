@@ -2,11 +2,14 @@ var React = require('react');
 var MessageStore = require('../../stores/messages');
 var ApiUtil = require('../../util/apiUtil');
 var ApiActions = require('../../actions/apiActions');
+var UserStore = require('../../stores/user');
 
 function _getAllMessages() {
   return MessageStore.all();
 }
-
+function _getCurrentUser() {
+  return UserStore.getUser();
+}
 var MessageIndex = React.createClass({
   contextTypes: {
     router: React.PropTypes.func
@@ -41,13 +44,26 @@ var MessageIndex = React.createClass({
   },
 
   renderMessages: function() {
+    var user = _getCurrentUser();
+    var mymessage;
+    var displayname;
+    var colon;
     return (
       this.state.messages.map(function(message, idx){
-          return(
-            <li className="message" key={idx}>
-              <p className="messageText">{message.username}:&nbsp;{message.body}</p>
-            </li>
-          )
+        if(user.username === message.username){
+          mymessage = true;
+          displayname = "";
+          colon = "";
+        } else {
+          mymessage = false;
+          displayname = message.username;
+          colon = ":";
+        }
+        return(
+          <li className="message" id={mymessage} key={idx}>
+            <p className="messageText" id={mymessage}>{displayname}{colon}&nbsp;{message.body}</p>
+          </li>
+        )
       })
     )
   },

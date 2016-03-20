@@ -18,7 +18,7 @@ renderListings: function(){
     return (<h3 className="loading">Some LoadingImage</h3>);
   } else {
     return (
-      <ul className="listingcollection">
+      <ul className="saved-listingcollection">
           {this.state.listings.map(function(listing){
             return <ListingIndexItem key={listing.id} action={"Delete"} listing={listing} />;
           })}
