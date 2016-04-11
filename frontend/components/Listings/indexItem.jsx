@@ -1,8 +1,8 @@
 var React = require('react');
 var ReactRouter = require('react-router');
 var ApiUtil = require('../../util/apiUtil.js');
-var ListingIndexItemImage = require('../Listings/listingIndexItemImage');
-var Listing = require('../ListingsTest/listing');
+var ListingIndexItemImage = require('./listingIndexItemImage');
+var Listing = require('./listing');
 var Modal = require('react-bootstrap').Modal;
 var Button = require('react-bootstrap').Button;
 

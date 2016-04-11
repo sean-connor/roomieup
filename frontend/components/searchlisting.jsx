@@ -1,9 +1,6 @@
 var React = require('react');
 var ApiUtil = require('../util/apiUtil.js');
-var SearchListingForm = require('./Listings/searchListingForm');
-var SearchListingIndex = require("./Listings/searchListingIndex");
-var SearchListingMap = require('./Listings/searchListingMap');
-var Search = require('./ListingsTest/search');
+var Search = require('./Listings/search');
 module.exports = React.createClass({
 
 render: function(){

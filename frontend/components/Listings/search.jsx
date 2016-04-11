@@ -9,7 +9,7 @@ var Index = require('./index');
 var Map = require('./map');
 var Modal = require('react-bootstrap').Modal;
 var Button = require('react-bootstrap').Button;
-var Listing = require('../ListingsTest/listing');
+var Listing = require('./listing');
 
 function _getAllListings() {
   return ListingStore.all();

@@ -1,6 +1,6 @@
 var React = require('react');
 var ReactRouter = require('react-router');
-var ListingIndexItemImage = require('../Listings/listingIndexItemImage');
+var ListingIndexItemImage = require('../listingIndexItemImage');
 
 var Listing = React.createClass({
 

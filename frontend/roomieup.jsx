@@ -15,7 +15,7 @@ var SearchListings = require('./components/searchlisting');
 var SavedListings = require('./components/savedlisting');
 var Chat = require('./components/chatEntry');
 var Auth = require('./components/auth');
-var ListingShow = require('./components/ListingsTest/listingShow');
+var ListingShow = require('./components/Listings/listingShow');
 
 var routes = (
   <Route path="/" component={App}>
